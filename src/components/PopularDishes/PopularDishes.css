@@ -1,0 +1,96 @@
+/* ==========================================================================
+   FOODLY — Popular Dishes Styles
+   ========================================================================== */
+
+.popular-dishes-section {
+  padding: 5rem 0;
+  position: relative;
+}
+
+@media (max-width: 768px) {
+  .popular-dishes-section {
+    padding: 3.5rem 0;
+  }
+}
+
+/* Sliding Pill Filter Nav */
+.filter-nav-wrap {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 3rem;
+}
+
+.filter-pill-container {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  background-color: var(--surface-soft);
+  padding: 0.35rem;
+  border-radius: var(--radius-full);
+  border: 1px solid var(--border);
+  overflow-x: auto;
+  max-width: 100%;
+}
+
+.filter-nav-btn {
+  padding: 0.6rem 1.35rem;
+  border-radius: var(--radius-full);
+  font-family: var(--font-primary);
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  transition: all var(--transition-fast);
+  white-space: nowrap;
+}
+
+.filter-nav-btn:hover {
+  color: var(--text-primary);
+}
+
+.filter-nav-btn.active {
+  background-color: var(--surface);
+  color: var(--accent);
+  font-weight: 700;
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--border-light);
+}
+
+[data-theme="dark"] .filter-nav-btn.active {
+  background-color: var(--accent);
+  color: #FFFFFF;
+}
+
+/* Grid Layout */
+.popular-dishes-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.75rem;
+  margin-bottom: 3.5rem;
+}
+
+@media (max-width: 1200px) {
+  .popular-dishes-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+}
+
+@media (max-width: 840px) {
+  .popular-dishes-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.25rem;
+  }
+}
+
+@media (max-width: 520px) {
+  .popular-dishes-grid {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+}
+
+/* Bottom CTA */
+.popular-bottom-cta {
+  display: flex;
+  justify-content: center;
+}

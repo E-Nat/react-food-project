@@ -1,0 +1,333 @@
+/* ==========================================================================
+   FOODLY — App Promo Styles
+   ========================================================================== */
+
+.app-promo-section {
+  padding: 5.5rem 0;
+  position: relative;
+  overflow: hidden;
+  background-color: var(--surface);
+}
+
+@media (max-width: 768px) {
+  .app-promo-section {
+    padding: 3.5rem 0;
+  }
+}
+
+.app-promo-grid {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  align-items: center;
+  gap: 4rem;
+}
+
+@media (max-width: 992px) {
+  .app-promo-grid {
+    grid-template-columns: 1fr;
+    gap: 3.5rem;
+  }
+}
+
+/* Left Content */
+.app-promo-content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.app-promo-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.35rem 0.95rem;
+  border-radius: var(--radius-full);
+  background-color: var(--accent-light);
+  color: var(--accent);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  margin-bottom: 1rem;
+}
+
+.app-promo-title {
+  font-family: var(--font-primary);
+  font-size: clamp(2rem, 3.8vw, 2.75rem);
+  font-weight: 800;
+  line-height: 1.18;
+  color: var(--text-primary);
+  letter-spacing: -0.02em;
+  margin-bottom: 1.25rem;
+}
+
+.app-promo-desc {
+  font-size: 1.05rem;
+  line-height: 1.65;
+  color: var(--text-secondary);
+  margin-bottom: 1.85rem;
+}
+
+.app-features-checklist {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  margin-bottom: 2.25rem;
+}
+
+.app-feature-row {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.app-check-circle {
+  width: 24px;
+  height: 24px;
+  border-radius: var(--radius-full);
+  background-color: var(--green-light);
+  color: var(--green);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+/* Store Buttons */
+.store-buttons-wrap {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.store-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem 1.4rem;
+  border-radius: var(--radius-md);
+  background-color: var(--surface-elevated);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-sm);
+  color: var(--text-primary);
+  transition: all var(--transition-fast);
+}
+
+.store-btn:hover {
+  border-color: var(--accent);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.store-icon {
+  color: var(--accent);
+}
+
+.store-text-group {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+
+.store-subtitle {
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  color: var(--text-secondary);
+}
+
+.store-title {
+  font-family: var(--font-primary);
+  font-size: 0.95rem;
+  font-weight: 800;
+  line-height: 1.1;
+}
+
+/* Right Mockup */
+.phone-mockup-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.phone-device-frame {
+  width: 280px;
+  height: 520px;
+  background-color: var(--phone-bezel);
+  border-radius: 42px;
+  padding: 10px;
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.22);
+  position: relative;
+  z-index: 2;
+  animation: floatGentle 6s ease-in-out infinite;
+}
+
+.phone-notch {
+  width: 100px;
+  height: 18px;
+  background-color: var(--phone-bezel);
+  border-bottom-left-radius: 12px;
+  border-bottom-right-radius: 12px;
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 5;
+}
+
+.phone-screen-ui {
+  background-color: var(--phone-screen);
+  width: 100%;
+  height: 100%;
+  border-radius: 32px;
+  overflow: hidden;
+  padding: 1.75rem 0.85rem 0.6rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.phone-header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.85rem;
+}
+
+.phone-user-greeting {
+  font-size: 0.82rem;
+  font-weight: 800;
+  color: var(--text-primary);
+}
+
+.phone-avatar-dot {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background-color: var(--accent);
+  color: #fff;
+  font-size: 0.65rem;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.phone-order-live-card {
+  background-color: var(--surface);
+  border-radius: 14px;
+  padding: 0.65rem;
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--border-light);
+  margin-bottom: 0.75rem;
+}
+
+.phone-order-img {
+  width: 38px;
+  height: 38px;
+  object-fit: contain;
+}
+
+.phone-order-info {
+  flex: 1;
+}
+
+.phone-order-name {
+  font-size: 0.75rem;
+  font-weight: 800;
+  color: var(--text-primary);
+}
+
+.phone-order-status {
+  font-size: 0.65rem;
+  color: var(--green);
+  font-weight: 700;
+}
+
+.phone-section-label {
+  font-size: 0.68rem;
+  font-weight: 800;
+  color: var(--text-secondary);
+  margin-bottom: 0.45rem;
+}
+
+.phone-mini-dishes {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+  flex: 1;
+}
+
+.phone-dish-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background-color: var(--surface);
+  padding: 0.4rem 0.55rem;
+  border-radius: 10px;
+  border: 1px solid var(--border-light);
+}
+
+.phone-dish-thumb {
+  width: 28px;
+  height: 28px;
+  object-fit: contain;
+}
+
+.phone-dish-title {
+  font-size: 0.72rem;
+  font-weight: 700;
+  flex: 1;
+}
+
+.phone-dish-price {
+  font-size: 0.72rem;
+  font-weight: 800;
+  color: var(--accent);
+}
+
+.phone-bottom-nav {
+  display: flex;
+  justify-content: space-around;
+  padding-top: 0.5rem;
+  border-top: 1px solid var(--border-light);
+  color: var(--text-muted);
+}
+
+.phone-nav-item.active {
+  color: var(--accent);
+}
+
+/* Floating Metric Badges */
+.app-float-badge-left,
+.app-float-badge-right {
+  position: absolute;
+  z-index: 4;
+  background-color: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 0.65rem 0.95rem;
+  box-shadow: var(--shadow-md);
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+}
+
+.app-float-badge-left {
+  top: 15%;
+  left: 0;
+  animation: floatTag 4s ease-in-out infinite alternate;
+}
+
+.app-float-badge-right {
+  bottom: 12%;
+  right: 0;
+  animation: floatTag 4s ease-in-out infinite alternate 2s;
+}

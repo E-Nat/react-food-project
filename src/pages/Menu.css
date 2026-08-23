@@ -1,0 +1,294 @@
+/* ==========================================================================
+   FOODLY — Menu Page Styles
+   ========================================================================== */
+
+.menu-page {
+  background-color: var(--background);
+}
+
+.menu-hero-header {
+  padding: 3.5rem 0 2rem;
+  background-color: var(--surface-soft);
+  text-align: center;
+  border-bottom: 1px solid var(--border-light);
+}
+
+.menu-header-inner {
+  max-width: 680px;
+  margin: 0 auto;
+}
+
+.menu-main-title {
+  font-family: var(--font-primary);
+  font-size: clamp(2.2rem, 4vw, 3rem);
+  font-weight: 800;
+  color: var(--text-primary);
+  letter-spacing: -0.02em;
+  margin-bottom: 0.75rem;
+}
+
+.menu-main-subtitle {
+  font-size: 1.05rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+/* Controls Bar */
+.menu-controls-section {
+  padding: 2rem 0 1rem;
+  background-color: var(--surface);
+  border-bottom: 1px solid var(--border);
+  position: sticky;
+  top: 70px;
+  z-index: 900;
+  backdrop-filter: blur(10px);
+}
+
+.menu-controls-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  margin-bottom: 1.25rem;
+}
+
+@media (max-width: 768px) {
+  .menu-controls-bar {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 1rem;
+  }
+}
+
+.menu-search-box {
+  position: relative;
+  flex: 1;
+  display: flex;
+  align-items: center;
+}
+
+.menu-search-icon {
+  position: absolute;
+  left: 1rem;
+  color: var(--text-muted);
+}
+
+.menu-search-input {
+  width: 100%;
+  padding: 0.75rem 1rem 0.75rem 2.75rem;
+  border-radius: var(--radius-full);
+  border: 1px solid var(--border);
+  background-color: var(--surface-soft);
+  color: var(--text-primary);
+  font-family: var(--font-body);
+  font-size: 0.92rem;
+  outline: none;
+  transition: border-color var(--transition-fast);
+}
+
+.menu-search-input:focus {
+  border-color: var(--accent);
+}
+
+.menu-search-clear {
+  position: absolute;
+  right: 1rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
+.menu-sort-box {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background-color: var(--surface-soft);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-full);
+  padding: 0.25rem 0.85rem;
+}
+
+.menu-sort-icon {
+  color: var(--text-secondary);
+}
+
+.menu-sort-select {
+  border: none;
+  background: none;
+  font-family: var(--font-primary);
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  outline: none;
+  padding: 0.5rem 0;
+  cursor: pointer;
+}
+
+/* Category Tabs */
+.menu-category-tabs-wrap {
+  display: flex;
+  overflow-x: auto;
+  padding-bottom: 0.5rem;
+  margin-bottom: 0.85rem;
+}
+
+.menu-category-tabs {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.menu-cat-btn {
+  padding: 0.5rem 1.15rem;
+  border-radius: var(--radius-full);
+  font-family: var(--font-primary);
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  background-color: var(--surface-soft);
+  border: 1px solid var(--border);
+  white-space: nowrap;
+  transition: all var(--transition-fast);
+}
+
+.menu-cat-btn:hover {
+  color: var(--text-primary);
+  border-color: var(--accent);
+}
+
+.menu-cat-btn.active {
+  background-color: var(--accent);
+  color: #FFFFFF;
+  border-color: var(--accent);
+}
+
+/* Dietary */
+.menu-dietary-row {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  overflow-x: auto;
+  padding-bottom: 0.5rem;
+}
+
+.dietary-label {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  white-space: nowrap;
+}
+
+.dietary-pills-list {
+  display: flex;
+  gap: 0.45rem;
+}
+
+.dietary-pill {
+  padding: 0.25rem 0.75rem;
+  border-radius: var(--radius-full);
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  background-color: var(--background);
+  border: 1px solid var(--border-light);
+  white-space: nowrap;
+  transition: all var(--transition-fast);
+}
+
+.dietary-pill:hover,
+.dietary-pill.active {
+  background-color: var(--green-light);
+  color: var(--green);
+  border-color: var(--green);
+  font-weight: 700;
+}
+
+/* Results & Grid */
+.menu-dishes-section {
+  padding: 3rem 0 5.5rem;
+}
+
+.menu-results-count {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 2rem;
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+}
+
+.btn-reset-filters {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--accent);
+  transition: color var(--transition-fast);
+}
+
+.menu-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.75rem;
+}
+
+@media (max-width: 1200px) {
+  .menu-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+}
+
+@media (max-width: 840px) {
+  .menu-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.25rem;
+  }
+}
+
+@media (max-width: 520px) {
+  .menu-grid {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+}
+
+/* No Results */
+.menu-no-results {
+  text-align: center;
+  padding: 4rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: var(--surface);
+  border: 1px dashed var(--border);
+  border-radius: var(--radius-xl);
+}
+
+.no-results-icon-wrap {
+  width: 72px;
+  height: 72px;
+  border-radius: var(--radius-full);
+  background-color: var(--surface-soft);
+  color: var(--text-muted);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.25rem;
+}
+
+.menu-no-results h3 {
+  font-family: var(--font-primary);
+  font-size: 1.35rem;
+  font-weight: 800;
+  margin-bottom: 0.5rem;
+}
+
+.menu-no-results p {
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+  margin-bottom: 1.75rem;
+}
