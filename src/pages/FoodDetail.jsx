@@ -11,7 +11,10 @@ import {
   ShoppingBag, 
   CheckCircle2, 
   Sparkles,
-  ChevronRight
+  ChevronRight,
+  Heart,
+  Truck,
+  Leaf
 } from 'lucide-react';
 import Navbar from '../components/Navbar/Navbar';
 import Footer from '../components/Footer/Footer';
@@ -30,6 +33,7 @@ const FoodDetail = () => {
   const [loading, setLoading] = useState(true);
   const [quantity, setQuantity] = useState(1);
   const [isAdded, setIsAdded] = useState(false);
+  const [isFavorite, setIsFavorite] = useState(false);
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -88,6 +92,8 @@ const FoodDetail = () => {
     );
   }
 
+  const totalPrice = (dish.price * quantity).toFixed(2);
+
   return (
     <div className="page-wrapper food-detail-page">
       <Navbar />
@@ -117,6 +123,20 @@ const FoodDetail = () => {
                   alt={dish.name}
                   className="showcase-main-img"
                 />
+
+                {/* Favorite Heart Toggle Button */}
+                <button
+                  type="button"
+                  className={`detail-heart-btn ${isFavorite ? 'active' : ''}`}
+                  onClick={() => setIsFavorite(!isFavorite)}
+                  aria-label={isFavorite ? 'Remove from wishlist' : 'Add to wishlist'}
+                >
+                  <Heart
+                    size={20}
+                    fill={isFavorite ? 'var(--accent)' : 'none'}
+                    color={isFavorite ? 'var(--accent)' : 'var(--text-secondary)'}
+                  />
+                </button>
               </div>
 
               {/* Nutrition & Quick Facts Pills */}
@@ -142,9 +162,9 @@ const FoodDetail = () => {
                 )}
 
                 <div className="fact-item-card">
-                  <ShieldCheck size={18} className="fact-icon" />
+                  <Leaf size={18} className="fact-icon green" />
                   <div>
-                    <span className="fact-label">Quality</span>
+                    <span className="fact-label">Ingredients</span>
                     <span className="fact-val">100% Organic</span>
                   </div>
                 </div>
@@ -165,14 +185,7 @@ const FoodDetail = () => {
               {/* Rating & Reviews */}
               <div className="showcase-rating-row">
                 <div className="showcase-stars">
-                  {[...Array(5)].map((_, i) => (
-                    <Star
-                      key={i}
-                      size={16}
-                      fill={i < Math.floor(dish.rating || 5) ? '#F5A623' : 'none'}
-                      color="#F5A623"
-                    />
-                  ))}
+                  <Star size={16} fill="#F5A623" color="#F5A623" />
                 </div>
                 <strong className="rating-bold">{dish.rating?.toFixed(1) || '4.9'}</strong>
                 <span className="rating-sub">({dish.reviewsCount || 250}+ verified foodie reviews)</span>
@@ -204,6 +217,29 @@ const FoodDetail = () => {
                 </div>
               )}
 
+              {/* Nutrition Soft Chips */}
+              <div className="showcase-nutrition-section">
+                <h3 className="nutrition-heading">Nutrition Facts:</h3>
+                <div className="nutrition-chips-grid">
+                  <div className="nutrition-chip chip-yellow">
+                    <span className="nutrition-val">{dish.nutrition?.calories || dish.calories || '520 kcal'}</span>
+                    <span className="nutrition-lbl">Calories</span>
+                  </div>
+                  <div className="nutrition-chip chip-green">
+                    <span className="nutrition-val">{dish.nutrition?.protein || '28g'}</span>
+                    <span className="nutrition-lbl">Protein</span>
+                  </div>
+                  <div className="nutrition-chip chip-pink">
+                    <span className="nutrition-val">{dish.nutrition?.fat || '16g'}</span>
+                    <span className="nutrition-lbl">Healthy Fats</span>
+                  </div>
+                  <div className="nutrition-chip chip-cream">
+                    <span className="nutrition-val">{dish.nutrition?.carbs || '42g'}</span>
+                    <span className="nutrition-lbl">Carbs</span>
+                  </div>
+                </div>
+              </div>
+
               {/* Ingredients List */}
               {dish.ingredients && (
                 <div className="showcase-ingredients-section">
@@ -219,7 +255,8 @@ const FoodDetail = () => {
                 </div>
               )}
 
-              {/* Quantity Selector & Add to Cart */}
+
+              {/* Add to Cart Actions */}
               <div className="showcase-action-bar">
                 <div className="detail-qty-picker">
                   <button
@@ -228,7 +265,7 @@ const FoodDetail = () => {
                     onClick={() => setQuantity((q) => Math.max(1, q - 1))}
                     aria-label="Decrease quantity"
                   >
-                    <Minus size={16} />
+                    <Minus size={15} />
                   </button>
                   <span className="qty-picker-num">{quantity}</span>
                   <button
@@ -237,7 +274,7 @@ const FoodDetail = () => {
                     onClick={() => setQuantity((q) => q + 1)}
                     aria-label="Increase quantity"
                   >
-                    <Plus size={16} />
+                    <Plus size={15} />
                   </button>
                 </div>
 
@@ -248,29 +285,46 @@ const FoodDetail = () => {
                 >
                   {isAdded ? (
                     <>
-                      <CheckCircle2 size={20} />
-                      <span>Added to Your Order!</span>
+                      <CheckCircle2 size={18} />
+                      <span>Added to Order!</span>
                     </>
                   ) : (
                     <>
                       <ShoppingBag size={18} />
-                      <span>Add to Cart • ${(dish.price * quantity).toFixed(2)}</span>
+                      <span>Add to Cart • ${totalPrice}</span>
                     </>
                   )}
                 </button>
+              </div>
+
+              {/* Delivery Guarantee Pill */}
+              <div className="showcase-guarantee-row">
+                <div className="guarantee-item">
+                  <Truck size={16} className="guarantee-icon" />
+                  <span>Free delivery on orders over $35</span>
+                </div>
+                <div className="guarantee-item">
+                  <ShieldCheck size={16} className="guarantee-icon" />
+                  <span>100% Satisfaction Guarantee</span>
+                </div>
               </div>
             </div>
           </div>
         </section>
 
-        {/* Related Dishes Section */}
+        {/* Related Dishes */}
         {relatedDishes.length > 0 && (
           <section className="related-dishes-section">
             <div className="container">
               <div className="related-section-header">
-                <h2 className="related-title">You Might Also Crave</h2>
+                <div>
+                  <span className="section-badge">YOU MIGHT ALSO LOVE</span>
+                  <h2 className="related-title">
+                    Complementary <span className="serif-accent">Dishes</span>
+                  </h2>
+                </div>
                 <Link to="/menu" className="related-view-all">
-                  <span>View Full Menu</span>
+                  <span>View All Menu</span>
                   <ChevronRight size={16} />
                 </Link>
               </div>

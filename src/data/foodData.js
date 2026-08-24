@@ -1,234 +1,280 @@
+// ==========================================================================
+// FOODLY — Master Food & Menu Data
+// ==========================================================================
+
 export const foodCategories = [
+  {
+    id: 'all',
+    name: 'All Items',
+    shortName: 'All',
+    icon: '✨',
+    image: '/images/hero-food.png',
+    itemsCount: 24,
+    colorTheme: 'cream',
+    description: 'Explore our complete handcrafted menu made fresh daily.'
+  },
+  {
+    id: 'burger',
+    name: 'Gourmet Burger',
+    shortName: 'Burger',
+    icon: '🍔',
+    image: '/images/burger.png',
+    itemsCount: 8,
+    colorTheme: 'coral',
+    description: 'Prime Angus smash patties, artisan brioche buns and melted cheddar.'
+  },
   {
     id: 'pizza',
     name: 'Artisan Pizza',
     shortName: 'Pizza',
+    icon: '🍕',
     image: '/images/pizza.png',
-    itemsCount: 12,
-    description: 'Crispy stone-baked crusts with imported buffalo mozzarella and slow-fermented dough.'
+    itemsCount: 10,
+    colorTheme: 'yellow',
+    description: 'Crispy stone-baked crusts, San Marzano sauce and buffalo mozzarella.'
   },
   {
     id: 'pasta',
     name: 'Handmade Pasta',
     shortName: 'Pasta',
+    icon: '🍝',
     image: '/images/pasta.png',
-    itemsCount: 16,
-    description: 'Daily fresh rolled tagliatelle, gnocchi and creamy parmesan-infused ravioli.'
+    itemsCount: 12,
+    colorTheme: 'green',
+    description: 'Daily fresh rolled tagliatelle, silky parmesan cream & wild herbs.'
   },
   {
-    id: 'burgers',
-    name: 'Gourmet Burgers',
-    shortName: 'Burgers',
-    image: '/images/burger.png',
-    itemsCount: 9,
-    description: 'Prime smash patties, golden brioche buns, and artisanal melted aged cheddar.'
-  },
-  {
-    id: 'salads',
-    name: 'Fresh Bowls & Salads',
-    shortName: 'Salads',
+    id: 'salad',
+    name: 'Fresh Salad',
+    shortName: 'Salad',
+    icon: '🥗',
     image: '/images/salad.png',
-    itemsCount: 14,
-    description: 'Organic greens, roasted quinoa, creamy avocado and house botanical dressings.'
+    itemsCount: 9,
+    colorTheme: 'green',
+    description: 'Crisp organic greens, Hass avocado, roasted quinoa & citrus dressing.'
   },
   {
-    id: 'desserts',
-    name: 'Sweet Desserts',
-    shortName: 'Desserts',
+    id: 'seafood',
+    name: 'Wild Seafood',
+    shortName: 'Seafood',
+    icon: '🐟',
+    image: '/images/chef-special.png',
+    itemsCount: 6,
+    colorTheme: 'coral',
+    description: 'Pan-roasted Atlantic salmon, sea bass and saffron herb risotto.'
+  },
+  {
+    id: 'dessert',
+    name: 'Sweet Dessert',
+    shortName: 'Dessert',
+    icon: '🍰',
     image: '/images/dessert.png',
     itemsCount: 8,
-    description: 'Silky Madagascar vanilla panna cotta, tiramisu, and berry glazed delights.'
+    colorTheme: 'pink',
+    description: 'Vanilla panna cotta, chocolate molten cake & berry compote.'
   },
   {
     id: 'drinks',
     name: 'Craft Drinks',
     shortName: 'Drinks',
+    icon: '🍹',
     image: '/images/drink-refresh.png',
-    itemsCount: 10,
-    description: 'Freshly cold-pressed juices, sparkling botanical lemonades and crafted mocktails.'
+    itemsCount: 7,
+    colorTheme: 'yellow',
+    description: 'Cold-pressed botanical lemonades, iced matcha & fresh juices.'
   }
 ];
 
 export const foods = [
   {
     id: 1,
-    name: 'Creamy Tagliatelle',
-    category: 'Pasta',
-    filterCategory: 'Dinner',
-    price: 18.00,
+    name: 'Classic Burger',
+    category: 'Burger',
+    filterCategory: 'Burger',
+    price: 12.99,
     rating: 4.9,
-    reviewsCount: 342,
-    image: '/images/pasta.png',
-    description: 'Fresh handmade pasta tossed in a silky parmesan cream emulsion with roasted garlic, cracked pepper, and fresh garden herbs.',
-    longDescription: 'Our signature pasta is made from scratch every morning using organic semolina flour and farm-fresh eggs. Tossed in a slow-simmered emulsion of 24-month aged Parmigiano Reggiano, confit garlic, French butter, and fragrant thyme.',
-    prepTime: '20-25 min',
-    calories: '540 kcal',
+    reviewsCount: 384,
+    image: '/images/burger.png',
+    colorTheme: 'coral',
     badge: 'Popular',
     isPopular: true,
-    dietary: ['Vegetarian', 'Handmade'],
-    ingredients: ['Fresh Tagliatelle', 'Parmigiano Reggiano', 'Roasted Garlic', 'Organic Cream', 'Wild Thyme', 'Cracked Black Pepper']
+    prepTime: '15-20 min',
+    calories: '620 kcal',
+    description: 'Juicy beef burger with fresh crisp lettuce, ripe tomatoes, melted cheddar and house sauce on toasted brioche.',
+    longDescription: 'Our signature Classic Burger features a 100% grass-fed Angus beef patty seared to juicy perfection. Layered with aged Wisconsin cheddar, crisp farm lettuce, heirloom tomatoes, house dill pickles, and our signature secret umami sauce on a butter-toasted golden brioche bun.',
+    dietary: ['Prime Beef', 'Brioche Bun'],
+    ingredients: ['Grass-fed Angus Beef', 'Aged Cheddar', 'Fresh Brioche', 'Crisp Romaine', 'Heirloom Tomato', 'House Umami Sauce']
   },
   {
     id: 2,
-    name: 'Truffle & Forest Mushroom Pizza',
-    category: 'Pizza',
-    filterCategory: 'Lunch',
-    price: 21.50,
-    rating: 4.8,
-    reviewsCount: 295,
-    image: '/images/pizza.png',
-    description: 'Wood-fired 48-hour fermented crust topped with wild forest mushrooms, black truffle crema, fresh thyme, and fior di latte.',
-    longDescription: 'Crafted with naturally fermented dough baked at 800°F in our stone oven. Features a delicate base of black truffle crema, sautéed king oyster and chanterelle mushrooms, creamy fior di latte mozzarella, and cold-pressed olive oil.',
-    prepTime: '15-20 min',
-    calories: '680 kcal',
+    name: 'Creamy Pasta',
+    category: 'Pasta',
+    filterCategory: 'Pasta',
+    price: 14.99,
+    rating: 4.9,
+    reviewsCount: 420,
+    image: '/images/pasta.png',
+    colorTheme: 'green',
     badge: 'Chef Favorite',
     isPopular: true,
-    dietary: ['Vegetarian', 'Stone Baked'],
-    ingredients: ['Fermented Dough', 'Black Truffle Crema', 'Wild Mushrooms', 'Fior di Latte', 'Fresh Thyme', 'Extra Virgin Olive Oil']
+    prepTime: '18-22 min',
+    calories: '540 kcal',
+    description: 'Fresh handmade tagliatelle tossed in silky parmesan garlic cream with cracked black pepper and wild thyme.',
+    longDescription: 'Handmade pasta rolled daily using organic Italian semolina and pasture-raised eggs. Gently simmered in a velvety reduction of 24-month aged Parmigiano Reggiano, French butter, confit garlic, and fresh fragrant mountain thyme.',
+    dietary: ['Vegetarian', 'Handmade'],
+    ingredients: ['Fresh Tagliatelle', 'Parmigiano Reggiano', 'Confit Garlic', 'Organic Heavy Cream', 'Fresh Thyme', 'Cracked Peppercorn']
   },
   {
     id: 3,
-    name: 'Double Smokehouse Burger',
-    category: 'Burgers',
-    filterCategory: 'Dinner',
-    price: 16.50,
-    rating: 4.9,
-    reviewsCount: 420,
-    image: '/images/burger.png',
-    description: 'Prime Angus beef smash patties, double aged sharp cheddar, caramelised shallots, and house smoky umami glaze on toasted brioche.',
-    longDescription: 'Two 100% grass-fed Angus beef patties seared on a screaming hot flat-top to create a crispy caramelized crust. Layered with double Wisconsin aged cheddar, slow-caramelized shallots, house dill pickles, and our signature secret umami glaze.',
-    prepTime: '15-18 min',
-    calories: '720 kcal',
-    badge: 'Best Seller',
+    name: 'Grilled Salmon',
+    category: 'Seafood',
+    filterCategory: 'Seafood',
+    price: 18.99,
+    rating: 5.0,
+    reviewsCount: 312,
+    image: '/images/chef-special.png',
+    colorTheme: 'coral',
+    badge: "Chef's Special",
     isPopular: true,
-    dietary: ['Prime Beef', 'Brioche Bun'],
-    ingredients: ['Double Angus Beef', 'Aged Cheddar', 'Caramelized Shallots', 'Toasted Brioche', 'House Umami Sauce', 'Artisan Pickles']
+    prepTime: '22-25 min',
+    calories: '580 kcal',
+    description: 'Crispy skin Atlantic salmon fillet served over saffron herb risotto, tender asparagus and lemon dill reduction.',
+    longDescription: 'Sustainably wild-caught Atlantic salmon seared with a delicate crispy skin and tender, flaky center. Paired with creamy saffron carnaroli risotto, char-grilled asparagus spears, and a vibrant lemon-dill butter reduction.',
+    dietary: ['High Protein', 'Gluten-Free', 'Wild Caught'],
+    ingredients: ['Wild Atlantic Salmon', 'Saffron Risotto', 'Grilled Asparagus', 'Lemon Butter', 'Fresh Dill', 'Capers']
   },
   {
     id: 4,
-    name: 'Green Goddess Power Bowl',
-    category: 'Salads',
-    filterCategory: 'Breakfast',
-    price: 14.00,
-    rating: 4.7,
-    reviewsCount: 188,
+    name: 'Fresh Garden Salad',
+    category: 'Salad',
+    filterCategory: 'Salad',
+    price: 9.99,
+    rating: 4.8,
+    reviewsCount: 260,
     image: '/images/salad.png',
-    description: 'Crisp organic kale, ripe Hass avocado, steamed edamame, roasted quinoa, cherry heirloom tomatoes, and herb green tahini dressing.',
-    longDescription: 'A nutrient-dense superfood bowl combining baby kale, tri-color quinoa, Hass avocado slices, sweet edamame, cucumber ribbons, and heirloom tomatoes. Drizzled with our house-blended green goddess tahini sauce.',
-    prepTime: '10-15 min',
-    calories: '380 kcal',
+    colorTheme: 'green',
     badge: 'Healthy Choice',
     isPopular: true,
+    prepTime: '10-12 min',
+    calories: '320 kcal',
+    description: 'Crisp organic garden greens, ripe Hass avocado, shaved cucumber ribbons, roasted seeds and herb vinaigrette.',
+    longDescription: 'A vibrant bowl of organic baby greens, buttery Hass avocado chunks, sweet cherry tomatoes, shaved radishes, toasted pumpkin seeds, and a zesty house-whipped citrus herb botanical vinaigrette.',
     dietary: ['Vegan', 'Gluten-Free', 'Organic'],
-    ingredients: ['Baby Kale', 'Hass Avocado', 'Roasted Quinoa', 'Edamame', 'Heirloom Tomatoes', 'Green Goddess Tahini']
+    ingredients: ['Baby Greens', 'Hass Avocado', 'Cherry Tomatoes', 'Cucumber Ribbons', 'Pumpkin Seeds', 'Citrus Vinaigrette']
   },
   {
     id: 5,
-    name: 'Berry Glazed Panna Cotta',
-    category: 'Desserts',
-    filterCategory: 'Desserts',
-    price: 11.00,
-    rating: 4.9,
-    reviewsCount: 164,
-    image: '/images/dessert.png',
-    description: 'Silky Madagascar vanilla bean cream paired with wild forest berry compote, micro-mint, and candied pistachio crumble.',
-    longDescription: 'Authentic Italian panna cotta infused with real Madagascar Bourbon vanilla beans, gently set to achieve the perfect silky wobble. Garnished with a tart-sweet glaze of wild blackberries, raspberries, and crushed Sicilian pistachios.',
-    prepTime: '10 min',
-    calories: '310 kcal',
-    badge: 'Sweet Treat',
-    isPopular: false,
-    dietary: ['Vegetarian', 'Gluten-Free'],
-    ingredients: ['Madagascar Vanilla', 'Organic Heavy Cream', 'Wild Berry Compote', 'Sicilian Pistachios', 'Fresh Mint Leaves']
+    name: 'Margherita Pizza',
+    category: 'Pizza',
+    filterCategory: 'Pizza',
+    price: 13.99,
+    rating: 4.8,
+    reviewsCount: 395,
+    image: '/images/pizza.png',
+    colorTheme: 'yellow',
+    badge: 'Classic',
+    isPopular: true,
+    prepTime: '15-18 min',
+    calories: '610 kcal',
+    description: 'Wood-fired 48-hour fermented crust topped with sweet San Marzano tomato sauce, fresh buffalo mozzarella and basil.',
+    longDescription: 'The purist definition of Italian pizza. Slow fermented dough baked at 800°F with sweet San Marzano tomato pulp, creamy Campania buffalo mozzarella, fresh picked sweet basil leaves, and cold-pressed extra virgin olive oil.',
+    dietary: ['Vegetarian', 'Stone Baked'],
+    ingredients: ['48h Fermented Crust', 'San Marzano Sauce', 'Buffalo Mozzarella', 'Sweet Basil', 'Cold-Pressed Olive Oil']
   },
   {
     id: 6,
+    name: 'Chocolate Dessert',
+    category: 'Dessert',
+    filterCategory: 'Dessert',
+    price: 8.99,
+    rating: 4.9,
+    reviewsCount: 285,
+    image: '/images/dessert.png',
+    colorTheme: 'pink',
+    badge: 'Sweet Treat',
+    isPopular: true,
+    prepTime: '8-10 min',
+    calories: '390 kcal',
+    description: 'Decadent dark chocolate molten delight with silky vanilla cream, berry coulis and crushed candied pistachios.',
+    longDescription: 'Rich 70% Valrhona dark chocolate cake with a molten warm center, served alongside a quenelle of Madagascar vanilla bean cream, wild raspberry coulis, and roasted Sicilian pistachio crumble.',
+    dietary: ['Vegetarian', 'Gourmet'],
+    ingredients: ['70% Dark Chocolate', 'Madagascar Vanilla', 'Wild Berry Coulis', 'Organic Butter', 'Sicilian Pistachios']
+  },
+  {
+    id: 7,
+    name: 'Truffle & Forest Mushroom Pizza',
+    category: 'Pizza',
+    filterCategory: 'Pizza',
+    price: 21.50,
+    rating: 4.9,
+    reviewsCount: 310,
+    image: '/images/pizza.png',
+    colorTheme: 'yellow',
+    badge: 'Gourmet',
+    isPopular: false,
+    prepTime: '15-20 min',
+    calories: '680 kcal',
+    description: 'Crispy stone-baked crust with black truffle crema, sautéed king oyster mushrooms, fior di latte and wild thyme.',
+    longDescription: 'Our most luxurious pizza creation. Natural stone-oven baked crust layered with fragrant black truffle crema, sautéed forest mushrooms, melted fior di latte cheese, and fresh picked garden thyme.',
+    dietary: ['Vegetarian', 'Truffle Infused'],
+    ingredients: ['Fermented Crust', 'Black Truffle Crema', 'Forest Mushrooms', 'Fior di Latte', 'Wild Thyme']
+  },
+  {
+    id: 8,
+    name: 'Double Smokehouse Burger',
+    category: 'Burger',
+    filterCategory: 'Burger',
+    price: 16.50,
+    rating: 4.9,
+    reviewsCount: 410,
+    image: '/images/burger.png',
+    colorTheme: 'coral',
+    badge: 'Best Seller',
+    isPopular: false,
+    prepTime: '15-18 min',
+    calories: '740 kcal',
+    description: 'Double Angus beef patties, double melted cheddar, caramelized shallots and smoky BBQ glaze on brioche.',
+    longDescription: 'Two crispy-edged smash patties of Angus beef topped with double aged cheddar, slow-caramelized balsamic shallots, crispy smoked bacon, and house bourbon BBQ glaze on a toasted brioche bun.',
+    dietary: ['Prime Beef', 'Smoked'],
+    ingredients: ['Double Angus Patties', 'Aged Cheddar', 'Caramelized Shallots', 'Bourbon BBQ Glaze', 'Brioche Bun']
+  },
+  {
+    id: 9,
     name: 'Citrus Botanical Cooler',
     category: 'Drinks',
     filterCategory: 'Drinks',
     price: 7.50,
     rating: 4.8,
-    reviewsCount: 102,
+    reviewsCount: 142,
     image: '/images/drink-refresh.png',
-    description: 'Sparkling cold-pressed blood orange, Japanese yuzu extract, crushed garden basil leaves, and wild wildflower honey.',
-    longDescription: 'Bright, zesty, and deeply refreshing. We blend freshly pressed Sicilian blood orange juice with aromatic Japanese yuzu, hand-crushed sweet basil, raw wildflower honey, and micro-carbonated mineral water.',
-    prepTime: '5 min',
-    calories: '120 kcal',
+    colorTheme: 'yellow',
     badge: 'Refreshing',
     isPopular: false,
-    dietary: ['Vegan', 'Cold Pressed'],
-    ingredients: ['Blood Orange Juice', 'Yuzu Extract', 'Sparkling Mineral Water', 'Crushed Basil', 'Wildflower Honey']
-  },
-  {
-    id: 7,
-    name: 'Artisan Avocado Tartine',
-    category: 'Salads',
-    filterCategory: 'Breakfast',
-    price: 13.50,
-    rating: 4.9,
-    reviewsCount: 228,
-    image: '/images/hero-food.png',
-    description: 'Toasted country sourdough with chunky smashed Hass avocado, free-range poached egg, shaved radishes, and Aleppo chili flakes.',
-    longDescription: 'A classic breakfast favorite perfected. Thick-cut naturally leavened sourdough bread toasted golden brown, layered with creamy smashed avocado, baby radishes, extra virgin olive oil, sea salt flakes, and a pasture-raised poached egg with a golden yolk.',
-    prepTime: '12-15 min',
-    calories: '420 kcal',
-    badge: 'Morning Special',
-    isPopular: true,
-    dietary: ['Vegetarian', 'Organic Eggs'],
-    ingredients: ['Artisan Sourdough', 'Hass Avocado', 'Pasture-Raised Egg', 'Shaved Radish', 'Aleppo Chili', 'Fleur de Sel']
-  },
-  {
-    id: 8,
-    name: 'Pan-Roasted Atlantic Salmon',
-    category: 'Pasta',
-    filterCategory: 'Dinner',
-    price: 24.00,
-    rating: 5.0,
-    reviewsCount: 318,
-    image: '/images/chef-special.png',
-    description: 'Crispy skin Atlantic salmon fillet served over saffron herb risotto, tender grilled garden asparagus, and lemon dill emulsion.',
-    longDescription: 'Sustainably wild-caught Atlantic salmon, pan-seared to crispy skin perfection with a moist, tender flake. Served atop a bed of creamy carnaroli saffron risotto and tender grilled asparagus spears, finished with fresh lemon-dill butter.',
-    prepTime: '25 min',
-    calories: '590 kcal',
-    badge: "Chef's Special",
-    isPopular: true,
-    dietary: ['High Protein', 'Gluten-Free', 'Wild Caught'],
-    ingredients: ['Atlantic Salmon', 'Saffron Risotto', 'Grilled Asparagus', 'Lemon Butter', 'Fresh Dill', 'Capers']
-  },
-  {
-    id: 9,
-    name: 'Classic Margherita Napoletana',
-    category: 'Pizza',
-    filterCategory: 'Lunch',
-    price: 17.00,
-    rating: 4.8,
-    reviewsCount: 240,
-    image: '/images/pizza.png',
-    description: 'San Marzano D.O.P. tomato sauce, fresh buffalo mozzarella, fragrant sweet basil, and a swirl of extra virgin olive oil.',
-    longDescription: 'The purist definition of Italian pizza. Slow fermented dough baked at searing heat with sweet San Marzano tomato pulp, fresh buffalo mozzarella from Campania, fresh garden basil, and fine Sicilian olive oil.',
-    prepTime: '15 min',
-    calories: '620 kcal',
-    badge: 'Classic',
-    isPopular: false,
-    dietary: ['Vegetarian', 'Traditional'],
-    ingredients: ['San Marzano Tomatoes', 'Buffalo Mozzarella', 'Fresh Sweet Basil', 'Sea Salt', 'Extra Virgin Olive Oil']
+    prepTime: '5 min',
+    calories: '110 kcal',
+    description: 'Sparkling cold-pressed Sicilian blood orange, Japanese yuzu extract, crushed garden basil and raw honey.',
+    longDescription: 'Vibrant, thirst-quenching artisan cooler made with freshly pressed blood oranges, fragrant Japanese yuzu citrus, muddled sweet basil leaves, wildflower raw honey, and sparkling spring water.',
+    dietary: ['Vegan', 'Cold-Pressed'],
+    ingredients: ['Sicilian Blood Orange', 'Japanese Yuzu', 'Fresh Sweet Basil', 'Wildflower Honey', 'Sparkling Spring Water']
   },
   {
     id: 10,
-    name: 'Crispy Truffle Smash Burger',
-    category: 'Burgers',
-    filterCategory: 'Dinner',
-    price: 17.50,
+    name: 'Artisan Avocado Tartine',
+    category: 'Salad',
+    filterCategory: 'Salad',
+    price: 13.50,
     rating: 4.9,
-    reviewsCount: 310,
-    image: '/images/burger.png',
-    description: 'Crispy edged beef patties, Swiss gruyère cheese, black truffle aioli, and crispy shallots on a toasted brioche bun.',
-    longDescription: 'Rich and decadent smash burger with crispy lace edges, smothered in melted Swiss Gruyère, crispy fried shallots, baby arugula, and creamy black truffle mayonnaise on a butter-brushed brioche bun.',
-    prepTime: '15 min',
-    calories: '760 kcal',
-    badge: 'Gourmet',
+    reviewsCount: 220,
+    image: '/images/hero-food.png',
+    colorTheme: 'cream',
+    badge: 'Morning Special',
     isPopular: false,
-    dietary: ['Angus Beef', 'Truffle Infused'],
-    ingredients: ['Angus Smash Patties', 'Swiss Gruyère', 'Black Truffle Mayo', 'Crispy Fried Shallots', 'Brioche Bun']
+    prepTime: '10-15 min',
+    calories: '410 kcal',
+    description: 'Toasted country sourdough with chunky smashed Hass avocado, poached egg, shaved radishes and chili flakes.',
+    longDescription: 'Thick-cut leavened sourdough bread toasted golden brown, smothered with chunky Hass avocado, a farm poached egg with golden yolk, watermelon radishes, Aleppo chili flakes, and fleur de sel.',
+    dietary: ['Vegetarian', 'Organic Eggs'],
+    ingredients: ['Country Sourdough', 'Hass Avocado', 'Pasture-Raised Egg', 'Watermelon Radish', 'Aleppo Chili', 'Fleur de Sel']
   },
   {
     id: 11,
@@ -237,121 +283,175 @@ export const foods = [
     filterCategory: 'Drinks',
     price: 6.50,
     rating: 4.7,
-    reviewsCount: 89,
+    reviewsCount: 95,
     image: '/images/drink.png',
-    description: 'Ceremonial grade Japanese Uji matcha whisked over oat milk, subtle lavender syrup, and crushed ice.',
-    longDescription: 'Authentic stone-ground Uji ceremonial matcha layered gently over velvety barista oat milk, lightly sweetened with pure botanical lavender syrup and poured over crystal-clear artisan ice.',
-    prepTime: '5 min',
-    calories: '140 kcal',
+    colorTheme: 'green',
     badge: 'Antioxidant',
     isPopular: false,
+    prepTime: '5 min',
+    calories: '130 kcal',
+    description: 'Ceremonial grade Japanese Uji matcha whisked over velvety oat milk and subtle floral lavender syrup.',
+    longDescription: 'Authentic stone-ground Uji matcha whisked to a jade froth, layered over cold oat milk, with a delicate hint of botanical lavender syrup over crystal-clear artisan ice.',
     dietary: ['Vegan', 'Dairy-Free'],
-    ingredients: ['Ceremonial Matcha', 'Organic Oat Milk', 'Lavender Essence', 'Filtered Ice']
+    ingredients: ['Ceremonial Uji Matcha', 'Barista Oat Milk', 'Lavender Syrup', 'Filtered Ice']
   },
   {
     id: 12,
-    name: 'Mediterranean Mezze Bowl',
-    category: 'Salads',
-    filterCategory: 'Lunch',
-    price: 15.50,
-    rating: 4.8,
-    reviewsCount: 176,
-    image: '/images/salad.png',
-    description: 'Creamy roasted garlic hummus, crispy spiced chickpeas, marinated kalamata olives, diced cucumbers, and warm pita.',
-    longDescription: 'A vibrant Mediterranean salad packed with flavor and texture. Silky homemade hummus, crunchy spiced roasted chickpeas, marinated feta, cucumber ribbons, and sun-dried tomatoes with za’atar dressing.',
-    prepTime: '12 min',
-    calories: '460 kcal',
-    badge: 'Vegetarian',
+    name: 'Berry Glazed Panna Cotta',
+    category: 'Dessert',
+    filterCategory: 'Dessert',
+    price: 11.00,
+    rating: 4.9,
+    reviewsCount: 168,
+    image: '/images/dessert.png',
+    colorTheme: 'pink',
+    badge: 'Chef Choice',
     isPopular: false,
-    dietary: ['Vegetarian', 'High Fiber'],
-    ingredients: ['Roasted Garlic Hummus', 'Spiced Chickpeas', 'Kalamata Olives', 'Persian Cucumbers', 'Feta Cheese', 'Zaatar Herbs']
+    prepTime: '8 min',
+    calories: '310 kcal',
+    description: 'Silky Madagascar vanilla bean cream set to perfection with wild blackberry compote and mint.',
+    longDescription: 'Traditional Italian panna cotta infused with genuine Madagascar Bourbon vanilla bean pods, crowned with a tart and sweet wild blackberry and raspberry compote and fresh mint micro-herbs.',
+    dietary: ['Vegetarian', 'Gluten-Free'],
+    ingredients: ['Madagascar Vanilla', 'Organic Heavy Cream', 'Wild Blackberry Compote', 'Sicilian Pistachios', 'Fresh Mint']
   }
 ];
 
-export const featuredChefSpecial = {
+export const featuredChefDish = {
   id: 101,
   tag: "CHEF'S SPECIAL",
-  name: 'A New Dish Made With Love',
-  dishName: 'Pan-Roasted Atlantic Salmon',
-  description: 'Fresh ingredients, carefully selected flavors, and a recipe handcrafted by our executive chefs. Served with grilled garden asparagus and citrus herb emulsion.',
-  price: 15.00,
-  originalPrice: 22.00,
+  name: 'Creamy Mushroom Pasta',
+  subtitle: 'Handcrafted With Passion',
+  description: 'Fresh handmade pasta tossed with sautéed forest mushrooms, wild herbs, white wine reduction and our signature parmesan sauce.',
   rating: 4.9,
-  reviewsCount: 1240,
+  reviewsCount: 1420,
+  price: 16.99,
+  originalPrice: 22.00,
   prepTime: '20 min',
-  calories: '590 kcal',
-  image: '/images/chef-special.png',
+  calories: '540 kcal',
+  image: '/images/pasta.png',
   highlights: [
-    '100% Sustainably Sourced Fish',
-    'Organic Micro-Herbs & Citrus',
-    'Handmade Herb Butter Reduction'
-  ],
-  flavorProfile: {
-    primary: 'Crispy & Tender Salmon',
-    secondary: 'Saffron Risotto & Asparagus',
-    accent: 'Lemon Dill Butter Reduction'
-  }
+    'Daily handmade semolina pasta',
+    'Wild chanterelle & oyster mushrooms',
+    '24-Month aged Parmigiano Reggiano',
+    'Confit garlic & aromatic mountain thyme'
+  ]
 };
 
-export const serviceFeatures = [
+export const featuredChefSpecial = featuredChefDish;
+
+export const specialOfferData = {
+  tag: 'LIMITED TIME DEAL',
+  discount: '20% OFF',
+  title: 'Fresh Meals.',
+  subtitle: 'Better Mood.',
+  description: 'Order your favorite handcrafted artisan meals today and get an instant 20% discount on all orders over $25 with code FOODLY20.',
+  code: 'FOODLY20',
+  image: '/images/hero-food.png',
+  validUntil: 'Valid this week only'
+};
+
+export const servicesData = [
   {
     id: 1,
-    title: 'Online Ordering',
-    description: 'Order your favorite meals quickly with real-time dish customization and seamless checkout.',
-    iconName: 'ShoppingBag'
+    title: 'Fast Delivery',
+    icon: 'Truck',
+    iconEmoji: '🚚',
+    description: 'Fresh food delivered quickly to your door in under 30 minutes in temperature-locked bags.',
+    colorTheme: 'coral'
   },
   {
     id: 2,
-    title: 'Catering',
-    description: 'Perfect food for your special events, corporate lunches, birthdays, and private parties.',
-    iconName: 'Utensils'
+    title: 'Fresh Ingredients',
+    icon: 'Leaf',
+    iconEmoji: '🌿',
+    description: '100% organic, locally sourced produce direct from certified family farms every single morning.',
+    colorTheme: 'green'
   },
   {
     id: 3,
-    title: 'Fast Delivery',
-    description: 'Fresh food delivered right to your door in eco-friendly temperature-locked containers.',
-    iconName: 'Truck'
+    title: 'Expert Chefs',
+    icon: 'ChefHat',
+    iconEmoji: '👨‍🍳',
+    description: 'Master chefs preparing every recipe with precision, passion, and culinary artistry.',
+    colorTheme: 'yellow'
   },
   {
     id: 4,
-    title: 'Membership',
-    description: 'Exclusive rewards, zero-fee delivery, secret seasonal menus, and VIP table reservations.',
-    iconName: 'Sparkles'
+    title: 'Made With Love',
+    icon: 'Heart',
+    iconEmoji: '❤️',
+    description: 'Nutritious, delicious food crafted to make you smile and brighten up your entire day.',
+    colorTheme: 'pink'
   }
 ];
 
-export const testimonials = [
+export const whyChooseUsData = [
   {
     id: 1,
-    name: 'Sarah Johnson',
-    role: 'Regular Customer',
-    avatar: '/images/avatar-1.jpg',
-    rating: 5,
-    review: 'The food was amazing and delivery was incredibly fast. The truffle pasta arrived piping hot and tasted like a 5-star restaurant dish.'
+    title: 'Fresh Ingredients',
+    description: 'Only pesticide-free, organic produce and sustainably sourced meats.',
+    icon: 'Sparkles',
+    iconEmoji: '✨',
+    colorTheme: 'green'
   },
   {
     id: 2,
-    name: 'David Miller',
-    role: 'Food Critic & Blogger',
-    avatar: '/images/avatar-2.jpg',
-    rating: 5,
-    review: 'Foodly has redefined what modern food delivery should feel like. Pristine packaging, exceptionally fresh ingredients, and reliable service.'
+    title: 'Fast Delivery',
+    description: 'Guaranteed 25–30 min fast doorstep delivery with live GPS tracking.',
+    icon: 'Clock',
+    iconEmoji: '⚡',
+    colorTheme: 'coral'
   },
   {
     id: 3,
-    name: 'Elena Rostova',
-    role: 'Event Coordinator',
+    title: 'Affordable Prices',
+    description: 'Gourmet restaurant quality meals at honest, transparent and accessible pricing.',
+    icon: 'DollarSign',
+    iconEmoji: '🏷️',
+    colorTheme: 'yellow'
+  },
+  {
+    id: 4,
+    title: 'Easy Ordering',
+    description: 'Seamless 1-click cart, dietary filters, and instant secure payment methods.',
+    icon: 'Smartphone',
+    iconEmoji: '📱',
+    colorTheme: 'pink'
+  }
+];
+
+export const testimonialsData = [
+  {
+    id: 1,
+    name: 'Sarah Johnson',
+    role: 'Food Blogger & Regular Customer',
+    avatar: '/images/avatar-1.jpg',
+    rating: 5,
+    quote: 'The food was amazing and delivery was incredibly fast. The pasta arrived piping hot and tasted like a 5-star restaurant dish.'
+  },
+  {
+    id: 2,
+    name: 'Michael Lee',
+    role: 'Software Engineer',
+    avatar: '/images/avatar-2.jpg',
+    rating: 5,
+    quote: 'FOODLY has become my favorite place to order lunch. Every single dish is fresh, packed with flavor, and so well-presented.'
+  },
+  {
+    id: 3,
+    name: 'Emma Wilson',
+    role: 'Creative Director',
     avatar: '/images/avatar-3.jpg',
     rating: 5,
-    review: 'We ordered catering for our company summit and the team was blown away. Beautifully presented dishes and super smooth ordering process.'
+    quote: 'Beautiful food, great service, and excellent prices. The artisan pizza and botanical drinks are second to none in quality!'
   }
 ];
 
 export const aboutStats = [
-  { value: '10+', label: 'Years Experience' },
-  { value: '50+', label: 'Menu Items' },
-  { value: '20K+', label: 'Happy Customers' },
-  { value: '4.9', label: 'Average Rating' }
+  { value: '10K+', label: 'Happy Customers' },
+  { value: '50+', label: 'Dishes' },
+  { value: '4.9', label: 'Average Rating' },
+  { value: '15+', label: 'Expert Chefs' }
 ];
 
 export const chefsTeam = [
@@ -396,3 +496,4 @@ export const faqItems = [
     a: 'We partner with over 20 certified local organic farms and sustainable fisheries to ensure 100% freshness every single morning.'
   }
 ];
+

@@ -10,7 +10,8 @@ import {
   MessageSquare, 
   HelpCircle,
   ChevronDown,
-  ChevronUp
+  ChevronUp,
+  Sparkles
 } from 'lucide-react';
 import Navbar from '../components/Navbar/Navbar';
 import Footer from '../components/Footer/Footer';
@@ -70,10 +71,15 @@ const Contact = () => {
         <section className="contact-hero-section">
           <div className="container">
             <div className="contact-hero-content">
-              <span className="section-badge">GET IN TOUCH</span>
-              <h1 className="contact-hero-title">We'd Love to Hear From You</h1>
+              <span className="section-badge">
+                <Sparkles size={14} className="badge-sparkle" />
+                GET IN TOUCH
+              </span>
+              <h1 className="contact-hero-title">
+                We'd Love to <span className="serif-accent">Hear From You</span>
+              </h1>
               <p className="contact-hero-subtitle">
-                Have a question about our menu, catering for an event, or reserving a private room? Reach out to our friendly culinary team anytime.
+                Have a question about our menu, catering for an event, or reserving a private dining room? Reach out to our friendly culinary team anytime.
               </p>
             </div>
           </div>
@@ -84,7 +90,9 @@ const Contact = () => {
           <div className="container contact-main-grid">
             {/* Left Column: Contact Cards */}
             <div className="contact-info-col">
-              <h2 className="contact-col-heading">Visit or Contact Us</h2>
+              <h2 className="contact-col-heading">
+                Visit or <span className="serif-accent">Contact Us</span>
+              </h2>
               <p className="contact-col-sub">
                 Drop by our vibrant restaurant in the heart of the culinary district or send us a quick note.
               </p>
@@ -98,6 +106,7 @@ const Contact = () => {
                   <div>
                     <h3 className="card-info-title">Location</h3>
                     <p className="card-info-text">742 Evergreen Terrace, Foodie District, NY 10012</p>
+
                     <span className="card-info-sub">Valet parking & metro access available</span>
                   </div>
                 </div>

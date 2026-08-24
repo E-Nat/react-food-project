@@ -1,74 +1,87 @@
 /* ==========================================================================
-   FOODLY — App Promo Styles
+   FOODLY — Mobile App Promo Styles & Interactive Phone Frame
    ========================================================================== */
 
-.app-promo-section {
-  padding: 5.5rem 0;
+.app-promo-master-section {
   position: relative;
-  overflow: hidden;
-  background-color: var(--surface);
+  background: var(--bg-primary);
 }
 
-@media (max-width: 768px) {
-  .app-promo-section {
-    padding: 3.5rem 0;
-  }
+.app-promo-glass-banner {
+  padding: 4.5rem 3.5rem;
+  border-radius: 2.25rem;
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(135deg, rgba(232, 238, 221, 0.75) 0%, rgba(253, 244, 217, 0.6) 45%, rgba(253, 232, 225, 0.7) 100%);
+  border: 1px solid rgba(255, 255, 255, 0.85);
+  box-shadow: var(--shadow-lg);
+}
+
+[data-theme="dark"] .app-promo-glass-banner {
+  background: linear-gradient(135deg, rgba(32, 44, 28, 0.85) 0%, rgba(45, 40, 22, 0.75) 45%, rgba(51, 31, 25, 0.8) 100%);
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+.app-glow-top-left {
+  position: absolute;
+  top: -10%;
+  left: -5%;
+  width: 420px;
+  height: 420px;
+  background: radial-gradient(circle, rgba(143, 168, 107, 0.28) 0%, transparent 70%);
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.app-glow-bottom-right {
+  position: absolute;
+  bottom: -10%;
+  right: -5%;
+  width: 420px;
+  height: 420px;
+  background: radial-gradient(circle, rgba(244, 119, 82, 0.28) 0%, transparent 70%);
+  border-radius: 50%;
+  pointer-events: none;
 }
 
 .app-promo-grid {
   display: grid;
-  grid-template-columns: 1.1fr 0.9fr;
-  align-items: center;
+  grid-template-columns: 1.15fr 0.85fr;
   gap: 4rem;
-}
-
-@media (max-width: 992px) {
-  .app-promo-grid {
-    grid-template-columns: 1fr;
-    gap: 3.5rem;
-  }
+  align-items: center;
+  position: relative;
+  z-index: 2;
 }
 
 /* Left Content */
-.app-promo-content {
+.app-promo-text-col {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
 }
 
-.app-promo-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 0.35rem 0.95rem;
-  border-radius: var(--radius-full);
-  background-color: var(--accent-light);
-  color: var(--accent);
-  font-size: 0.8rem;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  margin-bottom: 1rem;
-}
-
-.app-promo-title {
-  font-family: var(--font-primary);
-  font-size: clamp(2rem, 3.8vw, 2.75rem);
-  font-weight: 800;
-  line-height: 1.18;
-  color: var(--text-primary);
-  letter-spacing: -0.02em;
+.app-promo-heading {
+  font-size: 3.4rem;
+  font-weight: 900;
+  line-height: 1.1;
+  color: var(--text-main);
+  letter-spacing: -0.04em;
   margin-bottom: 1.25rem;
 }
 
-.app-promo-desc {
-  font-size: 1.05rem;
-  line-height: 1.65;
-  color: var(--text-secondary);
-  margin-bottom: 1.85rem;
+.app-promo-heading span {
+  color: var(--primary);
 }
 
-.app-features-checklist {
-  list-style: none;
+.app-promo-description {
+  font-size: 1.08rem;
+  line-height: 1.65;
+  color: var(--text-muted);
+  max-width: 520px;
+  margin-bottom: 1.75rem;
+}
+
+.app-features-list {
   display: flex;
   flex-direction: column;
   gap: 0.85rem;
@@ -81,253 +94,375 @@
   gap: 0.75rem;
   font-size: 0.95rem;
   font-weight: 600;
-  color: var(--text-primary);
+  color: var(--text-main);
+  transition: transform 0.2s ease;
 }
 
-.app-check-circle {
-  width: 24px;
-  height: 24px;
-  border-radius: var(--radius-full);
-  background-color: var(--green-light);
-  color: var(--green);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
+.app-feature-row:hover {
+  transform: translateX(4px);
 }
 
-/* Store Buttons */
-.store-buttons-wrap {
+/* Download Buttons */
+.app-download-buttons {
   display: flex;
   align-items: center;
   gap: 1rem;
   flex-wrap: wrap;
 }
 
-.store-btn {
+.store-download-btn {
   display: inline-flex;
   align-items: center;
-  gap: 0.75rem;
+  gap: 0.85rem;
   padding: 0.75rem 1.4rem;
-  border-radius: var(--radius-md);
-  background-color: var(--surface-elevated);
-  border: 1px solid var(--border);
-  box-shadow: var(--shadow-sm);
-  color: var(--text-primary);
-  transition: all var(--transition-fast);
+  border-radius: 1rem;
+  background: #1C211B;
+  color: #FFFFFF;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  text-decoration: none;
 }
 
-.store-btn:hover {
-  border-color: var(--accent);
-  transform: translateY(-2px);
-  box-shadow: var(--shadow-md);
+.store-download-btn:hover {
+  background: var(--primary);
+  transform: translateY(-3px) scale(1.03);
+  box-shadow: 0 10px 24px var(--primary-glow);
+  color: #FFFFFF;
 }
 
-.store-icon {
-  color: var(--accent);
+.store-svg-icon {
+  flex-shrink: 0;
 }
 
-.store-text-group {
+.store-btn-text {
   display: flex;
   flex-direction: column;
   text-align: left;
 }
 
-.store-subtitle {
-  font-size: 0.65rem;
-  font-weight: 700;
-  letter-spacing: 0.06em;
-  color: var(--text-secondary);
+.store-btn-text small {
+  font-size: 0.68rem;
+  opacity: 0.85;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
 }
 
-.store-title {
-  font-family: var(--font-primary);
-  font-size: 0.95rem;
+.store-btn-text strong {
+  font-size: 1rem;
   font-weight: 800;
   line-height: 1.1;
 }
 
-/* Right Mockup */
-.phone-mockup-wrapper {
-  position: relative;
+/* Right Phone Mockup */
+.app-promo-visual-col {
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.phone-device-frame {
-  width: 280px;
+.phone-mockup-wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 320px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.phone-hardware-bezel {
+  width: 270px;
   height: 520px;
-  background-color: var(--phone-bezel);
-  border-radius: 42px;
+  background: #1C211B;
+  border-radius: 40px;
   padding: 10px;
-  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.22);
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.35), inset 0 0 0 2px rgba(255, 255, 255, 0.15);
   position: relative;
   z-index: 2;
-  animation: floatGentle 6s ease-in-out infinite;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.phone-notch {
-  width: 100px;
-  height: 18px;
-  background-color: var(--phone-bezel);
-  border-bottom-left-radius: 12px;
-  border-bottom-right-radius: 12px;
+.phone-hardware-bezel:hover {
+  transform: scale(1.04) rotate(1deg);
+}
+
+.phone-speaker-notch {
   position: absolute;
-  top: 10px;
+  top: 18px;
   left: 50%;
   transform: translateX(-50%);
-  z-index: 5;
+  width: 70px;
+  height: 14px;
+  background: #121512;
+  border-radius: 9999px;
+  z-index: 10;
 }
 
-.phone-screen-ui {
-  background-color: var(--phone-screen);
+.phone-screen-content {
   width: 100%;
   height: 100%;
+  background: var(--bg-primary);
   border-radius: 32px;
   overflow: hidden;
-  padding: 1.75rem 0.85rem 0.6rem;
+  padding: 32px 14px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.screen-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.screen-location {
   display: flex;
   flex-direction: column;
 }
 
-.phone-header-row {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 0.85rem;
+.screen-location small {
+  font-size: 0.65rem;
+  color: var(--text-light);
 }
 
-.phone-user-greeting {
-  font-size: 0.82rem;
-  font-weight: 800;
-  color: var(--text-primary);
+.screen-location strong {
+  font-size: 0.78rem;
+  color: var(--text-main);
 }
 
-.phone-avatar-dot {
+.screen-avatar-mini img {
   width: 26px;
   height: 26px;
   border-radius: 50%;
-  background-color: var(--accent);
-  color: #fff;
+  object-fit: cover;
+}
+
+.screen-search-box {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 10px;
+  border-radius: 9999px;
+  background: var(--surface);
+  border: 1px solid var(--card-border);
+  font-size: 0.7rem;
+  color: var(--text-muted);
+}
+
+.screen-categories-row {
+  display: flex;
+  gap: 6px;
+  overflow-x: hidden;
+}
+
+.screen-pill {
+  padding: 3px 8px;
+  border-radius: 9999px;
+  background: var(--surface);
   font-size: 0.65rem;
+  font-weight: 700;
+  color: var(--text-main);
+  white-space: nowrap;
+  border: 1px solid var(--card-border);
+  transition: all 0.2s ease;
+}
+
+.screen-pill.active {
+  background: var(--primary);
+  color: #FFFFFF;
+  border-color: var(--primary);
+}
+
+.screen-food-card {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px;
+  border-radius: 12px;
+  background: var(--surface);
+  border: 1px solid var(--card-border);
+  transition: transform 0.2s ease;
+}
+
+.screen-food-card:hover {
+  transform: translateY(-2px);
+}
+
+.screen-food-img {
+  width: 48px;
+  height: 48px;
+  object-fit: contain;
+}
+
+.screen-food-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.screen-food-info strong {
+  font-size: 0.75rem;
+  color: var(--text-main);
+}
+
+.screen-food-info span {
+  font-size: 0.62rem;
+  color: var(--text-muted);
+}
+
+.screen-food-price-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 4px;
+}
+
+.screen-price {
+  font-size: 0.78rem;
+  font-weight: 800;
+  color: var(--primary);
+}
+
+.screen-add-btn {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--primary-soft);
+  color: var(--primary);
+  font-size: 0.75rem;
   font-weight: 800;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.phone-order-live-card {
-  background-color: var(--surface);
-  border-radius: 14px;
-  padding: 0.65rem;
+.screen-bottom-nav {
+  margin-top: auto;
   display: flex;
   align-items: center;
-  gap: 0.65rem;
-  box-shadow: var(--shadow-sm);
-  border: 1px solid var(--border-light);
-  margin-bottom: 0.75rem;
+  justify-content: space-around;
+  padding-top: 6px;
+  border-top: 1px solid var(--card-border);
 }
 
-.phone-order-img {
-  width: 38px;
-  height: 38px;
-  object-fit: contain;
+.screen-nav-icon {
+  font-size: 0.9rem;
+  opacity: 0.5;
 }
 
-.phone-order-info {
-  flex: 1;
+.screen-nav-icon.active {
+  opacity: 1;
 }
 
-.phone-order-name {
-  font-size: 0.75rem;
-  font-weight: 800;
-  color: var(--text-primary);
+/* Floating Glass Badges */
+.phone-floating-card {
+  position: absolute;
+  z-index: 4;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem 1.1rem;
+  border-radius: 1.15rem;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.phone-order-status {
-  font-size: 0.65rem;
+.phone-floating-card:hover {
+  transform: scale(1.08) !important;
+}
+
+.card-status {
+  top: 12%;
+  left: -22%;
+}
+
+.card-social {
+  bottom: 12%;
+  right: -22%;
+}
+
+.floating-status-pill {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.live-radar-dot {
+  position: absolute;
+  top: 2px;
+  right: 2px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--green);
+}
+
+.floating-status-pill.green {
+  background: var(--green-soft);
+  color: var(--green-dark);
+}
+
+[data-theme="dark"] .floating-status-pill.green {
   color: var(--green);
-  font-weight: 700;
 }
 
-.phone-section-label {
-  font-size: 0.68rem;
-  font-weight: 800;
-  color: var(--text-secondary);
-  margin-bottom: 0.45rem;
+.floating-status-pill.yellow {
+  background: var(--yellow-soft);
+  color: #C28E00;
 }
 
-.phone-mini-dishes {
+[data-theme="dark"] .floating-status-pill.yellow {
+  color: var(--yellow);
+}
+
+.floating-status-info {
   display: flex;
   flex-direction: column;
-  gap: 0.45rem;
-  flex: 1;
 }
 
-.phone-dish-item {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  background-color: var(--surface);
-  padding: 0.4rem 0.55rem;
-  border-radius: 10px;
-  border: 1px solid var(--border-light);
+.floating-status-info strong {
+  font-size: 0.85rem;
+  color: var(--text-main);
 }
 
-.phone-dish-thumb {
-  width: 28px;
-  height: 28px;
-  object-fit: contain;
-}
-
-.phone-dish-title {
+.floating-status-info span {
   font-size: 0.72rem;
-  font-weight: 700;
-  flex: 1;
-}
-
-.phone-dish-price {
-  font-size: 0.72rem;
-  font-weight: 800;
-  color: var(--accent);
-}
-
-.phone-bottom-nav {
-  display: flex;
-  justify-content: space-around;
-  padding-top: 0.5rem;
-  border-top: 1px solid var(--border-light);
   color: var(--text-muted);
 }
 
-.phone-nav-item.active {
-  color: var(--accent);
-}
+/* Responsive */
+@media (max-width: 992px) {
+  .app-promo-glass-banner {
+    padding: 3rem 2rem;
+  }
 
-/* Floating Metric Badges */
-.app-float-badge-left,
-.app-float-badge-right {
-  position: absolute;
-  z-index: 4;
-  background-color: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-md);
-  padding: 0.65rem 0.95rem;
-  box-shadow: var(--shadow-md);
-  display: flex;
-  align-items: center;
-  gap: 0.65rem;
-}
+  .app-promo-grid {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+    text-align: center;
+  }
 
-.app-float-badge-left {
-  top: 15%;
-  left: 0;
-  animation: floatTag 4s ease-in-out infinite alternate;
-}
+  .app-promo-text-col {
+    align-items: center;
+  }
 
-.app-float-badge-right {
-  bottom: 12%;
-  right: 0;
-  animation: floatTag 4s ease-in-out infinite alternate 2s;
+  .app-promo-heading {
+    font-size: 2.5rem;
+  }
+
+  .app-download-buttons {
+    justify-content: center;
+  }
+
+  .card-status {
+    left: -5%;
+  }
+
+  .card-social {
+    right: -5%;
+  }
 }

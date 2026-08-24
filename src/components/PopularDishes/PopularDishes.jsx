@@ -1,67 +1,136 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, Sparkles } from 'lucide-react';
-import { foods } from '../../data/foodData';
+import { Sparkles, ArrowRight, Flame, ChevronLeft, ChevronRight, Compass } from 'lucide-react';
 import FoodCard from '../FoodCard/FoodCard';
-import useScrollReveal from '../../hooks/useScrollReveal';
+import { foods } from '../../data/foodData';
 import './PopularDishes.css';
 
 const PopularDishes = () => {
-  const [activeFilter, setActiveFilter] = useState('All');
-  const sectionRef = useScrollReveal();
+  const [filterCategory, setFilterCategory] = useState('All');
+  const [isTransitioning, setIsTransitioning] = useState(false);
+  const horizontalTrackRef = useRef(null);
 
-  const filterCategories = ['All', 'Breakfast', 'Lunch', 'Dinner', 'Desserts', 'Drinks'];
+  const filterTabs = ['All', 'Burger', 'Pizza', 'Pasta', 'Salad', 'Seafood', 'Dessert', 'Drinks'];
 
-  const filteredDishes = activeFilter === 'All'
-    ? foods.slice(0, 8)
-    : foods.filter((dish) => dish.filterCategory?.toLowerCase() === activeFilter.toLowerCase()).slice(0, 8);
+  const handleCategoryChange = (tab) => {
+    if (tab === filterCategory) return;
+    setIsTransitioning(true);
+    setTimeout(() => {
+      setFilterCategory(tab);
+      setIsTransitioning(false);
+    }, 180);
+  };
+
+  const filteredDishes = foods.filter((dish) => {
+    if (filterCategory === 'All') return true;
+    return dish.category.toLowerCase() === filterCategory.toLowerCase();
+  });
+
+  const displayedDishes = filteredDishes.slice(0, 6);
+
+  // Horizontal Food Journey Scroll Handlers
+  const scrollJourney = (direction) => {
+    if (horizontalTrackRef.current) {
+      const scrollAmount = direction === 'left' ? -340 : 340;
+      horizontalTrackRef.current.scrollBy({
+        left: scrollAmount,
+        behavior: 'smooth',
+      });
+    }
+  };
 
   return (
-    <section className="popular-dishes-section reveal-on-scroll" id="popular-dishes" ref={sectionRef}>
+    <section className="section-wrapper popular-dishes-section" id="popular">
       <div className="container">
         {/* Section Header */}
         <div className="section-header">
-          <span className="section-badge">POPULAR CHOICES</span>
-          <h2 className="section-title">Popular Dishes</h2>
+          <div className="section-badge yellow">
+            <Flame size={14} />
+            <span>POPULAR DISHES</span>
+          </div>
+          <h2 className="section-title">
+            Popular <span>Food</span>
+          </h2>
           <p className="section-subtitle">
-            Discover our most loved meals, prepared fresh daily with fine ingredients and rich flavors.
+            Our customers' favorite dishes, handcrafted fresh every day with organic ingredients and exceptional culinary care.
           </p>
         </div>
 
-        {/* Sliding Pill Category Filter Navigation */}
-        <div className="filter-nav-wrap">
-          <div className="filter-pill-container" role="tablist" aria-label="Dish category filters">
-            {filterCategories.map((category) => (
-              <button
-                key={category}
-                type="button"
-                className={`filter-nav-btn ${activeFilter === category ? 'active' : ''}`}
-                onClick={() => setActiveFilter(category)}
-                role="tab"
-                aria-selected={activeFilter === category}
+        {/* Interactive Filter Pills */}
+        <div className="popular-filter-pills-wrap">
+          {filterTabs.map((tab) => (
+            <button
+              key={tab}
+              type="button"
+              className={`popular-tab-btn ${filterCategory === tab ? 'is-active' : ''}`}
+              onClick={() => handleCategoryChange(tab)}
+            >
+              {tab}
+            </button>
+          ))}
+        </div>
+
+        {/* Animated Food Cards Grid */}
+        <div className={`popular-dishes-grid ${isTransitioning ? 'is-switching' : 'is-visible'}`}>
+          {displayedDishes.map((dish, idx) => (
+            <div key={dish.id} className={`grid-card-anim stagger-${(idx % 4) + 1}`}>
+              <FoodCard dish={dish} />
+            </div>
+          ))}
+        </div>
+
+        {/* ==============================================================
+            Horizontal Food Journey Showcase ("Explore Popular Dishes")
+            ============================================================== */}
+        <div className="horizontal-journey-wrapper glass-panel">
+          <div className="journey-header-bar">
+            <div className="journey-title-block">
+              <div className="section-badge green">
+                <Compass size={14} />
+                <span>CULINARY JOURNEY</span>
+              </div>
+              <h3 className="journey-heading">
+                Explore the <span>Flavor Spectrum</span>
+              </h3>
+              <p className="journey-sub">Scroll horizontally through our handcrafted culinary collection.</p>
+            </div>
+
+            {/* Navigation Controls */}
+            <div className="journey-nav-controls">
+              <button 
+                type="button" 
+                className="journey-arrow-btn"
+                onClick={() => scrollJourney('left')}
+                aria-label="Scroll left"
               >
-                {category}
+                <ChevronLeft size={20} />
               </button>
+              <button 
+                type="button" 
+                className="journey-arrow-btn"
+                onClick={() => scrollJourney('right')}
+                aria-label="Scroll right"
+              >
+                <ChevronRight size={20} />
+              </button>
+            </div>
+          </div>
+
+          {/* Horizontal Drag/Scroll Track */}
+          <div className="journey-scroll-track" ref={horizontalTrackRef}>
+            {foods.map((item) => (
+              <div key={`journey-${item.id}`} className="journey-card-item">
+                <FoodCard dish={item} />
+              </div>
             ))}
           </div>
         </div>
 
-        {/* Staggered Dishes Grid */}
-        <div className="popular-dishes-grid">
-          {filteredDishes.map((dish, idx) => (
-            <FoodCard
-              key={dish.id}
-              food={dish}
-              className={`popular-card-item delay-${(idx % 4) + 1}`}
-            />
-          ))}
-        </div>
-
-        {/* View All CTA */}
+        {/* Bottom CTA to Full Menu */}
         <div className="popular-bottom-cta">
-          <Link to="/menu" className="btn-secondary">
-            <span>Explore Complete Menu</span>
-            <ArrowRight size={16} />
+          <Link to="/menu" className="btn-primary popular-explore-btn">
+            <span>Explore Full Menu ({foods.length} Dishes)</span>
+            <ArrowRight size={18} />
           </Link>
         </div>
       </div>

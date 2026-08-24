@@ -7,10 +7,11 @@ import {
   Moon, 
   ShoppingBag, 
   User, 
-  Menu, 
+  Menu as MenuIcon, 
   X, 
   ArrowRight,
-  Sparkles
+  Sparkles,
+  Calendar
 } from 'lucide-react';
 import { useTheme } from '../../context/ThemeContext';
 import { useCart } from '../../context/CartContext';
@@ -20,21 +21,29 @@ const Navbar = () => {
   const { theme, toggleTheme, openSearch, openReservation } = useTheme();
   const { totalCartCount, openCart } = useCart();
   const [isScrolled, setIsScrolled] = useState(false);
+  const [scrollProgress, setScrollProgress] = useState(0);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [profileTooltip, setProfileTooltip] = useState(false);
+  const [profileOpen, setProfileOpen] = useState(false);
   const location = useLocation();
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
+      const scrollY = window.scrollY;
+      setIsScrolled(scrollY > 20);
+
+      const winHeight = document.documentElement.scrollHeight - window.innerHeight;
+      if (winHeight > 0) {
+        setScrollProgress((scrollY / winHeight) * 100);
+      }
     };
-    window.addEventListener('scroll', handleScroll);
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Close mobile drawer on route change
   useEffect(() => {
     setMobileMenuOpen(false);
+    setProfileOpen(false);
   }, [location.pathname]);
 
   const navLinks = [
@@ -44,140 +53,158 @@ const Navbar = () => {
     { name: 'Contact', path: '/contact' },
   ];
 
-  const handleProfileClick = () => {
-    setProfileTooltip((prev) => !prev);
-    setTimeout(() => setProfileTooltip(false), 3000);
-  };
-
   return (
     <>
-      <header className={`navbar-wrapper ${isScrolled ? 'scrolled' : ''}`}>
-        <div className="container navbar-container">
-          {/* Logo */}
-          <Link to="/" className="navbar-logo" aria-label="FOODLY Home">
-            <span className="logo-leaf">
-              <Leaf size={22} strokeWidth={2.5} />
-            </span>
-            <span className="logo-text">FOODLY</span>
-            <span className="logo-dot">.</span>
-          </Link>
+      {/* Top Scroll Progress Indicator */}
+      <div 
+        className="top-scroll-progress-line" 
+        style={{ width: `${scrollProgress}%` }}
+        aria-hidden="true"
+      />
 
-          {/* Desktop Navigation Links with Active Indicator */}
-          <nav className="desktop-nav" aria-label="Main Navigation">
-            <ul className="navbar-links">
-              {navLinks.map((link) => (
-                <li key={link.name}>
-                  <NavLink
-                    to={link.path}
-                    className={({ isActive }) =>
-                      `nav-link-item ${isActive ? 'active' : ''}`
-                    }
-                  >
-                    {link.name}
-                  </NavLink>
-                </li>
-              ))}
-            </ul>
-          </nav>
+      <header className={`navbar-root ${isScrolled ? 'is-scrolled' : ''}`}>
+        <div className="container">
+          <div className="navbar-pill-container glass-panel">
+            {/* Left: Brand Logo */}
+            <Link to="/" className="navbar-logo" aria-label="FOODLY Home">
+              <span className="logo-icon-badge animate-glow">
+                <Leaf size={18} strokeWidth={2.6} />
+              </span>
+              <span className="logo-title">
+                FOODLY<span className="logo-accent-dot">.</span>
+              </span>
+            </Link>
 
-          {/* Action Icons */}
-          <div className="navbar-actions">
-            {/* Search Trigger */}
-            <button
-              type="button"
-              className="nav-icon-btn"
-              onClick={openSearch}
-              aria-label="Search dishes (Ctrl+K)"
-              title="Search dishes (Ctrl+K)"
-            >
-              <Search size={18} />
-            </button>
+            {/* Center: Desktop Navigation Links with animated indicator */}
+            <nav className="desktop-navigation" aria-label="Main Navigation">
+              <ul className="nav-link-list">
+                {navLinks.map((link) => (
+                  <li key={link.name}>
+                    <NavLink
+                      to={link.path}
+                      className={({ isActive }) =>
+                        `nav-link ${isActive ? 'is-active' : ''}`
+                      }
+                    >
+                      <span>{link.name}</span>
+                      <span className="nav-underline" aria-hidden="true" />
+                    </NavLink>
+                  </li>
+                ))}
+              </ul>
+            </nav>
 
-            {/* Light / Dark Mode Toggle */}
-            <button 
-              type="button"
-              className="nav-icon-btn theme-toggle-btn" 
-              onClick={toggleTheme}
-              aria-label={`Switch to ${theme === 'light' ? 'Dark' : 'Light'} Mode`}
-              title={`Switch to ${theme === 'light' ? 'Dark' : 'Light'} Mode`}
-            >
-              {theme === 'light' ? <Moon size={18} /> : <Sun size={18} />}
-            </button>
-
-            {/* Cart with Live Count Badge */}
-            <button 
-              type="button"
-              className="nav-icon-btn cart-btn-wrap" 
-              onClick={openCart}
-              aria-label="View Shopping Cart"
-              title="Shopping Cart"
-            >
-              <ShoppingBag size={18} />
-              {totalCartCount > 0 && (
-                <span className="cart-badge">{totalCartCount}</span>
-              )}
-            </button>
-
-            {/* Profile Button with quick toast */}
-            <div className="profile-btn-container">
-              <button 
+            {/* Right: Actions (Search, Theme, Cart, Profile, CTA) */}
+            <div className="navbar-actions-group">
+              {/* Search Button */}
+              <button
                 type="button"
-                className="nav-icon-btn" 
-                onClick={handleProfileClick}
-                aria-label="User profile"
+                className="nav-action-btn"
+                onClick={openSearch}
+                aria-label="Search dishes"
+                title="Search menu (Ctrl+K)"
               >
-                <User size={18} />
+                <Search size={18} />
               </button>
-              {profileTooltip && (
-                <div className="profile-popover">
-                  <Sparkles size={14} color="var(--accent)" />
-                  <span>Welcome back, Foodie Member!</span>
-                </div>
-              )}
+
+              {/* Theme Toggle Button */}
+              <button
+                type="button"
+                className="nav-action-btn theme-toggle-btn"
+                onClick={toggleTheme}
+                aria-label={`Switch to ${theme === 'light' ? 'Dark' : 'Light'} Mode`}
+                title={`Switch to ${theme === 'light' ? 'Dark' : 'Light'} Mode`}
+              >
+                {theme === 'light' ? <Moon size={18} /> : <Sun size={18} />}
+              </button>
+
+              {/* Cart Button with Count Badge */}
+              <button
+                type="button"
+                className="nav-action-btn cart-action-btn"
+                onClick={openCart}
+                aria-label="View Cart"
+                title="Shopping Cart"
+              >
+                <ShoppingBag size={18} />
+                {totalCartCount > 0 && (
+                  <span className="navbar-cart-badge">{totalCartCount}</span>
+                )}
+              </button>
+
+              {/* Profile Button with Popover */}
+              <div className="profile-dropdown-wrapper">
+                <button
+                  type="button"
+                  className="nav-action-btn profile-trigger-btn"
+                  onClick={() => setProfileOpen(!profileOpen)}
+                  aria-label="User Profile"
+                  title="My Account"
+                >
+                  <User size={18} />
+                </button>
+                {profileOpen && (
+                  <div className="profile-glass-popover glass-card">
+                    <div className="popover-header">
+                      <Sparkles size={16} color="var(--primary)" />
+                      <strong>Welcome to FOODLY!</strong>
+                    </div>
+                    <p className="popover-text">Enjoy fresh chef-crafted meals & daily exclusive rewards.</p>
+                    <div className="popover-divider" />
+                    <Link to="/menu" className="popover-link" onClick={() => setProfileOpen(false)}>
+                      <span>Browse Menu</span>
+                      <ArrowRight size={14} />
+                    </Link>
+                  </div>
+                )}
+              </div>
+
+              {/* CTA: Book a Table */}
+              <button
+                type="button"
+                className="btn-primary navbar-cta-btn"
+                onClick={openReservation}
+              >
+                <Calendar size={15} />
+                <span>Book a Table</span>
+              </button>
+
+              {/* Mobile Hamburger Toggle */}
+              <button
+                type="button"
+                className="mobile-hamburger-btn"
+                onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+                aria-label={mobileMenuOpen ? 'Close Menu' : 'Open Menu'}
+              >
+                {mobileMenuOpen ? <X size={22} /> : <MenuIcon size={22} />}
+              </button>
             </div>
-
-            {/* Desktop Order / Reservation Button */}
-            <button
-              type="button"
-              className="nav-order-btn"
-              onClick={openReservation}
-            >
-              <span>Book Table</span>
-              <ArrowRight size={14} />
-            </button>
-
-            {/* Mobile Hamburger Toggle */}
-            <button
-              type="button"
-              className="mobile-toggle-btn"
-              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              aria-label={mobileMenuOpen ? 'Close Menu' : 'Open Menu'}
-            >
-              {mobileMenuOpen ? <X size={22} /> : <Menu size={22} />}
-            </button>
           </div>
         </div>
       </header>
 
-      {/* Mobile Drawer Navigation Backdrop & Panel */}
+      {/* Mobile Drawer Backdrop */}
       {mobileMenuOpen && (
         <div 
           className="mobile-drawer-backdrop" 
-          onClick={() => setMobileMenuOpen(false)}
+          onClick={() => setMobileMenuOpen(false)} 
         />
       )}
-      
-      <div className={`mobile-drawer ${mobileMenuOpen ? 'open' : ''}`}>
-        <div className="mobile-drawer-header">
+
+      {/* Mobile Drawer Panel */}
+      <aside className={`mobile-nav-drawer glass-panel ${mobileMenuOpen ? 'is-open' : ''}`}>
+        <div className="drawer-header">
           <Link to="/" className="navbar-logo" onClick={() => setMobileMenuOpen(false)}>
-            <span className="logo-leaf">
-              <Leaf size={20} strokeWidth={2.5} />
+            <span className="logo-icon-badge">
+              <Leaf size={18} strokeWidth={2.6} />
             </span>
-            <span className="logo-text">FOODLY</span>
-            <span className="logo-dot">.</span>
+            <span className="logo-title">
+              FOODLY<span className="logo-accent-dot">.</span>
+            </span>
           </Link>
           <button 
-            className="mobile-drawer-close"
+            type="button" 
+            className="drawer-close-btn"
             onClick={() => setMobileMenuOpen(false)}
             aria-label="Close menu"
           >
@@ -185,13 +212,13 @@ const Navbar = () => {
           </button>
         </div>
 
-        <div className="mobile-drawer-links">
+        <nav className="drawer-nav">
           {navLinks.map((link) => (
             <NavLink
               key={link.name}
               to={link.path}
               className={({ isActive }) =>
-                `mobile-nav-link ${isActive ? 'active' : ''}`
+                `drawer-nav-item ${isActive ? 'is-active' : ''}`
               }
               onClick={() => setMobileMenuOpen(false)}
             >
@@ -199,41 +226,43 @@ const Navbar = () => {
               <ArrowRight size={16} />
             </NavLink>
           ))}
-        </div>
+        </nav>
 
-        <div className="mobile-drawer-bottom">
-          <button 
+        <div className="drawer-footer-actions">
+          <button
             type="button"
-            className="mobile-action-pill" 
-            onClick={openSearch}
+            className="drawer-action-pill"
+            onClick={() => {
+              setMobileMenuOpen(false);
+              openSearch();
+            }}
           >
-            <Search size={16} />
+            <Search size={17} />
             <span>Search Dishes</span>
           </button>
 
-          <button 
+          <button
             type="button"
-            className="mobile-action-pill" 
+            className="drawer-action-pill"
             onClick={toggleTheme}
           >
-            {theme === 'light' ? <Moon size={16} /> : <Sun size={16} />}
+            {theme === 'light' ? <Moon size={17} /> : <Sun size={17} />}
             <span>{theme === 'light' ? 'Dark Mode' : 'Light Mode'}</span>
           </button>
 
-          <button 
+          <button
             type="button"
-            className="btn-primary" 
-            style={{ width: '100%', marginTop: '0.5rem' }}
+            className="btn-primary drawer-cta-btn"
             onClick={() => {
               setMobileMenuOpen(false);
               openReservation();
             }}
           >
+            <Calendar size={16} />
             <span>Book a Table</span>
-            <ArrowRight size={16} />
           </button>
         </div>
-      </div>
+      </aside>
     </>
   );
 };

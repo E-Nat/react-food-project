@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Leaf } from 'lucide-react';
+import { Sparkles, UtensilsCrossed } from 'lucide-react';
 import './IntroSplash.css';
 
 const IntroSplash = () => {
@@ -36,19 +36,21 @@ const IntroSplash = () => {
       className={`intro-splash-overlay ${fadeExit ? 'fade-out' : ''}`}
       onClick={() => setVisible(false)}
       role="banner"
-      aria-label="Welcome to Foodly"
+      aria-label="Welcome to FOODLY"
     >
       <div className="intro-splash-content">
+        <div className="intro-halo-ring" />
         <div className="intro-logo-mark">
-          <Leaf size={32} strokeWidth={2.5} className="intro-leaf-icon" />
+          <UtensilsCrossed size={32} strokeWidth={2.4} className="intro-leaf-icon" />
         </div>
         <h1 className="intro-brand-name">
           FOODLY<span className="intro-dot">.</span>
         </h1>
-        <p className="intro-tagline">Good food, good mood.</p>
+        <p className="intro-tagline">Artisan Cuisine • Fresh Daily</p>
       </div>
     </div>
   );
 };
 
 export default IntroSplash;
+

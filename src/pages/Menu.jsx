@@ -1,24 +1,36 @@
 import React, { useState, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
+import { motion, AnimatePresence } from 'framer-motion';
 import { Search, SlidersHorizontal, RotateCcw, UtensilsCrossed, Sparkles } from 'lucide-react';
 import Navbar from '../components/Navbar/Navbar';
 import Footer from '../components/Footer/Footer';
 import FoodCard from '../components/FoodCard/FoodCard';
 import { foods } from '../data/foodData';
-import useScrollReveal from '../hooks/useScrollReveal';
+import { Reveal } from '../components/animation/Reveal';
+import { StaggerContainer, StaggerItem } from '../components/animation/StaggerContainer';
 import './Menu.css';
 
 const Menu = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const initialCat = searchParams.get('category') || 'All';
+  const initialSearch = searchParams.get('search') || '';
 
   const [selectedCategory, setSelectedCategory] = useState(initialCat);
-  const [searchQuery, setSearchQuery] = useState('');
-  const [sortBy, setSortBy] = useState('popular'); // 'popular' | 'price-low' | 'price-high' | 'rating'
+  const [searchQuery, setSearchQuery] = useState(initialSearch);
+  const [sortBy, setSortBy] = useState('popular');
   const [dietaryFilter, setDietaryFilter] = useState('All');
-  const sectionRef = useScrollReveal();
 
-  const categories = ['All', 'Pizza', 'Pasta', 'Burgers', 'Salads', 'Desserts', 'Drinks'];
+  const categories = [
+    { name: 'All', icon: '✨' },
+    { name: 'Pizza', icon: '🍕' },
+    { name: 'Pasta', icon: '🍝' },
+    { name: 'Burger', icon: '🍔' },
+    { name: 'Salad', icon: '🥗' },
+    { name: 'Seafood', icon: '🦐' },
+    { name: 'Dessert', icon: '🍰' },
+    { name: 'Drinks', icon: '🍹' },
+  ];
+
   const dietaryOptions = ['All', 'Vegetarian', 'Vegan', 'Gluten-Free', 'Chef Special'];
 
   useEffect(() => {
@@ -26,15 +38,20 @@ const Menu = () => {
     if (catFromUrl) {
       setSelectedCategory(catFromUrl);
     }
+    const searchFromUrl = searchParams.get('search');
+    if (searchFromUrl) {
+      setSearchQuery(searchFromUrl);
+    }
   }, [searchParams]);
 
-  const handleCategoryChange = (cat) => {
-    setSelectedCategory(cat);
-    if (cat === 'All') {
+  const handleCategoryChange = (catName) => {
+    setSelectedCategory(catName);
+    if (catName === 'All') {
       searchParams.delete('category');
       setSearchParams(searchParams);
     } else {
-      setSearchParams({ category: cat });
+      searchParams.set('category', catName);
+      setSearchParams(searchParams);
     }
   };
 
@@ -83,20 +100,25 @@ const Menu = () => {
         {/* Menu Hero Header */}
         <section className="menu-hero-header">
           <div className="container">
-            <div className="menu-header-inner">
-              <span className="section-badge">ARTISAN DINING</span>
-              <h1 className="menu-main-title">Our Handcrafted Menu</h1>
+            <Reveal direction="up" className="menu-header-inner">
+              <span className="section-badge yellow">
+                <Sparkles size={14} className="badge-sparkle" />
+                ARTISAN GASTRONOMY
+              </span>
+              <h1 className="menu-main-title">
+                Handcrafted <span className="serif-accent">Culinary Menu</span>
+              </h1>
               <p className="menu-main-subtitle">
-                Explore our full culinary collection, cooked to order with daily farm-fresh organic ingredients.
+                Explore our chef-curated collection cooked to order with farm-fresh organic ingredients.
               </p>
-            </div>
+            </Reveal>
           </div>
         </section>
 
         {/* Filter & Controls Bar */}
         <section className="menu-controls-section">
           <div className="container">
-            <div className="menu-controls-bar">
+            <Reveal direction="up" delay={0.1} className="menu-controls-bar">
               {/* Live Search Input */}
               <div className="menu-search-box">
                 <Search size={18} className="menu-search-icon" />
@@ -132,19 +154,20 @@ const Menu = () => {
                   <option value="price-high">Price: High to Low</option>
                 </select>
               </div>
-            </div>
+            </Reveal>
 
             {/* Category Filter Tabs */}
             <div className="menu-category-tabs-wrap">
               <div className="menu-category-tabs">
                 {categories.map((cat) => (
                   <button
-                    key={cat}
+                    key={cat.name}
                     type="button"
-                    className={`menu-cat-btn ${selectedCategory.toLowerCase() === cat.toLowerCase() ? 'active' : ''}`}
-                    onClick={() => handleCategoryChange(cat)}
+                    className={`menu-cat-btn ${selectedCategory.toLowerCase() === cat.name.toLowerCase() ? 'active' : ''}`}
+                    onClick={() => handleCategoryChange(cat.name)}
                   >
-                    {cat}
+                    <span className="cat-btn-icon">{cat.icon}</span>
+                    <span>{cat.name}</span>
                   </button>
                 ))}
               </div>
@@ -170,7 +193,7 @@ const Menu = () => {
         </section>
 
         {/* Dishes Grid & Results */}
-        <section className="menu-dishes-section reveal-on-scroll" ref={sectionRef}>
+        <section className="menu-dishes-section">
           <div className="container">
             <div className="menu-results-count">
               <span>Showing <strong>{filteredFoods.length}</strong> delicious items</span>
@@ -186,28 +209,41 @@ const Menu = () => {
               )}
             </div>
 
-            {filteredFoods.length > 0 ? (
-              <div className="menu-grid">
-                {filteredFoods.map((dish, idx) => (
-                  <FoodCard
-                    key={dish.id}
-                    food={dish}
-                    className={`menu-card-item delay-${(idx % 4) + 1}`}
-                  />
-                ))}
-              </div>
-            ) : (
-              <div className="menu-no-results">
-                <div className="no-results-icon-wrap">
-                  <UtensilsCrossed size={36} />
-                </div>
-                <h3>No dishes found</h3>
-                <p>We couldn't find any dishes matching your current search or filters.</p>
-                <button type="button" className="btn-primary" onClick={handleResetFilters}>
-                  <span>Reset All Filters</span>
-                </button>
-              </div>
-            )}
+            <AnimatePresence mode="wait">
+              {filteredFoods.length > 0 ? (
+                <motion.div 
+                  key={`${selectedCategory}-${sortBy}-${dietaryFilter}-${searchQuery}`}
+                  initial={{ opacity: 0, y: 15 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -15 }}
+                  transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+                  className="menu-grid"
+                >
+                  {filteredFoods.map((dish) => (
+                    <FoodCard
+                      key={dish.id}
+                      dish={dish}
+                      className="menu-card-item"
+                    />
+                  ))}
+                </motion.div>
+              ) : (
+                <motion.div 
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  className="menu-no-results glass-panel"
+                >
+                  <div className="no-results-icon-wrap">
+                    <UtensilsCrossed size={36} />
+                  </div>
+                  <h3>No dishes found</h3>
+                  <p>We couldn't find any dishes matching your current search or filters.</p>
+                  <button type="button" className="btn-primary" onClick={handleResetFilters}>
+                    <span>Reset All Filters</span>
+                  </button>
+                </motion.div>
+              )}
+            </AnimatePresence>
           </div>
         </section>
       </main>

@@ -1,0 +1,283 @@
+/* ==========================================================================
+   FOODLY — Special Offers Styles
+   ========================================================================== */
+
+.special-offers-section {
+  position: relative;
+  background: var(--bg-primary);
+}
+
+.offers-banner-card {
+  padding: 4.5rem 3.5rem;
+  border-radius: 2.25rem;
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(135deg, rgba(253, 232, 225, 0.75) 0%, rgba(253, 244, 217, 0.65) 50%, rgba(232, 238, 221, 0.6) 100%);
+  border: 1px solid rgba(255, 255, 255, 0.85);
+  box-shadow: var(--shadow-lg);
+}
+
+[data-theme="dark"] .offers-banner-card {
+  background: linear-gradient(135deg, rgba(51, 31, 25, 0.8) 0%, rgba(45, 40, 22, 0.7) 50%, rgba(32, 44, 28, 0.75) 100%);
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+.offers-ambient-blob-1 {
+  position: absolute;
+  top: -15%;
+  right: 10%;
+  width: 420px;
+  height: 420px;
+  background: radial-gradient(circle, rgba(244, 119, 82, 0.3) 0%, transparent 70%);
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.offers-ambient-blob-2 {
+  position: absolute;
+  bottom: -15%;
+  left: 10%;
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, rgba(245, 200, 91, 0.25) 0%, transparent 70%);
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.offers-grid-layout {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 3.5rem;
+  align-items: center;
+  position: relative;
+  z-index: 2;
+}
+
+/* Left Content */
+.offers-text-col {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.offers-tag-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.4rem 1rem;
+  border-radius: 9999px;
+  background: var(--surface);
+  color: var(--primary);
+  font-size: 0.82rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  margin-bottom: 1.25rem;
+  box-shadow: var(--shadow-xs);
+}
+
+.offers-discount-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.5rem 1.25rem;
+  border-radius: 9999px;
+  background: var(--primary-soft);
+  margin-bottom: 1.25rem;
+  box-shadow: 0 4px 14px var(--primary-glow);
+}
+
+.discount-number {
+  font-size: 1.5rem;
+  font-weight: 900;
+  color: var(--primary);
+  letter-spacing: -0.02em;
+}
+
+.discount-label {
+  font-size: 0.78rem;
+  font-weight: 800;
+  color: var(--text-main);
+  letter-spacing: 0.08em;
+}
+
+.offers-headline {
+  font-size: 3.2rem;
+  font-weight: 900;
+  line-height: 1.1;
+  color: var(--text-main);
+  letter-spacing: -0.04em;
+  margin-bottom: 1.25rem;
+}
+
+.offers-headline span {
+  color: var(--primary);
+}
+
+.offers-description {
+  font-size: 1.1rem;
+  line-height: 1.65;
+  color: var(--text-muted);
+  max-width: 520px;
+  margin-bottom: 1.75rem;
+}
+
+/* Promo Code Bar */
+.promo-code-bar {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.65rem 1.25rem;
+  border-radius: 9999px;
+  background: var(--surface);
+  border: 1px dashed var(--primary);
+  margin-bottom: 2.25rem;
+}
+
+.code-label {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--text-muted);
+}
+
+.code-badge {
+  font-size: 0.95rem;
+  font-weight: 900;
+  color: var(--primary);
+  letter-spacing: 0.08em;
+  background: var(--primary-soft);
+  padding: 0.2rem 0.65rem;
+  border-radius: 6px;
+}
+
+.code-validity {
+  font-size: 0.78rem;
+  color: var(--text-light);
+  font-weight: 600;
+}
+
+.offers-cta-btn {
+  padding: 1rem 2.4rem;
+  font-size: 1.05rem;
+}
+
+/* Right Visual */
+.offers-visual-col {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.offers-image-stage {
+  position: relative;
+  width: 100%;
+  max-width: 440px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.offers-stage-ring {
+  position: absolute;
+  width: 380px;
+  height: 380px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.9) 0%, rgba(253, 232, 225, 0.4) 65%, transparent 80%);
+  box-shadow: 0 0 60px rgba(244, 119, 82, 0.25);
+  z-index: 0;
+}
+
+[data-theme="dark"] .offers-stage-ring {
+  background: radial-gradient(circle, rgba(50, 35, 30, 0.8) 0%, transparent 80%);
+}
+
+.offers-dish-image {
+  max-width: 400px;
+  width: 100%;
+  height: auto;
+  position: relative;
+  z-index: 2;
+  filter: drop-shadow(0 25px 35px rgba(40, 50, 20, 0.22));
+}
+
+.floating-discount-glass-card {
+  position: absolute;
+  bottom: 0%;
+  left: -5%;
+  z-index: 4;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.85rem 1.3rem;
+  border-radius: 1.25rem;
+}
+
+.discount-glass-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.discount-glass-text strong {
+  font-size: 0.92rem;
+  color: var(--text-main);
+}
+
+.discount-glass-text span {
+  font-size: 0.76rem;
+  color: var(--text-muted);
+}
+
+.offers-floating-icon {
+  position: absolute;
+  font-size: 2rem;
+  z-index: 3;
+  pointer-events: none;
+}
+
+.icon-1 {
+  top: 0%;
+  right: 10%;
+  animation: floatSlow 5s ease-in-out infinite;
+}
+
+.icon-2 {
+  top: 40%;
+  right: -5%;
+  animation: floatReverse 6s ease-in-out infinite;
+}
+
+.icon-3 {
+  bottom: 15%;
+  left: 5%;
+  animation: floatSlow 7s ease-in-out infinite;
+}
+
+/* Responsive */
+@media (max-width: 992px) {
+  .offers-banner-card {
+    padding: 3rem 2rem;
+  }
+
+  .offers-grid-layout {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+    text-align: center;
+  }
+
+  .offers-text-col {
+    align-items: center;
+  }
+
+  .offers-headline {
+    font-size: 2.4rem;
+  }
+
+  .promo-code-bar {
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .floating-discount-glass-card {
+    left: 2%;
+    bottom: -5%;
+  }
+}

@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
+import { AnimatePresence, motion } from 'framer-motion';
 import { ThemeProvider } from './context/ThemeContext';
 import { CartProvider, useCart } from './context/CartContext';
 import { ShoppingBag } from 'lucide-react';
@@ -34,9 +35,37 @@ function GlobalToast() {
 
   return (
     <div className="toast-container" role="status" aria-live="polite">
-      <ShoppingBag size={18} color="var(--accent)" />
+      <ShoppingBag size={18} color="var(--primary)" />
       <span>{toastMessage}</span>
     </div>
+  );
+}
+
+// Animated Routes Wrapper with short page transitions
+function AnimatedRoutes() {
+  const location = useLocation();
+
+  return (
+    <AnimatePresence mode="wait">
+      <motion.div
+        key={location.pathname}
+        initial={{ opacity: 0, y: 12 }}
+        animate={{ opacity: 1, y: 0 }}
+        exit={{ opacity: 0, y: -12 }}
+        transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
+        style={{ width: '100%', minHeight: '100vh', display: 'flex', flexDirection: 'column' }}
+      >
+        <Routes location={location}>
+          <Route path="/" element={<Home />} />
+          <Route path="/menu" element={<Menu />} />
+          <Route path="/menu/:id" element={<FoodDetail />} />
+          <Route path="/food/:id" element={<FoodDetail />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="*" element={<Home />} />
+        </Routes>
+      </motion.div>
+    </AnimatePresence>
   );
 }
 
@@ -52,14 +81,7 @@ function App() {
           <ReservationModal />
           <GlobalToast />
 
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/menu" element={<Menu />} />
-            <Route path="/menu/:id" element={<FoodDetail />} />
-            <Route path="/about" element={<About />} />
-            <Route path="/contact" element={<Contact />} />
-            <Route path="*" element={<Home />} />
-          </Routes>
+          <AnimatedRoutes />
         </Router>
       </CartProvider>
     </ThemeProvider>

@@ -1,0 +1,176 @@
+/* ==========================================================================
+   FOODLY — About Section Styles
+   ========================================================================== */
+
+.about-master-section {
+  position: relative;
+  background: var(--bg-primary);
+}
+
+.about-grid-layout {
+  display: grid;
+  grid-template-columns: 0.95fr 1.05fr;
+  gap: 4.5rem;
+  align-items: center;
+}
+
+/* Left Visual Collage */
+.about-visual-collage {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 480px;
+}
+
+.about-ambient-shape {
+  position: absolute;
+  width: 420px;
+  height: 420px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(143, 168, 107, 0.25) 0%, transparent 70%);
+  z-index: 0;
+}
+
+.collage-main-frame {
+  position: relative;
+  z-index: 2;
+  padding: 2rem;
+  border-radius: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  max-width: 440px;
+  width: 100%;
+}
+
+.collage-main-img {
+  max-width: 380px;
+  width: 100%;
+  height: auto;
+  filter: drop-shadow(0 20px 30px rgba(40, 50, 20, 0.2));
+}
+
+.collage-floating-card-1 {
+  position: absolute;
+  top: 4%;
+  left: -6%;
+  z-index: 4;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.85rem 1.25rem;
+  border-radius: 1.15rem;
+}
+
+.collage-floating-card-2 {
+  position: absolute;
+  bottom: 6%;
+  right: -6%;
+  z-index: 4;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.85rem 1.25rem;
+  border-radius: 1.15rem;
+}
+
+.card-floating-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.card-floating-info strong {
+  font-size: 0.9rem;
+  color: var(--text-main);
+}
+
+.card-floating-info span {
+  font-size: 0.76rem;
+  color: var(--text-muted);
+}
+
+/* Right Content */
+.about-text-content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.about-story-text {
+  font-size: 1.08rem;
+  line-height: 1.7;
+  color: var(--text-muted);
+  margin-bottom: 1rem;
+}
+
+.about-story-subtext {
+  font-size: 0.95rem;
+  line-height: 1.65;
+  color: var(--text-light);
+  margin-bottom: 2rem;
+}
+
+/* Stats Grid */
+.about-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+  width: 100%;
+  margin-bottom: 2.25rem;
+}
+
+.about-stat-box {
+  padding: 1.25rem 1rem;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: 1.25rem;
+}
+
+.stat-big-number {
+  font-size: 1.75rem;
+  font-weight: 900;
+  color: var(--primary);
+  letter-spacing: -0.03em;
+  line-height: 1.2;
+}
+
+.stat-caption {
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--text-muted);
+  margin-top: 0.25rem;
+}
+
+.about-learn-btn {
+  padding: 0.95rem 2.2rem;
+  font-size: 1.02rem;
+}
+
+/* Responsive */
+@media (max-width: 992px) {
+  .about-grid-layout {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+    text-align: center;
+  }
+
+  .about-text-content {
+    align-items: center;
+  }
+
+  .about-stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .collage-floating-card-1 {
+    left: 2%;
+  }
+
+  .collage-floating-card-2 {
+    right: 2%;
+  }
+}

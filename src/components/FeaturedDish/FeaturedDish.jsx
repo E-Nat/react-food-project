@@ -1,122 +1,199 @@
 import React, { useState } from 'react';
-import { ArrowRight, Check, Award, Sparkles, Flame, Leaf, CheckCircle2 } from 'lucide-react';
-import { featuredChefSpecial } from '../../data/foodData';
+import { motion } from 'framer-motion';
+import { 
+  Sparkles, 
+  Star, 
+  ShoppingBag, 
+  Check, 
+  Clock, 
+  Flame, 
+  CheckCircle2,
+  ChefHat
+} from 'lucide-react';
+import { featuredChefDish } from '../../data/foodData';
 import { useCart } from '../../context/CartContext';
-import useScrollReveal from '../../hooks/useScrollReveal';
+import { MagneticButton } from '../animation/MagneticButton';
 import './FeaturedDish.css';
 
 const FeaturedDish = () => {
   const { addToCart } = useCart();
-  const [isHovered, setIsHovered] = useState(false);
   const [isAdded, setIsAdded] = useState(false);
-  const sectionRef = useScrollReveal();
 
-  const handleOrderSpecial = () => {
-    addToCart({
-      id: featuredChefSpecial.id,
-      name: featuredChefSpecial.dishName,
-      price: featuredChefSpecial.price,
-      image: featuredChefSpecial.image,
-      category: "Chef's Special",
-      description: featuredChefSpecial.description,
-    });
+  const handleOrderFeatured = () => {
+    addToCart(
+      {
+        id: featuredChefDish.id,
+        name: featuredChefDish.name,
+        category: 'Pasta',
+        price: featuredChefDish.price,
+        image: featuredChefDish.image,
+        description: featuredChefDish.description,
+      },
+      1
+    );
     setIsAdded(true);
-    setTimeout(() => setIsAdded(false), 1400);
+    setTimeout(() => setIsAdded(false), 1600);
   };
 
   return (
-    <section className="featured-dish-section reveal-on-scroll" id="featured" ref={sectionRef}>
-      <div className="container featured-dish-grid">
-        {/* Left Column: Visual Presentation with Signature Interactive Hover */}
-        <div 
-          className="featured-visual-box"
-          onMouseEnter={() => setIsHovered(true)}
-          onMouseLeave={() => setIsHovered(false)}
+    <section className="section-wrapper featured-dish-master-section" id="featured">
+      <div className="container">
+        <motion.div 
+          className="featured-dish-glass-stage glass-panel"
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-40px' }}
+          transition={{ duration: 0.85, ease: [0.22, 1, 0.36, 1] }}
         >
-          {/* Decorative backdrop shapes */}
-          <div className="featured-backdrop-shape" aria-hidden="true" />
-          <div className="featured-accent-glow" aria-hidden="true" />
-          
-          <div className="featured-chef-badge">
-            <span className="badge-green-dot" />
-            <span>Chef's Limited Creation</span>
-          </div>
+          {/* Ambient stage glow */}
+          <div className="featured-ambient-glow" aria-hidden="true" />
 
-          <div className="featured-image-container">
-            <img
-              src={featuredChefSpecial.image}
-              alt={featuredChefSpecial.dishName}
-              className={`featured-dish-img ${isHovered ? 'scale-up' : ''}`}
-              loading="lazy"
-            />
-
-            {/* Signature Interactive Ingredient Layer (revealed smoothly on hover) */}
-            <div className={`ingredient-interactive-layer ${isHovered ? 'visible' : ''}`}>
-              <div className="ingredient-tag tag-top">
-                <Leaf size={13} color="var(--green)" />
-                <span>Wild Fresh Herbs</span>
-              </div>
-              <div className="ingredient-tag tag-bottom">
-                <Sparkles size={13} color="var(--accent)" />
-                <span>Saffron Herb Risotto</span>
+          <div className="featured-dish-grid">
+            {/* Left Column: Food Visual & Floating Details */}
+            <div className="featured-visual-col">
+              <div className="featured-dish-circle-wrap">
+                <div className="featured-halo-ring animate-rotate" />
+                <motion.img
+                  initial={{ opacity: 0, scale: 0.85 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.9, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
+                  src={featuredChefDish.image}
+                  alt={featuredChefDish.name}
+                  className="featured-dish-image animate-float"
+                  loading="lazy"
+                />
+                {/* Floating Botanicals */}
+                <span className="featured-floating-leaf item-1">🌿</span>
+                <span className="featured-floating-leaf item-2">🍄</span>
+                <span className="featured-floating-leaf item-3">🧀</span>
               </div>
             </div>
-          </div>
-        </div>
 
-        {/* Right Column: Editorial Copy */}
-        <div className="featured-info-box">
-          <div className="featured-tag">
-            <Award size={14} />
-            <span>{featuredChefSpecial.tag}</span>
-          </div>
+            {/* Right Column: Glass Information & Order Card */}
+            <div className="featured-info-col">
+              <motion.div 
+                className="featured-header-badge"
+                initial={{ opacity: 0, scale: 0.8 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0.15 }}
+              >
+                <ChefHat size={16} />
+                <span>{featuredChefDish.tag}</span>
+              </motion.div>
 
-          <h2 className="featured-title">{featuredChefSpecial.name}</h2>
+              <motion.h2 
+                className="featured-dish-title"
+                initial={{ opacity: 0, x: -30 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.7, delay: 0.25 }}
+              >
+                {featuredChefDish.name}
+              </motion.h2>
 
-          <p className="featured-desc">{featuredChefSpecial.description}</p>
+              <motion.p 
+                className="featured-dish-desc"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.7, delay: 0.35 }}
+              >
+                {featuredChefDish.description}
+              </motion.p>
 
-          {/* Highlights */}
-          <ul className="featured-highlights-list">
-            {featuredChefSpecial.highlights.map((item, index) => (
-              <li key={index} className="highlight-item">
-                <div className="highlight-icon-circle">
-                  <Check size={14} strokeWidth={2.6} />
+              {/* Rating & Prep stats */}
+              <motion.div 
+                className="featured-stats-row"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.7, delay: 0.45 }}
+              >
+                <div className="featured-stat-item">
+                  <div className="stars-cluster">
+                    {[...Array(5)].map((_, i) => (
+                      <Star key={i} size={15} fill="#F5C84B" color="#F5C84B" />
+                    ))}
+                  </div>
+                  <strong>{featuredChefDish.rating}</strong>
+                  <span>({featuredChefDish.reviewsCount} reviews)</span>
                 </div>
-                <span>{item}</span>
-              </li>
-            ))}
-          </ul>
 
-          {/* Price & CTA Button */}
-          <div className="featured-pricing-row">
-            <div className="featured-price-block">
-              <span className="featured-current-price">
-                ${featuredChefSpecial.price.toFixed(2)}
-              </span>
-              <span className="featured-orig-price">
-                ${featuredChefSpecial.originalPrice.toFixed(2)}
-              </span>
+                <div className="featured-stat-divider" />
+
+                <div className="featured-stat-item">
+                  <Clock size={16} color="var(--primary)" />
+                  <strong>{featuredChefDish.prepTime}</strong>
+                </div>
+
+                <div className="featured-stat-divider" />
+
+                <div className="featured-stat-item">
+                  <Flame size={16} color="var(--primary)" />
+                  <strong>{featuredChefDish.calories}</strong>
+                </div>
+              </motion.div>
+
+              {/* Dish Highlights */}
+              <motion.div 
+                className="featured-highlights-list"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.7, delay: 0.55 }}
+              >
+                {featuredChefDish.highlights.map((item, idx) => (
+                  <div key={idx} className="highlight-row">
+                    <CheckCircle2 size={16} color="var(--green)" />
+                    <span>{item}</span>
+                  </div>
+                ))}
+              </motion.div>
+
+              {/* Price & Order Action */}
+              <motion.div 
+                className="featured-action-bar"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.7, delay: 0.65 }}
+              >
+                <div className="featured-pricing-block">
+                  <span className="featured-price-current">
+                    ${Number(featuredChefDish.price).toFixed(2)}
+                  </span>
+                  {featuredChefDish.originalPrice && (
+                    <span className="featured-price-original">
+                      ${Number(featuredChefDish.originalPrice).toFixed(2)}
+                    </span>
+                  )}
+                </div>
+
+                <MagneticButton strength={0.25}>
+                  <button
+                    type="button"
+                    className={`btn-primary featured-order-btn ${isAdded ? 'is-success' : ''}`}
+                    onClick={handleOrderFeatured}
+                  >
+                    {isAdded ? (
+                      <>
+                        <Check size={18} />
+                        <span>Added to Cart!</span>
+                      </>
+                    ) : (
+                      <>
+                        <ShoppingBag size={18} />
+                        <span>Order Now</span>
+                      </>
+                    )}
+                  </button>
+                </MagneticButton>
+              </motion.div>
             </div>
-
-            <button 
-              type="button"
-              className={`btn-primary ${isAdded ? 'special-added' : ''}`} 
-              onClick={handleOrderSpecial}
-            >
-              {isAdded ? (
-                <>
-                  <span>Added to Cart!</span>
-                  <CheckCircle2 size={18} />
-                </>
-              ) : (
-                <>
-                  <span>Try It Now</span>
-                  <ArrowRight size={18} strokeWidth={2.5} />
-                </>
-              )}
-            </button>
           </div>
-        </div>
+        </motion.div>
       </div>
     </section>
   );

@@ -1,96 +1,192 @@
 /* ==========================================================================
-   FOODLY — Popular Dishes Styles
+   FOODLY — Popular Dishes & Horizontal Food Journey Styles
    ========================================================================== */
 
 .popular-dishes-section {
-  padding: 5rem 0;
+  background: var(--bg-primary);
   position: relative;
 }
 
-@media (max-width: 768px) {
-  .popular-dishes-section {
-    padding: 3.5rem 0;
-  }
-}
-
-/* Sliding Pill Filter Nav */
-.filter-nav-wrap {
+.popular-filter-pills-wrap {
   display: flex;
+  align-items: center;
   justify-content: center;
+  flex-wrap: wrap;
+  gap: 0.6rem;
   margin-bottom: 3rem;
 }
 
-.filter-pill-container {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.35rem;
-  background-color: var(--surface-soft);
-  padding: 0.35rem;
-  border-radius: var(--radius-full);
-  border: 1px solid var(--border);
-  overflow-x: auto;
-  max-width: 100%;
-}
-
-.filter-nav-btn {
-  padding: 0.6rem 1.35rem;
-  border-radius: var(--radius-full);
-  font-family: var(--font-primary);
-  font-size: 0.88rem;
-  font-weight: 600;
-  color: var(--text-secondary);
-  transition: all var(--transition-fast);
-  white-space: nowrap;
-}
-
-.filter-nav-btn:hover {
-  color: var(--text-primary);
-}
-
-.filter-nav-btn.active {
-  background-color: var(--surface);
-  color: var(--accent);
+.popular-tab-btn {
+  padding: 0.6rem 1.3rem;
+  border-radius: 9999px;
+  background: var(--surface);
+  color: var(--text-main);
+  border: 1px solid var(--card-border);
+  font-size: 0.9rem;
   font-weight: 700;
-  box-shadow: var(--shadow-sm);
-  border: 1px solid var(--border-light);
+  box-shadow: var(--shadow-xs);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-[data-theme="dark"] .filter-nav-btn.active {
-  background-color: var(--accent);
+.popular-tab-btn:hover {
+  background: var(--primary-soft);
+  color: var(--primary);
+  border-color: var(--primary);
+  transform: translateY(-2px);
+}
+
+.popular-tab-btn.is-active {
+  background: var(--primary);
   color: #FFFFFF;
+  border-color: var(--primary);
+  box-shadow: 0 6px 18px var(--primary-glow);
+  transform: translateY(-2px);
 }
 
-/* Grid Layout */
+/* Grid & Animated Switching */
 .popular-dishes-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: 1.75rem;
-  margin-bottom: 3.5rem;
+  margin-bottom: 4rem;
+  transition: opacity 0.2s ease, transform 0.2s ease;
 }
 
-@media (max-width: 1200px) {
-  .popular-dishes-grid {
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1.5rem;
-  }
+.popular-dishes-grid.is-switching {
+  opacity: 0;
+  transform: scale(0.97) translateY(8px);
 }
 
-@media (max-width: 840px) {
+.popular-dishes-grid.is-visible {
+  opacity: 1;
+  transform: scale(1) translateY(0);
+}
+
+.grid-card-anim {
+  animation: slideUpToast 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@media (max-width: 1024px) {
   .popular-dishes-grid {
     grid-template-columns: repeat(2, 1fr);
-    gap: 1.25rem;
   }
 }
 
-@media (max-width: 520px) {
+@media (max-width: 640px) {
   .popular-dishes-grid {
     grid-template-columns: 1fr;
     gap: 1.25rem;
   }
 }
 
-/* Bottom CTA */
+/* ==========================================================================
+   Horizontal Food Journey Section Styles
+   ========================================================================== */
+.horizontal-journey-wrapper {
+  padding: 3rem 2.5rem;
+  border-radius: 2rem;
+  margin-bottom: 3.5rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.journey-header-bar {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+}
+
+.journey-heading {
+  font-size: 1.85rem;
+  font-weight: 900;
+  letter-spacing: -0.03em;
+  color: var(--text-main);
+  margin-top: 0.4rem;
+  margin-bottom: 0.25rem;
+}
+
+.journey-heading span {
+  color: var(--primary);
+}
+
+.journey-sub {
+  font-size: 0.92rem;
+  color: var(--text-muted);
+}
+
+.journey-nav-controls {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.journey-arrow-btn {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--surface);
+  color: var(--text-main);
+  border: 1px solid var(--card-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--shadow-xs);
+  transition: all 0.22s ease;
+}
+
+.journey-arrow-btn:hover {
+  background: var(--primary);
+  color: #FFFFFF;
+  border-color: var(--primary);
+  transform: scale(1.08);
+}
+
+/* Horizontal Track */
+.journey-scroll-track {
+  display: flex;
+  gap: 1.5rem;
+  overflow-x: auto;
+  padding: 0.75rem 0.25rem 1.75rem;
+  scroll-behavior: smooth;
+  scrollbar-width: thin;
+  scrollbar-color: var(--primary-soft) transparent;
+  -webkit-overflow-scrolling: touch;
+}
+
+.journey-scroll-track::-webkit-scrollbar {
+  height: 6px;
+}
+
+.journey-scroll-track::-webkit-scrollbar-thumb {
+  background-color: var(--primary-soft);
+  border-radius: 9999px;
+}
+
+.journey-card-item {
+  flex: 0 0 320px;
+  min-width: 320px;
+}
+
+@media (max-width: 640px) {
+  .horizontal-journey-wrapper {
+    padding: 2rem 1.25rem;
+  }
+
+  .journey-card-item {
+    flex: 0 0 280px;
+    min-width: 280px;
+  }
+}
+
 .popular-bottom-cta {
   display: flex;
   justify-content: center;
+}
+
+.popular-explore-btn {
+  padding: 1rem 2.4rem;
+  font-size: 1.05rem;
 }

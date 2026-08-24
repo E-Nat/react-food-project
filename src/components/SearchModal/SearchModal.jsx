@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Search, X, Star, Plus, Check, ArrowRight } from 'lucide-react';
+import { Search, X, Star, Plus, Check, Clock, Flame } from 'lucide-react';
 import { useTheme } from '../../context/ThemeContext';
 import { useCart } from '../../context/CartContext';
 import { foods } from '../../data/foodData';
@@ -15,7 +15,15 @@ const SearchModal = () => {
   const [addedItemIds, setAddedItemIds] = useState({});
   const inputRef = useRef(null);
 
-  const tags = ['All', 'Pizza', 'Pasta', 'Burgers', 'Salads', 'Desserts', 'Drinks'];
+  const tags = [
+    { label: 'All', icon: '✨' },
+    { label: 'Pizza', icon: '🍕' },
+    { label: 'Pasta', icon: '🍝' },
+    { label: 'Burgers', icon: '🍔' },
+    { label: 'Salads', icon: '🥗' },
+    { label: 'Desserts', icon: '🍰' },
+    { label: 'Drinks', icon: '🍹' }
+  ];
 
   useEffect(() => {
     if (isSearchOpen) {
@@ -28,14 +36,8 @@ const SearchModal = () => {
     }
   }, [isSearchOpen]);
 
-  // Keyboard shortcut Ctrl+K to toggle
   useEffect(() => {
     const handleKeyDown = (e) => {
-      if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
-        e.preventDefault();
-        if (isSearchOpen) closeSearch();
-        else closeSearch(); // Will be triggered from context
-      }
       if (e.key === 'Escape' && isSearchOpen) {
         closeSearch();
       }
@@ -83,12 +85,12 @@ const SearchModal = () => {
             ref={inputRef}
             type="text"
             className="search-main-input"
-            placeholder="Search tacos, truffle pizza, pasta, ingredients..."
+            placeholder="Search sourdough pizza, truffle pasta, fresh bowls..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
           />
           <button className="search-close-btn" onClick={closeSearch} aria-label="Close search">
-            <X size={20} />
+            <X size={18} />
           </button>
         </div>
 
@@ -96,61 +98,80 @@ const SearchModal = () => {
         <div className="search-tags-row">
           {tags.map((tag) => (
             <button
-              key={tag}
-              className={`search-tag-pill ${selectedTag === tag ? 'active' : ''}`}
-              onClick={() => setSelectedTag(tag)}
+              key={tag.label}
+              className={`search-tag-pill ${selectedTag === tag.label ? 'active' : ''}`}
+              onClick={() => setSelectedTag(tag.label)}
             >
-              {tag}
+              <span>{tag.icon}</span>
+              <span>{tag.label}</span>
             </button>
           ))}
         </div>
 
         {/* Results List */}
         <div className="search-results-list">
-          {filteredFoods.length > 0 ? (
+          {filteredFoods.length === 0 ? (
+            <div className="search-empty-state">
+              <div className="search-empty-icon">🍽️</div>
+              <h4>No delicious matches found</h4>
+              <p>Try searching for "Truffle", "Pizza", "Burger", or select a category tag above.</p>
+            </div>
+          ) : (
             filteredFoods.map((dish) => (
               <div
                 key={dish.id}
                 className="search-result-item"
                 onClick={() => handleDishClick(dish.id)}
               >
-                <img src={dish.image} alt={dish.name} className="search-dish-thumb" />
-
-                <div className="search-dish-info">
-                  <div className="search-dish-top">
-                    <h4 className="search-dish-name">{dish.name}</h4>
-                    <span className="search-dish-category">{dish.category}</span>
-                  </div>
-                  <p className="search-dish-desc">{dish.description}</p>
-                  <div className="search-dish-meta">
-                    <div className="search-dish-rating">
-                      <Star size={13} fill="#F5A623" color="#F5A623" />
+                <img src={dish.image} alt={dish.name} className="search-result-img" />
+                <div className="search-result-info">
+                  <div className="search-result-top">
+                    <span className="search-result-cat">{dish.category}</span>
+                    <div className="search-result-rating">
+                      <Star size={13} fill="currentColor" />
                       <span>{dish.rating}</span>
                     </div>
-                    <span className="search-dish-price">${dish.price.toFixed(2)}</span>
+                  </div>
+                  <h4 className="search-result-title">{dish.name}</h4>
+                  <p className="search-result-desc">{dish.description}</p>
+                  
+                  <div className="search-result-meta">
+                    <span className="search-result-price">${dish.price.toFixed(2)}</span>
+                    <div className="search-result-tags">
+                      <span className="search-meta-pill">
+                        <Clock size={11} />
+                        {dish.prepTime || '20m'}
+                      </span>
+                      <span className="search-meta-pill">
+                        <Flame size={11} />
+                        {dish.calories || '450'} kcal
+                      </span>
+                    </div>
                   </div>
                 </div>
 
-                <div className="search-dish-actions">
-                  <button
-                    className={`search-add-btn ${addedItemIds[dish.id] ? 'added' : ''}`}
-                    onClick={(e) => handleAdd(e, dish)}
-                    aria-label={`Add ${dish.name} to cart`}
-                  >
-                    {addedItemIds[dish.id] ? <Check size={16} /> : <Plus size={16} />}
-                  </button>
-                  <span className="search-view-arrow">
-                    <ArrowRight size={16} />
-                  </span>
-                </div>
+                <button
+                  type="button"
+                  className={`search-add-btn ${addedItemIds[dish.id] ? 'added' : ''}`}
+                  onClick={(e) => handleAdd(e, dish)}
+                  aria-label={`Add ${dish.name} to bag`}
+                >
+                  {addedItemIds[dish.id] ? <Check size={16} /> : <Plus size={16} />}
+                </button>
               </div>
             ))
-          ) : (
-            <div className="search-empty-state">
-              <p>No dishes found matching "<strong>{searchTerm}</strong>"</p>
-              <span>Try searching for 'Pizza', 'Burger', 'Truffle', or 'Pasta'</span>
-            </div>
           )}
+        </div>
+
+        {/* Footer shortcuts */}
+        <div className="search-modal-footer">
+          <div className="search-footer-hint">
+            <kbd>ESC</kbd> <span>to close</span>
+            <kbd>Click</kbd> <span>to view recipe</span>
+          </div>
+          <span className="search-results-counter">
+            {filteredFoods.length} {filteredFoods.length === 1 ? 'dish' : 'dishes'} found
+          </span>
         </div>
       </div>
     </div>
@@ -158,3 +179,4 @@ const SearchModal = () => {
 };
 
 export default SearchModal;
+

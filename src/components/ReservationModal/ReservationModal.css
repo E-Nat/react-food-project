@@ -1,38 +1,50 @@
 /* ==========================================================================
-   FOODLY — Reservation Modal Styles
+   FOODLY — Premium Reservation Modal Styles
    ========================================================================== */
 
 .res-modal-overlay {
   position: fixed;
   inset: 0;
   background-color: var(--modal-backdrop);
-  backdrop-filter: blur(6px);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
   z-index: 1200;
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 1.5rem;
-  animation: fadeInOverlay 0.2s var(--ease-smooth) forwards;
+  animation: fadeInOverlay 0.25s var(--ease-smooth) forwards;
 }
 
 .res-modal-box {
   width: 100%;
-  max-width: 560px;
+  max-width: 580px;
   background-color: var(--surface);
   border-radius: var(--radius-xl);
-  border: 1px solid var(--border);
+  border: 1.5px solid var(--border);
   box-shadow: var(--shadow-lg);
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  animation: scaleUpModal 0.25s var(--ease-smooth) forwards;
+  animation: scaleUpModal 0.25s var(--ease-spring) forwards;
+}
+
+@keyframes scaleUpModal {
+  from {
+    transform: scale(0.94);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
 }
 
 .res-modal-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 1.25rem 1.5rem;
+  padding: 1.25rem 1.75rem;
   border-bottom: 1px solid var(--border);
   background-color: var(--surface);
 }
@@ -49,14 +61,14 @@
 
 .res-header-title {
   font-family: var(--font-primary);
-  font-size: 1.15rem;
+  font-size: 1.2rem;
   font-weight: 800;
   color: var(--text-primary);
 }
 
 .res-close-btn {
-  width: 34px;
-  height: 34px;
+  width: 36px;
+  height: 36px;
   border-radius: var(--radius-full);
   display: flex;
   align-items: center;
@@ -72,7 +84,7 @@
 }
 
 .res-form-body {
-  padding: 1.5rem;
+  padding: 1.75rem;
   display: flex;
   flex-direction: column;
 }
@@ -80,8 +92,8 @@
 .res-fields-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 0.9rem;
-  margin-bottom: 1.25rem;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
 }
 
 @media (max-width: 580px) {
@@ -93,7 +105,7 @@
 .res-form-group {
   display: flex;
   flex-direction: column;
-  gap: 0.35rem;
+  gap: 0.4rem;
 }
 
 .res-form-group.full-width {
@@ -101,90 +113,86 @@
 }
 
 .res-form-group label {
-  display: flex;
-  align-items: center;
-  gap: 0.35rem;
-  font-size: 0.8rem;
+  font-size: 0.82rem;
   font-weight: 700;
   color: var(--text-secondary);
 }
 
 .res-form-group input,
-.res-form-group select,
-.res-form-group textarea {
-  padding: 0.65rem 0.85rem;
-  border-radius: var(--radius-sm);
-  border: 1px solid var(--border);
+.res-form-group select {
+  padding: 0.8rem 1rem;
+  border-radius: var(--radius-md);
+  border: 1.5px solid var(--border);
   background-color: var(--surface-soft);
   color: var(--text-primary);
   font-family: var(--font-body);
-  font-size: 0.88rem;
+  font-size: 0.92rem;
   outline: none;
-  transition: border-color var(--transition-fast);
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
 }
 
 .res-form-group input:focus,
-.res-form-group select:focus,
-.res-form-group textarea:focus {
+.res-form-group select:focus {
   border-color: var(--accent);
+  background-color: var(--surface);
+  box-shadow: 0 0 0 3px var(--accent-light);
 }
 
-.res-modal-footer {
-  margin-top: 0.5rem;
-}
-
-/* Success */
+/* Success View */
 .res-success-body {
-  padding: 2.5rem 1.75rem;
+  padding: 3rem 2rem;
+  text-align: center;
   display: flex;
   flex-direction: column;
   align-items: center;
-  text-align: center;
 }
 
 .res-success-icon {
-  width: 76px;
-  height: 76px;
-  border-radius: var(--radius-full);
-  background-color: var(--green-light);
-  color: var(--green);
-  display: flex;
-  align-items: center;
-  justify-content: center;
   margin-bottom: 1.25rem;
   animation: pulseGlow 2s infinite ease-in-out;
 }
 
 .res-success-title {
   font-family: var(--font-primary);
-  font-size: 1.35rem;
+  font-size: 1.5rem;
   font-weight: 800;
+  color: var(--text-primary);
   margin-bottom: 0.5rem;
 }
 
 .res-success-text {
-  font-size: 0.88rem;
+  font-size: 0.95rem;
   color: var(--text-secondary);
-  margin-bottom: 1.5rem;
+  line-height: 1.6;
+  margin-bottom: 2rem;
+  max-width: 440px;
 }
 
 .res-ticket {
   width: 100%;
   background-color: var(--surface-soft);
-  border: 1px dashed var(--border);
-  border-radius: var(--radius-md);
-  padding: 1rem 1.25rem;
-  margin-bottom: 1.75rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 1.35rem 1.5rem;
+  margin-bottom: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  text-align: left;
 }
 
 .res-ticket-row {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 0.5rem;
-  font-size: 0.85rem;
+  font-size: 0.92rem;
 }
 
-.res-ticket-row:last-child {
-  margin-bottom: 0;
+.res-ticket-row span {
+  color: var(--text-secondary);
+}
+
+.res-ticket-row strong {
+  font-weight: 800;
+  color: var(--text-primary);
 }
