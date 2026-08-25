@@ -466,3 +466,41 @@
     right: -5%;
   }
 }
+
+@media (max-width: 480px) {
+  .app-promo-glass-banner {
+    padding: 2.2rem 1.2rem;
+    border-radius: 1.5rem;
+  }
+
+  .app-promo-heading {
+    font-size: 1.95rem;
+  }
+
+  .card-status {
+    left: 0;
+    top: 5%;
+    transform: scale(0.85);
+  }
+
+  .card-social {
+    right: 0;
+    bottom: 5%;
+    transform: scale(0.85);
+  }
+
+  .phone-hardware-bezel {
+    width: 240px;
+    height: 460px;
+  }
+
+  .app-download-buttons {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .store-badge-btn {
+    width: 100%;
+    justify-content: center;
+  }
+}

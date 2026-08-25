@@ -113,7 +113,7 @@ const SearchModal = () => {
           {filteredFoods.length === 0 ? (
             <div className="search-empty-state">
               <div className="search-empty-icon">🍽️</div>
-              <h4>No delicious matches found</h4>
+              <h4>No delicious match found.</h4>
               <p>Try searching for "Truffle", "Pizza", "Burger", or select a category tag above.</p>
             </div>
           ) : (

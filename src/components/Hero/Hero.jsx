@@ -28,21 +28,21 @@ const Hero = () => {
 
   const velarisProps = isDark
     ? {
-        bg: '#08110C',
+        bg: '#050806',
         colors: [
-          '#0D1711',
-          '#142319',
-          '#FF7650',
-          '#F5C84B'
+          '#0D1510',
+          '#142019',
+          '#FF704D',
+          '#1A120D'
         ]
       }
     : {
-        bg: '#F7F4E9',
+        bg: '#F7F5EC',
         colors: [
-          '#E8F0E1',
-          '#DDE6C9',
-          '#FF7650',
-          '#F5C84B'
+          '#EEF2E8',
+          '#FFE0D4',
+          '#FF704D',
+          '#FFF0BD'
         ]
       };
 
@@ -75,7 +75,12 @@ const Hero = () => {
     if (searchQuery.trim()) {
       navigate(`/menu?search=${encodeURIComponent(searchQuery.trim())}`);
     } else {
-      openSearch();
+      const menuEl = document.getElementById('menu') || document.getElementById('categories');
+      if (menuEl) {
+        menuEl.scrollIntoView({ behavior: 'smooth' });
+      } else {
+        openSearch();
+      }
     }
   };
 
@@ -138,11 +143,20 @@ const Hero = () => {
     },
   };
 
+  const handleExploreMenu = (e) => {
+    const menuEl = document.getElementById('menu') || document.getElementById('categories');
+    if (menuEl) {
+      e.preventDefault();
+      menuEl.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
     <section 
       ref={heroRef}
       className="hero-master-section relative overflow-hidden" 
-      id="hero"
+      id="home"
+      data-section="hero"
       onMouseMove={handleMouseMove}
     >
       {/* 1. Velaris WebGL Animated Particle Universe */}
@@ -165,7 +179,7 @@ const Hero = () => {
           {/* Small Badge */}
           <motion.div variants={badgeVariant} className="hero-badge glass-card">
             <Sparkles size={14} className="hero-badge-icon" />
-            <span>✦ GOOD FOOD • GOOD MOOD</span>
+            <span>GOOD FOOD • GOOD MOOD</span>
           </motion.div>
 
           {/* Main Heading */}
@@ -219,7 +233,7 @@ const Hero = () => {
           {/* Action Buttons */}
           <motion.div variants={itemFadeUp} className="hero-cta-group">
             <MagneticButton strength={0.25}>
-              <Link to="/menu" className="btn-primary hero-btn-main">
+              <Link to="/menu" onClick={handleExploreMenu} className="btn-primary hero-btn-main">
                 <span>Explore Menu</span>
                 <ArrowRight size={18} />
               </Link>
@@ -340,7 +354,7 @@ const Hero = () => {
               <Star size={18} fill="#F5C85B" color="#F5C85B" />
             </div>
             <div className="card-details">
-              <strong>★ 4.9 Rating</strong>
+              <strong>4.9 Rating</strong>
               <span>2,400+ food lovers</span>
             </div>
           </motion.div>
@@ -358,7 +372,7 @@ const Hero = () => {
             </div>
             <div className="card-details">
               <strong>100% Fresh</strong>
-              <span>Organic Ingredients</span>
+              <span>Organic ingredients</span>
             </div>
           </motion.div>
         </div>

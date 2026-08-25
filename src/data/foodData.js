@@ -456,23 +456,35 @@ export const aboutStats = [
 
 export const chefsTeam = [
   {
+    id: 1,
     name: 'Chef Marcus Vance',
     title: 'Executive Head Chef',
+    role: 'Executive Head Chef',
     image: '/images/avatar-2.jpg',
+    avatar: '/images/avatar-2.jpg',
+    experience: '15+ Years Exp',
     specialty: 'Italian & Mediterranean Gastronomy',
     bio: '15 years mastering handmade pastas and wood-fired artisan baking in Florence and New York.'
   },
   {
+    id: 2,
     name: 'Chef Sofia Laurent',
     title: 'Culinary Director & Pastry',
+    role: 'Culinary Director & Pastry',
     image: '/images/avatar-1.jpg',
+    avatar: '/images/avatar-1.jpg',
+    experience: '12+ Years Exp',
     specialty: 'Modern French & Artisan Desserts',
     bio: 'Pioneering organic, low-sugar fine desserts and vibrant nutrient-dense botanicals.'
   },
   {
+    id: 3,
     name: 'Chef Jin Tanaka',
     title: 'Master of Flavors & Fusion',
+    role: 'Master of Flavors & Fusion',
     image: '/images/avatar-3.jpg',
+    avatar: '/images/avatar-3.jpg',
+    experience: '10+ Years Exp',
     specialty: 'Farm-to-Table Bowls & Grills',
     bio: 'Passionate about balancing seasonal crisp ingredients with deep umami profiles.'
   }

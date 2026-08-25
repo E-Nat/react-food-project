@@ -16,7 +16,7 @@ const Categories = ({ onSelectCategory, activeCategory = 'All' }) => {
   };
 
   return (
-    <section className="section-wrapper categories-master-section" id="categories">
+    <section className="section-wrapper categories-master-section" id="menu" data-section="categories">
       <div className="container">
         {/* Section Header */}
         <div className="section-header">

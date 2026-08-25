@@ -6,116 +6,202 @@
    1. CSS VARIABLES (Light & Dark Themes)
    -------------------------------------------------------------------------- */
 :root,
-[data-theme="light"] {
-  --bg-primary: #F7F4E9;
-  --bg-secondary: #E8F0E1;
-  --bg-tertiary: #DCE7D3;
-  
+[data-theme="light"],
+.light {
+  --background: #F7F5EC;
+  --foreground: #142018;
+
   --surface: #FFFFFF;
-  --surface-subtle: #FAF8F0;
+  --surface-secondary: #EEF2E8;
+  --surface-muted: #EEF2E8;
+  --surface-subtle: #FAF8F2;
+  --surface-soft: #FAF8F2;
   --surface-elevated: #FFFFFF;
-  
-  /* Brand Accent Colors */
-  --primary: #FF7650;
-  --primary-hover: #E4633E;
-  --primary-soft: #FDE8E1;
-  --primary-glow: rgba(255, 118, 80, 0.28);
-  
-  --green: #6FAF72;
-  --green-dark: #2F5932;
-  --green-soft: #E8F0E1;
-  --green-glow: rgba(111, 175, 114, 0.28);
-  
+
+  --card: rgba(255, 255, 255, 0.72);
+  --card-solid: #FFFFFF;
+  --card-bg: #FFFFFF;
+  --card-border: rgba(20, 32, 24, 0.10);
+  --card-foreground: #142018;
+
+  --text-primary: #142018;
+  --text-secondary: #66716A;
+  --text-muted: #8A938D;
+  --text-light: #8A938D;
+  --text-main: #142018;
+  --text-on-primary: #FFFFFF;
+
+  --border: rgba(20, 32, 24, 0.10);
+  --border-light: rgba(20, 32, 24, 0.06);
+
+  --glass-background: rgba(255, 255, 255, 0.70);
+  --glass-bg: rgba(255, 255, 255, 0.70);
+  --glass-bg-hover: rgba(255, 255, 255, 0.85);
+  --glass-border: rgba(255, 255, 255, 0.55);
+  --glass-shadow: rgba(20, 32, 24, 0.10);
+
+  --accent: #FF704D;
+  --accent-hover: #FF5F3B;
+  --accent-soft: #FFE0D4;
+  --accent-light: #FFE0D4;
+  --accent-light-2: #FFF0BD;
+  --accent-glow: rgba(255, 112, 77, 0.25);
+  --accent-gradient: linear-gradient(135deg, #FF704D 0%, #FFA07A 100%);
+  --accent-foreground: #FFFFFF;
+
+  --primary: #FF704D;
+  --primary-hover: #FF5F3B;
+  --primary-soft: #FFE0D4;
+  --primary-glow: rgba(255, 112, 77, 0.25);
+  --primary-foreground: #FFFFFF;
+
+  --green: #6F9F68;
+  --green-dark: #142018;
+  --green-soft: #DCECCF;
+  --green-light: #DCECCF;
+  --green-glow: rgba(111, 159, 104, 0.32);
+
   --yellow: #F5C84B;
-  --yellow-soft: #FDF4D9;
+  --yellow-soft: #FFF0BD;
   --yellow-glow: rgba(245, 200, 75, 0.28);
-  
+
   --pink: #EFA7A5;
   --pink-soft: #FDECEC;
   --pink-glow: rgba(239, 167, 165, 0.28);
-  
-  --coral: #FF7650;
-  --coral-soft: #FDE8E1;
 
-  /* Typography Colors */
-  --text-main: #142017;
-  --text-muted: #6B756E;
-  --text-light: #9CA59F;
-  --text-on-primary: #FFFFFF;
+  --coral: #FF704D;
+  --coral-soft: #FFE0D4;
 
-  /* Glassmorphism Variables */
-  --glass-bg: rgba(255, 255, 255, 0.65);
-  --glass-bg-hover: rgba(255, 255, 255, 0.85);
-  --glass-border: rgba(255, 255, 255, 0.75);
-  --glass-shadow: 0 20px 50px rgba(60, 70, 40, 0.08);
-  
-  /* Cards & Shadows */
-  --card-bg: #FFFFFF;
-  --card-border: rgba(220, 231, 211, 0.65);
-  --shadow-xs: 0 2px 6px rgba(20, 32, 23, 0.04);
-  --shadow-sm: 0 6px 16px rgba(20, 32, 23, 0.06);
-  --shadow-md: 0 12px 32px rgba(60, 70, 40, 0.09);
-  --shadow-lg: 0 20px 48px rgba(60, 70, 40, 0.12);
-  --shadow-xl: 0 30px 60px rgba(255, 118, 80, 0.16);
+  --success: #6F9F68;
+  --warning: #F5C84B;
+  --hero-background: #F7F5EC;
+  --hero-foreground: #142018;
 
-  /* Modal Backdrop */
-  --backdrop: rgba(20, 32, 23, 0.55);
+  --bg-primary: #F7F5EC;
+  --bg-secondary: #EEF2E8;
+  --bg-tertiary: #DCECCF;
+  --background-subtle: #EEF2E8;
+
+  --shadow-xs: 0 2px 6px rgba(20, 32, 24, 0.04);
+  --shadow-sm: 0 6px 16px rgba(20, 32, 24, 0.06);
+  --shadow-md: 0 12px 32px rgba(20, 32, 24, 0.09);
+  --shadow-lg: 0 20px 48px rgba(20, 32, 24, 0.12);
+  --shadow-xl: 0 30px 60px rgba(255, 112, 77, 0.16);
+
+  --backdrop: rgba(20, 32, 24, 0.60);
+  --modal-backdrop: rgba(20, 32, 24, 0.60);
+
+  /* Typography & Layout Tokens */
+  --font-primary: 'Plus Jakarta Sans', 'Inter', sans-serif;
+  --font-body: 'Plus Jakarta Sans', 'Inter', sans-serif;
+  --radius-full: 9999px;
+  --radius-xl: 1.5rem;
+  --radius-lg: 1.25rem;
+  --radius-md: 1rem;
+  --radius-sm: 0.75rem;
+  --transition-fast: 0.22s cubic-bezier(0.22, 1, 0.36, 1);
+  --transition-normal: 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-smooth: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-spring: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-[data-theme="dark"] {
-  --bg-primary: #08110C;
-  --bg-secondary: #0D1711;
-  --bg-tertiary: #142319;
-  
-  --surface: #0E1812;
-  --surface-subtle: #142319;
-  --surface-elevated: #1A2C20;
-  
-  /* Brand Accent Colors */
-  --primary: #FF7650;
-  --primary-hover: #FF8E6E;
-  --primary-soft: #2E1A16;
-  --primary-glow: rgba(255, 118, 80, 0.35);
-  
-  --green: #6FAF72;
-  --green-dark: #4D7E50;
+[data-theme="dark"],
+.dark {
+  --background: #050806;
+  --foreground: #F5F1E7;
+
+  --surface: #0D1510;
+  --surface-secondary: #142019;
+  --surface-muted: #142019;
+  --surface-subtle: #142019;
+  --surface-soft: #142019;
+  --surface-elevated: #182B1F;
+
+  --card: rgba(20, 30, 23, 0.72);
+  --card-solid: #111A14;
+  --card-bg: #0D1510;
+  --card-border: rgba(255, 255, 255, 0.12);
+  --card-foreground: #F5F1E7;
+
+  --text-primary: #F5F1E7;
+  --text-secondary: #AAB4AD;
+  --text-muted: #7E8982;
+  --text-light: #7E8982;
+  --text-main: #F5F1E7;
+  --text-on-primary: #FFFFFF;
+
+  --border: rgba(255, 255, 255, 0.12);
+  --border-light: rgba(255, 255, 255, 0.06);
+
+  --glass-background: rgba(18, 27, 21, 0.68);
+  --glass-bg: rgba(18, 27, 21, 0.68);
+  --glass-bg-hover: rgba(28, 42, 33, 0.85);
+  --glass-border: rgba(255, 255, 255, 0.14);
+  --glass-shadow: rgba(0, 0, 0, 0.35);
+
+  --accent: #FF704D;
+  --accent-hover: #FF815F;
+  --accent-soft: #2E1914;
+  --accent-light: #2E1914;
+  --accent-light-2: #2E2612;
+  --accent-glow: rgba(255, 112, 77, 0.38);
+  --accent-gradient: linear-gradient(135deg, #FF704D 0%, #FF815F 100%);
+  --accent-foreground: #FFFFFF;
+
+  --primary: #FF704D;
+  --primary-hover: #FF815F;
+  --primary-soft: #2E1914;
+  --primary-glow: rgba(255, 112, 77, 0.38);
+  --primary-foreground: #FFFFFF;
+
+  --green: #82B87B;
+  --green-dark: #08100B;
   --green-soft: #142818;
-  --green-glow: rgba(111, 175, 114, 0.35);
-  
+  --green-light: #142818;
+  --green-glow: rgba(130, 184, 123, 0.38);
+
   --yellow: #F5C84B;
   --yellow-soft: #2E2612;
   --yellow-glow: rgba(245, 200, 75, 0.35);
-  
+
   --pink: #EFA7A5;
   --pink-soft: #2D1A1C;
   --pink-glow: rgba(239, 167, 165, 0.35);
-  
-  --coral: #FF7650;
-  --coral-soft: #2E1A16;
 
-  /* Typography Colors */
-  --text-main: #F7F5EA;
-  --text-muted: #A6B2A8;
-  --text-light: #77837A;
-  --text-on-primary: #FFFFFF;
+  --coral: #FF704D;
+  --coral-soft: #2E1914;
 
-  /* Glassmorphism Variables */
-  --glass-bg: rgba(255, 255, 255, 0.06);
-  --glass-bg-hover: rgba(255, 255, 255, 0.12);
-  --glass-border: rgba(255, 255, 255, 0.10);
-  --glass-shadow: 0 20px 50px rgba(0, 0, 0, 0.55);
-  
-  /* Cards & Shadows */
-  --card-bg: #0E1812;
-  --card-border: rgba(255, 255, 255, 0.08);
-  --shadow-xs: 0 2px 6px rgba(0, 0, 0, 0.3);
-  --shadow-sm: 0 6px 16px rgba(0, 0, 0, 0.4);
-  --shadow-md: 0 12px 32px rgba(0, 0, 0, 0.5);
-  --shadow-lg: 0 20px 48px rgba(0, 0, 0, 0.6);
-  --shadow-xl: 0 30px 60px rgba(0, 0, 0, 0.7);
+  --success: #82B87B;
+  --warning: #F5C84B;
+  --hero-background: #050806;
+  --hero-foreground: #F5F1E7;
 
-  /* Modal Backdrop */
-  --backdrop: rgba(0, 0, 0, 0.82);
+  --bg-primary: #050806;
+  --bg-secondary: #0D1510;
+  --bg-tertiary: #142019;
+  --background-subtle: #0D1510;
+
+  --shadow-xs: 0 2px 6px rgba(0, 0, 0, 0.35);
+  --shadow-sm: 0 6px 16px rgba(0, 0, 0, 0.45);
+  --shadow-md: 0 12px 32px rgba(0, 0, 0, 0.55);
+  --shadow-lg: 0 20px 48px rgba(0, 0, 0, 0.65);
+  --shadow-xl: 0 30px 60px rgba(0, 0, 0, 0.75);
+
+  --backdrop: rgba(0, 0, 0, 0.85);
+  --modal-backdrop: rgba(0, 0, 0, 0.85);
+
+  /* Typography & Layout Tokens */
+  --font-primary: 'Plus Jakarta Sans', 'Inter', sans-serif;
+  --font-body: 'Plus Jakarta Sans', 'Inter', sans-serif;
+  --radius-full: 9999px;
+  --radius-xl: 1.5rem;
+  --radius-lg: 1.25rem;
+  --radius-md: 1rem;
+  --radius-sm: 0.75rem;
+  --transition-fast: 0.22s cubic-bezier(0.22, 1, 0.36, 1);
+  --transition-normal: 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-smooth: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-spring: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 /* --------------------------------------------------------------------------
@@ -136,12 +222,16 @@ html {
 
 body {
   font-family: 'Plus Jakarta Sans', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  background-color: var(--bg-primary);
-  color: var(--text-main);
+  background-color: var(--background);
+  color: var(--foreground);
   line-height: 1.6;
   overflow-x: hidden;
   min-height: 100vh;
-  transition: background-color 0.4s cubic-bezier(0.22, 1, 0.36, 1), color 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+  transition:
+    background-color 500ms ease,
+    border-color 400ms ease,
+    color 300ms ease,
+    box-shadow 400ms ease;
 }
 
 img {
@@ -165,6 +255,15 @@ button {
   transition: all 0.25s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+}
+
 a {
   color: inherit;
   text-decoration: none;
@@ -175,9 +274,14 @@ ul, ol {
   list-style: none;
 }
 
-/* --------------------------------------------------------------------------
-   3. LAYOUT CONTAINERS & SECTION PATTERNS
-   -------------------------------------------------------------------------- */
+html,
+body,
+#root {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
 .container {
   width: 100%;
   max-width: 1240px;
@@ -185,12 +289,27 @@ ul, ol {
   padding: 0 1.5rem;
 }
 
+@media (max-width: 768px) {
+  .container {
+    padding: 0 1rem;
+  }
+}
+
+@media (max-width: 380px) {
+  .container {
+    padding: 0 0.75rem;
+  }
+}
+
 .page-wrapper {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
   position: relative;
-  background-color: var(--bg-primary);
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+  background-color: var(--background);
 }
 
 main {
@@ -319,43 +438,45 @@ main {
 
 /* Soft Color Theme Backgrounds for Food Cards */
 .bg-soft-green {
-  background: linear-gradient(145deg, #E8F0E1 0%, #D4E2BE 100%);
+  background: linear-gradient(145deg, #DCECCF 0%, #CCE4BD 100%);
 }
 
 .bg-soft-yellow {
-  background: linear-gradient(145deg, #FDF4D9 0%, #FBE7AA 100%);
+  background: linear-gradient(145deg, #FFF0BD 0%, #FDE49E 100%);
 }
 
 .bg-soft-pink {
-  background: linear-gradient(145deg, #FDECEC 0%, #F7D0CF 100%);
+  background: linear-gradient(145deg, #FDECEC 0%, #FACDCD 100%);
 }
 
 .bg-soft-cream {
-  background: linear-gradient(145deg, #FAF8F0 0%, #E8F0E1 100%);
+  background: linear-gradient(145deg, #F7F5ED 0%, #EAE5D8 100%);
 }
 
-.bg-soft-coral {
-  background: linear-gradient(145deg, #FDE8E1 0%, #F9CABE 100%);
+.bg-soft-coral,
+.bg-soft-orange {
+  background: linear-gradient(145deg, #FFE0D4 0%, #FFCCBC 100%);
 }
 
 [data-theme="dark"] .bg-soft-green {
-  background: linear-gradient(145deg, #142818 0%, #0D1A10 100%);
+  background: linear-gradient(145deg, #132718 0%, #0C1A10 100%);
 }
 
 [data-theme="dark"] .bg-soft-yellow {
-  background: linear-gradient(145deg, #2E2612 0%, #1A150A 100%);
+  background: linear-gradient(145deg, #2A230F 0%, #191407 100%);
 }
 
 [data-theme="dark"] .bg-soft-pink {
-  background: linear-gradient(145deg, #2D1A1C 0%, #1B0E10 100%);
+  background: linear-gradient(145deg, #2C1619 0%, #1A0B0D 100%);
 }
 
 [data-theme="dark"] .bg-soft-cream {
-  background: linear-gradient(145deg, #142319 0%, #0D1711 100%);
+  background: linear-gradient(145deg, #132219 0%, #0A140F 100%);
 }
 
-[data-theme="dark"] .bg-soft-coral {
-  background: linear-gradient(145deg, #2E1A16 0%, #1B0E0C 100%);
+[data-theme="dark"] .bg-soft-coral,
+[data-theme="dark"] .bg-soft-orange {
+  background: linear-gradient(145deg, #2D1812 0%, #1A0D09 100%);
 }
 
 /* --------------------------------------------------------------------------
@@ -588,5 +709,23 @@ main {
   to {
     opacity: 1;
     transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes fadeInOverlay {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
   }
 }

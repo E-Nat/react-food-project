@@ -12,13 +12,13 @@
   border-radius: 2.25rem;
   position: relative;
   overflow: hidden;
-  background: linear-gradient(135deg, rgba(232, 238, 221, 0.75) 0%, rgba(253, 244, 217, 0.6) 50%, rgba(253, 232, 225, 0.65) 100%);
-  border: 1px solid rgba(255, 255, 255, 0.85);
+  background: linear-gradient(135deg, rgba(220, 236, 207, 0.65) 0%, rgba(255, 240, 189, 0.45) 50%, rgba(255, 224, 212, 0.55) 100%);
+  border: 1px solid var(--glass-border);
   box-shadow: var(--shadow-lg);
 }
 
 [data-theme="dark"] .featured-dish-glass-stage {
-  background: linear-gradient(135deg, rgba(32, 44, 28, 0.8) 0%, rgba(45, 40, 22, 0.7) 50%, rgba(51, 31, 25, 0.75) 100%);
+  background: linear-gradient(135deg, rgba(19, 39, 24, 0.8) 0%, rgba(42, 35, 15, 0.7) 50%, rgba(45, 24, 18, 0.75) 100%);
   border-color: rgba(255, 255, 255, 0.1);
 }
 
@@ -280,5 +280,39 @@
   .featured-order-btn {
     width: 100%;
     max-width: 320px;
+  }
+}
+
+@media (max-width: 480px) {
+  .featured-dish-glass-stage {
+    padding: 2.2rem 1.2rem;
+    border-radius: 1.5rem;
+  }
+
+  .featured-dish-title {
+    font-size: 1.85rem;
+  }
+
+  .featured-stats-row {
+    flex-direction: column;
+    gap: 0.6rem;
+    padding: 0.85rem 1rem;
+  }
+
+  .featured-stat-divider {
+    display: none;
+  }
+
+  .featured-halo-ring {
+    width: 250px;
+    height: 250px;
+  }
+
+  .featured-dish-image {
+    max-width: 250px;
+  }
+
+  .featured-highlights-list {
+    max-width: 100%;
   }
 }

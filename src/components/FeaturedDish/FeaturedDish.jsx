@@ -54,8 +54,8 @@ const FeaturedDish = () => {
               <div className="featured-dish-circle-wrap">
                 <div className="featured-halo-ring animate-rotate" />
                 <motion.img
-                  initial={{ opacity: 0, scale: 0.85 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
+                  initial={{ opacity: 0, scale: 0.85, x: -40 }}
+                  whileInView={{ opacity: 1, scale: 1, x: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.9, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
                   src={featuredChefDish.image}
@@ -74,8 +74,8 @@ const FeaturedDish = () => {
             <div className="featured-info-col">
               <motion.div 
                 className="featured-header-badge"
-                initial={{ opacity: 0, scale: 0.8 }}
-                whileInView={{ opacity: 1, scale: 1 }}
+                initial={{ opacity: 0, scale: 0.8, x: 30 }}
+                whileInView={{ opacity: 1, scale: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: 0.15 }}
               >
@@ -85,7 +85,7 @@ const FeaturedDish = () => {
 
               <motion.h2 
                 className="featured-dish-title"
-                initial={{ opacity: 0, x: -30 }}
+                initial={{ opacity: 0, x: 40 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.7, delay: 0.25 }}
@@ -95,8 +95,8 @@ const FeaturedDish = () => {
 
               <motion.p 
                 className="featured-dish-desc"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
+                initial={{ opacity: 0, x: 40 }}
+                whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.7, delay: 0.35 }}
               >

@@ -20,7 +20,7 @@ const StatItem = ({ target, suffix = '', label, isDecimal = false }) => {
 
 const AboutSection = () => {
   return (
-    <section className="section-wrapper about-master-section" id="about-us">
+    <section className="section-wrapper about-master-section" id="about" data-section="about">
       <div className="container">
         <div className="about-grid-layout">
           {/* Left Column: Visual Collage with Floating Parallax Badges */}

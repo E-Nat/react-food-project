@@ -296,3 +296,28 @@
   transform: scale(1.05);
   box-shadow: 0 4px 14px var(--green-glow);
 }
+
+@media (max-width: 480px) {
+  .food-card-media-wrap {
+    height: 180px;
+    padding: 1rem;
+  }
+
+  .food-dish-img {
+    max-width: 135px;
+    max-height: 135px;
+  }
+
+  .food-card-body {
+    padding: 1.1rem;
+  }
+
+  .card-food-title {
+    font-size: 1.05rem;
+  }
+
+  .card-add-btn {
+    padding: 0.5rem 0.85rem;
+    font-size: 0.8rem;
+  }
+}

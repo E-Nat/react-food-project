@@ -43,6 +43,11 @@
     gap: 1rem;
     padding: 0 0.5rem;
   }
+
+  .category-item-card {
+    flex-shrink: 0;
+    min-width: 120px;
+  }
 }
 
 .category-item-card {

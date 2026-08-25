@@ -24,6 +24,7 @@ const Navbar = () => {
   const [scrollProgress, setScrollProgress] = useState(0);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [profileOpen, setProfileOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState('home');
   const location = useLocation();
 
   useEffect(() => {
@@ -35,11 +36,24 @@ const Navbar = () => {
       if (winHeight > 0) {
         setScrollProgress((scrollY / winHeight) * 100);
       }
+
+      if (location.pathname === '/') {
+        const sections = ['home', 'menu', 'about', 'contact'];
+        const scrollPosition = scrollY + 220;
+        for (let i = sections.length - 1; i >= 0; i--) {
+          const el = document.getElementById(sections[i]);
+          if (el && el.offsetTop <= scrollPosition) {
+            setActiveSection(sections[i]);
+            break;
+          }
+        }
+      }
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll();
     return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  }, [location.pathname]);
 
   useEffect(() => {
     setMobileMenuOpen(false);
@@ -47,11 +61,34 @@ const Navbar = () => {
   }, [location.pathname]);
 
   const navLinks = [
-    { name: 'Home', path: '/' },
-    { name: 'Menu', path: '/menu' },
-    { name: 'About', path: '/about' },
-    { name: 'Contact', path: '/contact' },
+    { name: 'Home', path: '/', sectionId: 'home' },
+    { name: 'Menu', path: '/menu', sectionId: 'menu' },
+    { name: 'About', path: '/about', sectionId: 'about' },
+    { name: 'Contact', path: '/contact', sectionId: 'contact' },
   ];
+
+  const handleNavClick = (e, link) => {
+    if (location.pathname === '/' && link.sectionId) {
+      const el = document.getElementById(link.sectionId);
+      if (el) {
+        e.preventDefault();
+        el.scrollIntoView({ behavior: 'smooth' });
+        setMobileMenuOpen(false);
+        return;
+      }
+    }
+    setMobileMenuOpen(false);
+  };
+
+  const handleLogoClick = (e) => {
+    if (location.pathname === '/') {
+      const el = document.getElementById('home');
+      if (el) {
+        e.preventDefault();
+        el.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+  };
 
   return (
     <>
@@ -66,7 +103,7 @@ const Navbar = () => {
         <div className="container">
           <div className="navbar-pill-container glass-panel">
             {/* Left: Brand Logo */}
-            <Link to="/" className="navbar-logo" aria-label="FOODLY Home">
+            <Link to="/" onClick={handleLogoClick} className="navbar-logo" aria-label="FOODLY Home">
               <span className="logo-icon-badge animate-glow">
                 <Leaf size={18} strokeWidth={2.6} />
               </span>
@@ -78,19 +115,24 @@ const Navbar = () => {
             {/* Center: Desktop Navigation Links with animated indicator */}
             <nav className="desktop-navigation" aria-label="Main Navigation">
               <ul className="nav-link-list">
-                {navLinks.map((link) => (
-                  <li key={link.name}>
-                    <NavLink
-                      to={link.path}
-                      className={({ isActive }) =>
-                        `nav-link ${isActive ? 'is-active' : ''}`
-                      }
-                    >
-                      <span>{link.name}</span>
-                      <span className="nav-underline" aria-hidden="true" />
-                    </NavLink>
-                  </li>
-                ))}
+                {navLinks.map((link) => {
+                  const isCurrentActive = location.pathname === '/' 
+                    ? activeSection === link.sectionId
+                    : location.pathname === link.path;
+
+                  return (
+                    <li key={link.name}>
+                      <NavLink
+                        to={link.path}
+                        onClick={(e) => handleNavClick(e, link)}
+                        className={`nav-link ${isCurrentActive ? 'is-active' : ''}`}
+                      >
+                        <span>{link.name}</span>
+                        <span className="nav-underline" aria-hidden="true" />
+                      </NavLink>
+                    </li>
+                  );
+                })}
               </ul>
             </nav>
 
@@ -213,19 +255,23 @@ const Navbar = () => {
         </div>
 
         <nav className="drawer-nav">
-          {navLinks.map((link) => (
-            <NavLink
-              key={link.name}
-              to={link.path}
-              className={({ isActive }) =>
-                `drawer-nav-item ${isActive ? 'is-active' : ''}`
-              }
-              onClick={() => setMobileMenuOpen(false)}
-            >
-              <span>{link.name}</span>
-              <ArrowRight size={16} />
-            </NavLink>
-          ))}
+          {navLinks.map((link) => {
+            const isCurrentActive = location.pathname === '/' 
+              ? activeSection === link.sectionId
+              : location.pathname === link.path;
+
+            return (
+              <NavLink
+                key={link.name}
+                to={link.path}
+                className={`drawer-nav-item ${isCurrentActive ? 'is-active' : ''}`}
+                onClick={(e) => handleNavClick(e, link)}
+              >
+                <span>{link.name}</span>
+                <ArrowRight size={16} />
+              </NavLink>
+            );
+          })}
         </nav>
 
         <div className="drawer-footer-actions">

@@ -281,3 +281,39 @@
     bottom: -5%;
   }
 }
+
+@media (max-width: 480px) {
+  .offers-banner-card {
+    padding: 2rem 1.2rem;
+    border-radius: 1.5rem;
+  }
+
+  .offers-headline {
+    font-size: 1.85rem;
+  }
+
+  .floating-discount-glass-card {
+    position: static;
+    margin-top: 1rem;
+    width: 100%;
+    justify-content: center;
+  }
+
+  .offers-stage-ring {
+    width: 250px;
+    height: 250px;
+  }
+
+  .offers-dish-image {
+    max-width: 250px;
+  }
+
+  .promo-code-bar {
+    padding: 0.5rem 0.85rem;
+    font-size: 0.8rem;
+  }
+
+  .offers-cta-btn {
+    width: 100%;
+  }
+}

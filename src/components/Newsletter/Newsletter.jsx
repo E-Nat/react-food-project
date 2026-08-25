@@ -18,7 +18,7 @@ const Newsletter = () => {
   };
 
   return (
-    <section className="section-wrapper newsletter-master-section" id="newsletter">
+    <section className="section-wrapper newsletter-master-section" id="contact" data-section="contact">
       <div className="container">
         <div className="newsletter-banner-box glass-panel">
           {/* Ambient Glows */}

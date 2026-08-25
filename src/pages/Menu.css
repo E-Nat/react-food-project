@@ -37,17 +37,14 @@
 /* Controls Bar */
 .menu-controls-section {
   padding: 1.5rem 0 1.25rem;
-  background-color: rgba(250, 250, 247, 0.88);
+  background-color: var(--glass-bg);
   border-bottom: 1px solid var(--border);
   position: sticky;
   top: 75px;
   z-index: 90;
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-}
-
-[data-theme="dark"] .menu-controls-section {
-  background-color: rgba(10, 13, 20, 0.88);
+  transition: background-color var(--transition-normal), border-color var(--transition-normal);
 }
 
 .menu-controls-bar {

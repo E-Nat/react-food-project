@@ -319,3 +319,25 @@
   color: var(--text-primary);
 }
 
+@media (max-width: 480px) {
+  .search-modal-overlay {
+    padding: 1.5rem 0.75rem;
+  }
+
+  .search-input-header {
+    padding: 1rem 1.2rem;
+  }
+
+  .search-main-input {
+    font-size: 1rem;
+  }
+
+  .search-results-list {
+    padding: 0.85rem 1rem;
+  }
+
+  .search-tags-row {
+    padding: 0.75rem 1rem;
+  }
+}
+

@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import Navbar from '../components/Navbar/Navbar';
 import Hero from '../components/Hero/Hero';
 import Categories from '../components/Categories/Categories';
@@ -17,6 +18,19 @@ import useScrollReveal from '../hooks/useScrollReveal';
 const Home = () => {
   // Activate automatic smooth scroll reveal observer across all sections
   useScrollReveal();
+  const location = useLocation();
+
+  useEffect(() => {
+    if (location.hash) {
+      const targetId = location.hash.replace('#', '');
+      const element = document.getElementById(targetId);
+      if (element) {
+        setTimeout(() => {
+          element.scrollIntoView({ behavior: 'smooth' });
+        }, 120);
+      }
+    }
+  }, [location.hash]);
 
   return (
     <div className="page-wrapper home-page-root">

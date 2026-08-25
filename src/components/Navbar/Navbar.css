@@ -164,6 +164,18 @@
   box-shadow: var(--shadow-sm);
 }
 
+.theme-toggle-btn svg {
+  transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.theme-toggle-btn:hover svg {
+  transform: rotate(30deg) scale(1.1);
+}
+
+.theme-toggle-btn:active svg {
+  transform: rotate(180deg) scale(0.9);
+}
+
 .navbar-cart-badge {
   position: absolute;
   top: -4px;
@@ -348,11 +360,50 @@
 /* Responsive Media Queries */
 @media (max-width: 992px) {
   .desktop-navigation,
-  .navbar-cta-btn {
+  .navbar-cta-btn,
+  .profile-dropdown-wrapper {
     display: none;
   }
 
   .mobile-hamburger-btn {
     display: inline-flex;
+  }
+}
+
+@media (max-width: 640px) {
+  .navbar-root {
+    top: 0.65rem;
+  }
+
+  .navbar-pill-container {
+    padding: 0.5rem 0.85rem;
+  }
+
+  .logo-title {
+    font-size: 1.18rem;
+  }
+
+  .logo-icon-badge {
+    width: 32px;
+    height: 32px;
+  }
+
+  .nav-action-btn {
+    width: 35px;
+    height: 35px;
+  }
+
+  .navbar-actions-group {
+    gap: 0.35rem;
+  }
+}
+
+@media (max-width: 380px) {
+  .navbar-actions-group .nav-action-btn:nth-child(1) {
+    display: none; /* Search is accessible right inside mobile drawer */
+  }
+
+  .logo-title {
+    font-size: 1.05rem;
   }
 }

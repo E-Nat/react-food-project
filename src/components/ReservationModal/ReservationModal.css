@@ -196,3 +196,26 @@
   font-weight: 800;
   color: var(--text-primary);
 }
+
+@media (max-width: 480px) {
+  .res-modal-overlay {
+    padding: 1rem 0.75rem;
+  }
+
+  .res-modal-header {
+    padding: 1rem 1.2rem;
+  }
+
+  .res-form-body {
+    padding: 1.2rem;
+  }
+
+  .res-fields-grid {
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+  }
+
+  .res-success-body {
+    padding: 2rem 1.2rem;
+  }
+}
