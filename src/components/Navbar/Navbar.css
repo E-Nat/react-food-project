@@ -1,5 +1,5 @@
 /* ==========================================================================
-   FOODLY — Floating Glass Navbar Styles & Scroll Progress
+   FOODLY — Floating Glass Navbar & Dedicated Responsive Mobile Header
    ========================================================================== */
 
 /* Top Scroll Progress Line */
@@ -15,30 +15,43 @@
   pointer-events: none;
 }
 
+/* Main Navbar Root Container */
 .navbar-root {
   position: fixed;
-  top: 1.25rem;
+  top: 12px;
   left: 0;
   right: 0;
+  width: 100%;
   z-index: 1000;
-  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  box-sizing: border-box;
+  transition: top 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .navbar-root.is-scrolled {
-  top: 0.5rem;
+  top: 8px;
 }
 
+/* Floating Glass Pill */
 .navbar-pill-container {
+  width: calc(100% - 24px);
+  max-width: 1400px;
+  margin: 0 auto;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0.85rem 1.6rem;
+  padding: 0.75rem 1.5rem;
   border-radius: 9999px;
+  background: var(--glass-bg);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--glass-border);
+  box-shadow: 0 10px 30px var(--glass-shadow);
+  box-sizing: border-box;
   transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .navbar-root.is-scrolled .navbar-pill-container {
-  padding: 0.55rem 1.4rem;
+  padding: 0.55rem 1.35rem;
   background: var(--glass-bg-hover);
   box-shadow: var(--shadow-lg);
 }
@@ -49,6 +62,8 @@
   align-items: center;
   gap: 0.6rem;
   text-decoration: none;
+  flex-shrink: 0;
+  box-sizing: border-box;
 }
 
 .logo-icon-badge {
@@ -62,10 +77,11 @@
   justify-content: center;
   box-shadow: 0 4px 12px var(--green-glow);
   transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  flex-shrink: 0;
 }
 
 .navbar-logo:hover .logo-icon-badge {
-  transform: rotate(15deg) scale(1.1);
+  transform: rotate(15deg) scale(1.08);
 }
 
 .logo-title {
@@ -73,13 +89,14 @@
   font-weight: 900;
   letter-spacing: -0.04em;
   color: var(--text-main);
+  line-height: 1;
 }
 
 .logo-accent-dot {
   color: var(--primary);
 }
 
-/* Desktop Navigation */
+/* Desktop Navigation (Links: Home, Menu, About, Contact) */
 .desktop-navigation {
   display: flex;
   align-items: center;
@@ -88,7 +105,7 @@
 .nav-link-list {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: 0.35rem;
 }
 
 .nav-link {
@@ -139,12 +156,13 @@
   display: flex;
   align-items: center;
   gap: 0.5rem;
+  flex-shrink: 0;
 }
 
 .nav-action-btn {
   width: 40px;
   height: 40px;
-  border-radius: 50%;
+  border-radius: 9999px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -153,6 +171,7 @@
   border: 1px solid var(--card-border);
   box-shadow: var(--shadow-xs);
   position: relative;
+  flex-shrink: 0;
   transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
@@ -172,10 +191,6 @@
   transform: rotate(30deg) scale(1.1);
 }
 
-.theme-toggle-btn:active svg {
-  transform: rotate(180deg) scale(0.9);
-}
-
 .navbar-cart-badge {
   position: absolute;
   top: -4px;
@@ -192,13 +207,14 @@
   align-items: center;
   justify-content: center;
   box-shadow: 0 2px 8px var(--primary-glow);
-  animation: pulseGlow 3s infinite;
 }
 
 .navbar-cta-btn {
   padding: 0.6rem 1.25rem;
   font-size: 0.88rem;
   margin-left: 0.25rem;
+  white-space: nowrap;
+  flex-shrink: 0;
 }
 
 .profile-dropdown-wrapper {
@@ -246,53 +262,76 @@
   color: var(--primary);
 }
 
+/* Mobile Hamburger Toggle Button (Hidden by default on Desktop) */
 .mobile-hamburger-btn {
   display: none;
   width: 40px;
   height: 40px;
-  border-radius: 50%;
+  border-radius: 9999px;
   align-items: center;
   justify-content: center;
   background: var(--surface);
   color: var(--text-main);
   border: 1px solid var(--card-border);
+  box-shadow: var(--shadow-xs);
+  flex-shrink: 0;
+  transition: all 0.22s ease;
 }
 
-/* Mobile Drawer */
+.mobile-hamburger-btn:hover {
+  background: var(--primary-soft);
+  color: var(--primary);
+  border-color: var(--primary);
+}
+
+/* ==========================================================================
+   Mobile Navigation Drawer / Panel (Top-Down Glass Modal)
+   ========================================================================== */
 .mobile-drawer-backdrop {
   position: fixed;
   inset: 0;
   background: var(--backdrop);
   z-index: 1100;
-  backdrop-filter: blur(4px);
-  -webkit-backdrop-filter: blur(4px);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  animation: fadeInOverlay 0.25s ease forwards;
 }
 
 .mobile-nav-drawer {
   position: fixed;
-  top: 0;
-  right: -320px;
-  bottom: 0;
-  width: 300px;
+  top: 12px;
+  left: 12px;
+  right: 12px;
+  max-height: calc(100vh - 24px);
+  overflow-y: auto;
   z-index: 1200;
-  padding: 1.8rem 1.4rem;
+  padding: 1.4rem 1.25rem;
   display: flex;
   flex-direction: column;
-  border-radius: 1.5rem 0 0 1.5rem;
-  transition: right 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  border-radius: 1.5rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  box-shadow: 0 20px 60px var(--glass-shadow);
+  opacity: 0;
+  transform: translateY(-10px);
+  pointer-events: none;
+  transition: opacity 300ms ease-out, transform 300ms ease-out;
+  box-sizing: border-box;
 }
 
 .mobile-nav-drawer.is-open {
-  right: 0;
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
 }
 
 .drawer-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding-bottom: 1.5rem;
-  border-bottom: 1px solid var(--card-border);
-  margin-bottom: 1.5rem;
+  padding-bottom: 1.2rem;
+  border-bottom: 1px solid var(--border-light);
+  margin-bottom: 1.2rem;
 }
 
 .drawer-close-btn {
@@ -302,27 +341,35 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: var(--surface-subtle);
+  background: var(--surface-soft);
   color: var(--text-main);
+  border: 1px solid var(--border);
+  transition: all 0.2s ease;
+}
+
+.drawer-close-btn:hover {
+  background: var(--accent-light);
+  color: var(--accent);
 }
 
 .drawer-nav {
   display: flex;
   flex-direction: column;
-  gap: 0.6rem;
-  flex: 1;
+  gap: 0.5rem;
+  margin-bottom: 1.25rem;
 }
 
 .drawer-nav-item {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0.9rem 1.2rem;
-  border-radius: 1rem;
-  font-size: 1rem;
+  min-height: 48px;
+  padding: 0.75rem 1.15rem;
+  border-radius: 0.85rem;
+  font-size: 1.05rem;
   font-weight: 700;
   color: var(--text-main);
-  background: var(--surface-subtle);
+  background: var(--surface-soft);
   transition: all 0.2s ease;
 }
 
@@ -335,75 +382,168 @@
 .drawer-footer-actions {
   display: flex;
   flex-direction: column;
-  gap: 0.75rem;
-  padding-top: 1.5rem;
-  border-top: 1px solid var(--card-border);
+  gap: 1rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--border-light);
+}
+
+.drawer-cta-btn {
+  width: 100%;
+  min-height: 48px;
+  font-size: 1rem;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.drawer-actions-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.65rem;
 }
 
 .drawer-action-pill {
   display: flex;
   align-items: center;
-  gap: 0.8rem;
-  padding: 0.85rem 1.2rem;
+  justify-content: center;
+  gap: 0.5rem;
+  min-height: 44px;
+  padding: 0.65rem 0.85rem;
   border-radius: 9999px;
-  background: var(--surface);
-  border: 1px solid var(--card-border);
+  background: var(--surface-soft);
+  border: 1px solid var(--border);
   color: var(--text-main);
-  font-size: 0.92rem;
-  font-weight: 600;
+  font-size: 0.84rem;
+  font-weight: 700;
+  text-decoration: none;
+  transition: all 0.2s ease;
 }
 
-.drawer-cta-btn {
-  width: 100%;
+.drawer-action-pill:hover {
+  background: var(--primary-soft);
+  color: var(--primary);
+  border-color: var(--primary);
 }
 
-/* Responsive Media Queries */
-@media (max-width: 992px) {
-  .desktop-navigation,
-  .navbar-cta-btn,
+/* ==========================================================================
+   BREAKPOINTS:
+   >= 1024px: Desktop Navbar
+   768px – 1023px: Compact Tablet Navbar
+   <= 767px: Dedicated Mobile Navbar (ONLY Logo + Search + Hamburger)
+   ========================================================================== */
+
+/* Tablet Breakpoint (768px – 1023px) */
+@media (max-width: 1023px) and (min-width: 768px) {
   .profile-dropdown-wrapper {
     display: none;
   }
 
-  .mobile-hamburger-btn {
-    display: inline-flex;
+  .nav-link {
+    padding: 0.45rem 0.85rem;
+    font-size: 0.9rem;
+  }
+
+  .navbar-cta-btn {
+    padding: 0.55rem 1rem;
+    font-size: 0.84rem;
   }
 }
 
-@media (max-width: 640px) {
+/* Dedicated Mobile Navbar (<= 767px) */
+@media (max-width: 767px) {
   .navbar-root {
-    top: 0.65rem;
+    top: 12px;
   }
 
   .navbar-pill-container {
-    padding: 0.5rem 0.85rem;
+    width: calc(100% - 24px);
+    max-width: none;
+    margin: 0 auto;
+    padding: 10px 14px;
+    min-height: 64px;
+    box-sizing: border-box;
+    border-radius: 9999px;
   }
 
-  .logo-title {
-    font-size: 1.18rem;
+  .navbar-logo {
+    flex-shrink: 1;
+    min-width: 0;
+    gap: 0.5rem;
   }
 
   .logo-icon-badge {
     width: 32px;
     height: 32px;
-  }
-
-  .nav-action-btn {
-    width: 35px;
-    height: 35px;
-  }
-
-  .navbar-actions-group {
-    gap: 0.35rem;
-  }
-}
-
-@media (max-width: 380px) {
-  .navbar-actions-group .nav-action-btn:nth-child(1) {
-    display: none; /* Search is accessible right inside mobile drawer */
+    flex-shrink: 0;
   }
 
   .logo-title {
-    font-size: 1.05rem;
+    font-size: 21px;
+    white-space: nowrap;
+  }
+
+  /* Remove these completely from mobile top row */
+  .desktop-navigation,
+  .theme-toggle-btn,
+  .cart-action-btn,
+  .profile-dropdown-wrapper,
+  .navbar-cta-btn {
+    display: none !important;
+  }
+
+  /* Show ONLY Search + Hamburger Menu on Mobile */
+  .navbar-actions-group {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-shrink: 0;
+  }
+
+  .search-trigger-btn {
+    display: inline-flex !important;
+    width: 40px;
+    height: 40px;
+    border-radius: 9999px;
+    flex-shrink: 0;
+  }
+
+  .mobile-hamburger-btn {
+    display: inline-flex !important;
+    width: 40px;
+    height: 40px;
+    border-radius: 9999px;
+    flex-shrink: 0;
+  }
+}
+
+/* Ultra-Compact Mobile (320px – 360px) */
+@media (max-width: 360px) {
+  .navbar-pill-container {
+    padding: 8px 10px;
+  }
+
+  .logo-title {
+    font-size: 19px;
+  }
+
+  .logo-icon-badge {
+    width: 30px;
+    height: 30px;
+  }
+
+  .search-trigger-btn,
+  .mobile-hamburger-btn {
+    width: 36px;
+    height: 36px;
+  }
+
+  .navbar-actions-group {
+    gap: 6px;
+  }
+
+  .drawer-actions-grid {
+    grid-template-columns: 1fr;
   }
 }

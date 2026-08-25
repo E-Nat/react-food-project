@@ -136,12 +136,12 @@ const Navbar = () => {
               </ul>
             </nav>
 
-            {/* Right: Actions (Search, Theme, Cart, Profile, CTA) */}
+            {/* Right: Actions (Desktop: Search, Theme, Cart, Profile, CTA | Mobile <= 767px: Search, Menu) */}
             <div className="navbar-actions-group">
-              {/* Search Button */}
+              {/* Search Button (Always present: Desktop + Mobile) */}
               <button
                 type="button"
-                className="nav-action-btn"
+                className="nav-action-btn search-trigger-btn"
                 onClick={openSearch}
                 aria-label="Search dishes"
                 title="Search menu (Ctrl+K)"
@@ -149,7 +149,7 @@ const Navbar = () => {
                 <Search size={18} />
               </button>
 
-              {/* Theme Toggle Button */}
+              {/* Theme Toggle Button (Desktop & Tablet) */}
               <button
                 type="button"
                 className="nav-action-btn theme-toggle-btn"
@@ -160,7 +160,7 @@ const Navbar = () => {
                 {theme === 'light' ? <Moon size={18} /> : <Sun size={18} />}
               </button>
 
-              {/* Cart Button with Count Badge */}
+              {/* Cart Button with Count Badge (Desktop & Tablet) */}
               <button
                 type="button"
                 className="nav-action-btn cart-action-btn"
@@ -174,7 +174,7 @@ const Navbar = () => {
                 )}
               </button>
 
-              {/* Profile Button with Popover */}
+              {/* Profile Button with Popover (Desktop only) */}
               <div className="profile-dropdown-wrapper">
                 <button
                   type="button"
@@ -201,7 +201,7 @@ const Navbar = () => {
                 )}
               </div>
 
-              {/* CTA: Book a Table */}
+              {/* CTA: Book a Table (Desktop & Tablet) */}
               <button
                 type="button"
                 className="btn-primary navbar-cta-btn"
@@ -211,14 +211,14 @@ const Navbar = () => {
                 <span>Book a Table</span>
               </button>
 
-              {/* Mobile Hamburger Toggle */}
+              {/* Mobile Hamburger Toggle (Mobile <= 767px & Tablet) */}
               <button
                 type="button"
                 className="mobile-hamburger-btn"
                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
                 aria-label={mobileMenuOpen ? 'Close Menu' : 'Open Menu'}
               >
-                {mobileMenuOpen ? <X size={22} /> : <MenuIcon size={22} />}
+                {mobileMenuOpen ? <X size={20} /> : <MenuIcon size={20} />}
               </button>
             </div>
           </div>
@@ -233,12 +233,12 @@ const Navbar = () => {
         />
       )}
 
-      {/* Mobile Drawer Panel */}
-      <aside className={`mobile-nav-drawer glass-panel ${mobileMenuOpen ? 'is-open' : ''}`}>
+      {/* Mobile Drawer / Panel */}
+      <aside className={`mobile-nav-drawer glass-panel ${mobileMenuOpen ? 'is-open' : ''}`} aria-hidden={!mobileMenuOpen}>
         <div className="drawer-header">
           <Link to="/" className="navbar-logo" onClick={() => setMobileMenuOpen(false)}>
             <span className="logo-icon-badge">
-              <Leaf size={18} strokeWidth={2.6} />
+              <Leaf size={16} strokeWidth={2.6} />
             </span>
             <span className="logo-title">
               FOODLY<span className="logo-accent-dot">.</span>
@@ -250,11 +250,11 @@ const Navbar = () => {
             onClick={() => setMobileMenuOpen(false)}
             aria-label="Close menu"
           >
-            <X size={20} />
+            <X size={18} />
           </button>
         </div>
 
-        <nav className="drawer-nav">
+        <nav className="drawer-nav" aria-label="Mobile Navigation">
           {navLinks.map((link) => {
             const isCurrentActive = location.pathname === '/' 
               ? activeSection === link.sectionId
@@ -275,27 +275,7 @@ const Navbar = () => {
         </nav>
 
         <div className="drawer-footer-actions">
-          <button
-            type="button"
-            className="drawer-action-pill"
-            onClick={() => {
-              setMobileMenuOpen(false);
-              openSearch();
-            }}
-          >
-            <Search size={17} />
-            <span>Search Dishes</span>
-          </button>
-
-          <button
-            type="button"
-            className="drawer-action-pill"
-            onClick={toggleTheme}
-          >
-            {theme === 'light' ? <Moon size={17} /> : <Sun size={17} />}
-            <span>{theme === 'light' ? 'Dark Mode' : 'Light Mode'}</span>
-          </button>
-
+          {/* Prominent Book a Table CTA in Mobile Menu */}
           <button
             type="button"
             className="btn-primary drawer-cta-btn"
@@ -307,6 +287,50 @@ const Navbar = () => {
             <Calendar size={16} />
             <span>Book a Table</span>
           </button>
+
+          <div className="drawer-actions-grid">
+            <button
+              type="button"
+              className="drawer-action-pill"
+              onClick={() => {
+                setMobileMenuOpen(false);
+                openCart();
+              }}
+            >
+              <ShoppingBag size={16} />
+              <span>Cart {totalCartCount > 0 ? `(${totalCartCount})` : ''}</span>
+            </button>
+
+            <button
+              type="button"
+              className="drawer-action-pill"
+              onClick={toggleTheme}
+            >
+              {theme === 'light' ? <Moon size={16} /> : <Sun size={16} />}
+              <span>{theme === 'light' ? 'Dark Mode' : 'Light Mode'}</span>
+            </button>
+
+            <button
+              type="button"
+              className="drawer-action-pill"
+              onClick={() => {
+                setMobileMenuOpen(false);
+                openSearch();
+              }}
+            >
+              <Search size={16} />
+              <span>Search Dishes</span>
+            </button>
+
+            <Link
+              to="/menu"
+              className="drawer-action-pill"
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              <User size={16} />
+              <span>My Account</span>
+            </Link>
+          </div>
         </div>
       </aside>
     </>
