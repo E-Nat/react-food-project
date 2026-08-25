@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
+  <defs>
+    <linearGradient id="foodlyGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FF7048"/>
+      <stop offset="100%" stop-color="#FFA07A"/>
+    </linearGradient>
+    <linearGradient id="leafGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#8FBF7A"/>
+      <stop offset="100%" stop-color="#2F5932"/>
+    </linearGradient>
+  </defs>
+  <!-- Background pill circle -->
+  <rect width="64" height="64" rx="20" fill="url(#foodlyGrad)"/>
+  
+  <!-- Leaf icon path -->
+  <path d="M46 18c-9.94 0-18 8.06-18 18 0 2.45.5 4.78 1.4 6.9L18 54l11.1-11.4c2.12.9 4.45 1.4 6.9 1.4 9.94 0 18-8.06 18-18 0-4.42-3.58-8-8-8z" fill="#FFFFFF" opacity="0.95"/>
+  <path d="M29.1 42.6L46 25.7" stroke="#FF7048" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
