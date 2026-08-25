@@ -24,7 +24,6 @@ const Navbar = () => {
   const [scrollProgress, setScrollProgress] = useState(0);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [profileOpen, setProfileOpen] = useState(false);
-  const [activeSection, setActiveSection] = useState('home');
   const location = useLocation();
 
   useEffect(() => {
@@ -36,18 +35,6 @@ const Navbar = () => {
       if (winHeight > 0) {
         setScrollProgress((scrollY / winHeight) * 100);
       }
-
-      if (location.pathname === '/') {
-        const sections = ['home', 'menu', 'about', 'contact'];
-        const scrollPosition = scrollY + 220;
-        for (let i = sections.length - 1; i >= 0; i--) {
-          const el = document.getElementById(sections[i]);
-          if (el && el.offsetTop <= scrollPosition) {
-            setActiveSection(sections[i]);
-            break;
-          }
-        }
-      }
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
@@ -55,26 +42,51 @@ const Navbar = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, [location.pathname]);
 
+  // Body scroll lock when mobile menu is open
+  useEffect(() => {
+    if (mobileMenuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [mobileMenuOpen]);
+
+  // Escape key listener to close mobile menu and profile popover
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.key === 'Escape') {
+        setMobileMenuOpen(false);
+        setProfileOpen(false);
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, []);
+
   useEffect(() => {
     setMobileMenuOpen(false);
     setProfileOpen(false);
   }, [location.pathname]);
 
   const navLinks = [
-    { name: 'Home', path: '/', sectionId: 'home' },
-    { name: 'Menu', path: '/menu', sectionId: 'menu' },
-    { name: 'About', path: '/about', sectionId: 'about' },
-    { name: 'Contact', path: '/contact', sectionId: 'contact' },
+    { name: 'Home', path: '/' },
+    { name: 'Menu', path: '/menu' },
+    { name: 'About', path: '/about' },
+    { name: 'Contact', path: '/contact' },
   ];
 
   const handleNavClick = (e, link) => {
-    if (location.pathname === '/' && link.sectionId) {
-      const el = document.getElementById(link.sectionId);
+    if (location.pathname === '/' && link.path === '/') {
+      const el = document.getElementById('home');
       if (el) {
         e.preventDefault();
         el.scrollIntoView({ behavior: 'smooth' });
-        setMobileMenuOpen(false);
-        return;
+      } else {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
       }
     }
     setMobileMenuOpen(false);
@@ -116,9 +128,7 @@ const Navbar = () => {
             <nav className="desktop-navigation" aria-label="Main Navigation">
               <ul className="nav-link-list">
                 {navLinks.map((link) => {
-                  const isCurrentActive = location.pathname === '/' 
-                    ? activeSection === link.sectionId
-                    : location.pathname === link.path;
+                  const isCurrentActive = location.pathname === link.path;
 
                   return (
                     <li key={link.name}>
@@ -211,12 +221,14 @@ const Navbar = () => {
                 <span>Book a Table</span>
               </button>
 
-              {/* Mobile Hamburger Toggle (Mobile <= 767px & Tablet) */}
+              {/* Mobile Hamburger Toggle (Mobile <= 767px) */}
               <button
                 type="button"
                 className="mobile-hamburger-btn"
                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                aria-label={mobileMenuOpen ? 'Close Menu' : 'Open Menu'}
+                aria-label={mobileMenuOpen ? 'Close navigation menu' : 'Open navigation menu'}
+                aria-expanded={mobileMenuOpen}
+                aria-controls="mobile-nav-drawer"
               >
                 {mobileMenuOpen ? <X size={20} /> : <MenuIcon size={20} />}
               </button>
@@ -229,14 +241,22 @@ const Navbar = () => {
       {mobileMenuOpen && (
         <div 
           className="mobile-drawer-backdrop" 
-          onClick={() => setMobileMenuOpen(false)} 
+          onClick={() => setMobileMenuOpen(false)}
+          aria-hidden="true"
         />
       )}
 
       {/* Mobile Drawer / Panel */}
-      <aside className={`mobile-nav-drawer glass-panel ${mobileMenuOpen ? 'is-open' : ''}`} aria-hidden={!mobileMenuOpen}>
+      <aside 
+        id="mobile-nav-drawer"
+        className={`mobile-nav-drawer glass-panel ${mobileMenuOpen ? 'is-open' : ''}`} 
+        aria-hidden={!mobileMenuOpen}
+        role="dialog"
+        aria-modal={mobileMenuOpen}
+        aria-label="Navigation Menu"
+      >
         <div className="drawer-header">
-          <Link to="/" className="navbar-logo" onClick={() => setMobileMenuOpen(false)}>
+          <Link to="/" className="navbar-logo" onClick={handleLogoClick}>
             <span className="logo-icon-badge">
               <Leaf size={16} strokeWidth={2.6} />
             </span>
@@ -248,7 +268,7 @@ const Navbar = () => {
             type="button" 
             className="drawer-close-btn"
             onClick={() => setMobileMenuOpen(false)}
-            aria-label="Close menu"
+            aria-label="Close navigation menu"
           >
             <X size={18} />
           </button>
@@ -256,9 +276,7 @@ const Navbar = () => {
 
         <nav className="drawer-nav" aria-label="Mobile Navigation">
           {navLinks.map((link) => {
-            const isCurrentActive = location.pathname === '/' 
-              ? activeSection === link.sectionId
-              : location.pathname === link.path;
+            const isCurrentActive = location.pathname === link.path;
 
             return (
               <NavLink

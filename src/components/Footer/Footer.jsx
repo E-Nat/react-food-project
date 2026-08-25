@@ -30,13 +30,10 @@ const Footer = () => {
     });
   };
 
-  const handleLinkClick = (e, sectionId, path) => {
-    if (location.pathname === '/' && sectionId) {
-      const el = document.getElementById(sectionId);
-      if (el) {
-        e.preventDefault();
-        el.scrollIntoView({ behavior: 'smooth' });
-      }
+  const handleHomeClick = (e) => {
+    if (location.pathname === '/') {
+      e.preventDefault();
+      scrollToTop();
     }
   };
 
@@ -104,7 +101,7 @@ const Footer = () => {
         <div className="footer-top-grid">
           {/* Brand Column */}
           <div className="footer-brand-col">
-            <Link to="/" onClick={(e) => handleLinkClick(e, 'home', '/')} className="footer-logo">
+            <Link to="/" onClick={handleHomeClick} className="footer-logo">
               <span className="footer-logo-icon">
                 <Leaf size={18} strokeWidth={2.6} />
               </span>
@@ -158,22 +155,22 @@ const Footer = () => {
             <h4 className="footer-col-title">Quick Links</h4>
             <ul className="footer-nav-list">
               <li>
-                <Link to="/" onClick={(e) => handleLinkClick(e, 'home', '/')} className="footer-nav-link">
+                <Link to="/" onClick={handleHomeClick} className="footer-nav-link">
                   Home
                 </Link>
               </li>
               <li>
-                <Link to="/menu" onClick={(e) => handleLinkClick(e, 'menu', '/menu')} className="footer-nav-link">
+                <Link to="/menu" className="footer-nav-link">
                   Menu
                 </Link>
               </li>
               <li>
-                <Link to="/about" onClick={(e) => handleLinkClick(e, 'about', '/about')} className="footer-nav-link">
+                <Link to="/about" className="footer-nav-link">
                   About
                 </Link>
               </li>
               <li>
-                <Link to="/contact" onClick={(e) => handleLinkClick(e, 'contact', '/contact')} className="footer-nav-link">
+                <Link to="/contact" className="footer-nav-link">
                   Contact
                 </Link>
               </li>

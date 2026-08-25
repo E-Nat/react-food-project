@@ -12,7 +12,6 @@ export const Reveal = ({
   delay = 0,
   duration = 0.75,
   className = '',
-  cascade = false,
   once = true,
   scale = false,
   ...props

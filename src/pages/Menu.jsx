@@ -10,6 +10,19 @@ import { Reveal } from '../components/animation/Reveal';
 import { StaggerContainer, StaggerItem } from '../components/animation/StaggerContainer';
 import './Menu.css';
 
+const CATEGORIES = [
+  { name: 'All', icon: '✨' },
+  { name: 'Pizza', icon: '🍕' },
+  { name: 'Pasta', icon: '🍝' },
+  { name: 'Burger', icon: '🍔' },
+  { name: 'Salad', icon: '🥗' },
+  { name: 'Seafood', icon: '🦐' },
+  { name: 'Dessert', icon: '🍰' },
+  { name: 'Drinks', icon: '🍹' },
+];
+
+const DIETARY_OPTIONS = ['All', 'Vegetarian', 'Vegan', 'Gluten-Free', 'Chef Special'];
+
 const Menu = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const initialCat = searchParams.get('category') || 'All';
@@ -20,39 +33,40 @@ const Menu = () => {
   const [sortBy, setSortBy] = useState('popular');
   const [dietaryFilter, setDietaryFilter] = useState('All');
 
-  const categories = [
-    { name: 'All', icon: '✨' },
-    { name: 'Pizza', icon: '🍕' },
-    { name: 'Pasta', icon: '🍝' },
-    { name: 'Burger', icon: '🍔' },
-    { name: 'Salad', icon: '🥗' },
-    { name: 'Seafood', icon: '🦐' },
-    { name: 'Dessert', icon: '🍰' },
-    { name: 'Drinks', icon: '🍹' },
-  ];
-
-  const dietaryOptions = ['All', 'Vegetarian', 'Vegan', 'Gluten-Free', 'Chef Special'];
-
   useEffect(() => {
     const catFromUrl = searchParams.get('category');
     if (catFromUrl) {
-      setSelectedCategory(catFromUrl);
+      const matched = CATEGORIES.find((c) => c.name.toLowerCase() === catFromUrl.toLowerCase());
+      setSelectedCategory(matched ? matched.name : catFromUrl);
+    } else {
+      setSelectedCategory('All');
     }
     const searchFromUrl = searchParams.get('search');
-    if (searchFromUrl) {
+    if (searchFromUrl !== null) {
       setSearchQuery(searchFromUrl);
     }
   }, [searchParams]);
 
   const handleCategoryChange = (catName) => {
     setSelectedCategory(catName);
-    if (catName === 'All') {
-      searchParams.delete('category');
-      setSearchParams(searchParams);
+    const nextParams = new URLSearchParams(searchParams);
+    if (catName.toLowerCase() === 'all') {
+      nextParams.delete('category');
     } else {
-      searchParams.set('category', catName);
-      setSearchParams(searchParams);
+      nextParams.set('category', catName.toLowerCase());
     }
+    setSearchParams(nextParams);
+  };
+
+  const handleSearchChange = (val) => {
+    setSearchQuery(val);
+    const nextParams = new URLSearchParams(searchParams);
+    if (!val.trim()) {
+      nextParams.delete('search');
+    } else {
+      nextParams.set('search', val);
+    }
+    setSearchParams(nextParams);
   };
 
   const handleResetFilters = () => {
@@ -126,14 +140,16 @@ const Menu = () => {
                   type="text"
                   placeholder="Search dishes, ingredients, tags..."
                   value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
+                  onChange={(e) => handleSearchChange(e.target.value)}
                   className="menu-search-input"
+                  aria-label="Search dishes"
                 />
                 {searchQuery && (
                   <button
                     type="button"
                     className="menu-search-clear"
-                    onClick={() => setSearchQuery('')}
+                    onClick={() => handleSearchChange('')}
+                    aria-label="Clear search query"
                   >
                     Clear
                   </button>
@@ -159,7 +175,7 @@ const Menu = () => {
             {/* Category Filter Tabs */}
             <div className="menu-category-tabs-wrap">
               <div className="menu-category-tabs">
-                {categories.map((cat) => (
+                {CATEGORIES.map((cat) => (
                   <button
                     key={cat.name}
                     type="button"
@@ -177,7 +193,7 @@ const Menu = () => {
             <div className="menu-dietary-row">
               <span className="dietary-label">Dietary:</span>
               <div className="dietary-pills-list">
-                {dietaryOptions.map((opt) => (
+                {DIETARY_OPTIONS.map((opt) => (
                   <button
                     key={opt}
                     type="button"

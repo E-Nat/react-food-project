@@ -10,6 +10,7 @@ import Menu from './pages/Menu';
 import FoodDetail from './pages/FoodDetail';
 import About from './pages/About';
 import Contact from './pages/Contact';
+import NotFound from './pages/NotFound';
 
 import CartDrawer from './components/Cart/CartDrawer';
 import SearchModal from './components/SearchModal/SearchModal';
@@ -62,7 +63,7 @@ function AnimatedRoutes() {
           <Route path="/food/:id" element={<FoodDetail />} />
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
-          <Route path="*" element={<Home />} />
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </motion.div>
     </AnimatePresence>
