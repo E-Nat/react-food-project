@@ -73,7 +73,7 @@ function App() {
   return (
     <ThemeProvider>
       <CartProvider>
-        <Router>
+        <Router basename={import.meta.env.BASE_URL}>
           <ScrollToTop />
           <IntroSplash />
           <CartDrawer />
