@@ -400,6 +400,13 @@ main {
   color: var(--primary);
 }
 
+.serif-accent {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-style: italic;
+  color: var(--primary);
+  font-weight: inherit;
+}
+
 .section-subtitle {
   font-size: 1.05rem;
   color: var(--text-muted);
@@ -727,5 +734,33 @@ main {
   }
   to {
     transform: rotate(360deg);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   7. ACCESSIBILITY & PREFERS-REDUCED-MOTION (GLOBAL)
+   -------------------------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .reveal-on-scroll {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+
+  .animate-float,
+  .animate-float-reverse,
+  .animate-float-gentle,
+  .animate-glow,
+  .animate-rotate {
+    animation: none !important;
   }
 }

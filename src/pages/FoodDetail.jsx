@@ -300,7 +300,7 @@ const FoodDetail = () => {
               <div className="showcase-guarantee-row">
                 <div className="guarantee-item">
                   <Truck size={16} className="guarantee-icon" />
-                  <span>Free delivery on orders over $35</span>
+                  <span>Free delivery on orders over $40</span>
                 </div>
                 <div className="guarantee-item">
                   <ShieldCheck size={16} className="guarantee-icon" />

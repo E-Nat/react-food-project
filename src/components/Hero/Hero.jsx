@@ -17,7 +17,7 @@ import { MagneticButton } from '../animation/MagneticButton';
 import './Hero.css';
 
 const Hero = () => {
-  const { theme, openReservation, openSearch } = useTheme();
+  const { theme, openSearch } = useTheme();
   const [searchQuery, setSearchQuery] = useState('');
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
   const [heroScroll, setHeroScroll] = useState(0);
@@ -239,14 +239,14 @@ const Hero = () => {
               </Link>
             </MagneticButton>
             <MagneticButton strength={0.25}>
-              <button
-                type="button"
+              <Link
+                to="/booking"
                 className="btn-secondary hero-btn-sec glass-card"
-                onClick={openReservation}
+                aria-label="Book a Table at FOODLY"
               >
                 <Calendar size={18} color="var(--primary)" />
                 <span>Book a Table</span>
-              </button>
+              </Link>
             </MagneticButton>
           </motion.div>
 

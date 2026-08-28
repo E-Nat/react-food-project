@@ -18,8 +18,8 @@ import { useCart } from '../../context/CartContext';
 import './Navbar.css';
 
 const Navbar = () => {
-  const { theme, toggleTheme, openSearch, openReservation } = useTheme();
-  const { totalCartCount, openCart } = useCart();
+  const { theme, toggleTheme, openSearch } = useTheme();
+  const { totalCartCount } = useCart();
   const [isScrolled, setIsScrolled] = useState(false);
   const [scrollProgress, setScrollProgress] = useState(0);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -171,18 +171,17 @@ const Navbar = () => {
               </button>
 
               {/* Cart Button with Count Badge (Desktop & Tablet) */}
-              <button
-                type="button"
+              <Link
+                to="/cart"
                 className="nav-action-btn cart-action-btn"
-                onClick={openCart}
-                aria-label="View Cart"
+                aria-label={`Shopping cart with ${totalCartCount} items`}
                 title="Shopping Cart"
               >
                 <ShoppingBag size={18} />
                 {totalCartCount > 0 && (
                   <span className="navbar-cart-badge">{totalCartCount}</span>
                 )}
-              </button>
+              </Link>
 
               {/* Profile Button with Popover (Desktop only) */}
               <div className="profile-dropdown-wrapper">
@@ -212,14 +211,14 @@ const Navbar = () => {
               </div>
 
               {/* CTA: Book a Table (Desktop & Tablet) */}
-              <button
-                type="button"
+              <Link
+                to="/booking"
                 className="btn-primary navbar-cta-btn"
-                onClick={openReservation}
+                aria-label="Book a Table at FOODLY"
               >
                 <Calendar size={15} />
                 <span>Book a Table</span>
-              </button>
+              </Link>
 
               {/* Mobile Hamburger Toggle (Mobile <= 767px) */}
               <button
@@ -294,30 +293,26 @@ const Navbar = () => {
 
         <div className="drawer-footer-actions">
           {/* Prominent Book a Table CTA in Mobile Menu */}
-          <button
-            type="button"
+          <Link
+            to="/booking"
             className="btn-primary drawer-cta-btn"
-            onClick={() => {
-              setMobileMenuOpen(false);
-              openReservation();
-            }}
+            onClick={() => setMobileMenuOpen(false)}
+            aria-label="Book a Table at FOODLY"
           >
             <Calendar size={16} />
             <span>Book a Table</span>
-          </button>
+          </Link>
 
           <div className="drawer-actions-grid">
-            <button
-              type="button"
+            <Link
+              to="/cart"
               className="drawer-action-pill"
-              onClick={() => {
-                setMobileMenuOpen(false);
-                openCart();
-              }}
+              onClick={() => setMobileMenuOpen(false)}
+              aria-label={`View shopping cart with ${totalCartCount} items`}
             >
               <ShoppingBag size={16} />
               <span>Cart {totalCartCount > 0 ? `(${totalCartCount})` : ''}</span>
-            </button>
+            </Link>
 
             <button
               type="button"

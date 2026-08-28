@@ -1,4 +1,5 @@
 import { foods, foodCategories, featuredChefSpecial } from '../data/foodData';
+import { submitReservation } from './bookingService';
 
 /**
  * FOODLY API Service Layer
@@ -172,13 +173,5 @@ export const createReservation = async (reservationData) => {
     return await response.json();
   }
 
-  return new Promise((resolve) => {
-    setTimeout(() => {
-      resolve({
-        success: true,
-        reservationId: `RES-${Math.floor(1000 + Math.random() * 9000)}`,
-        message: 'Table booked successfully! Confirmation sent to your email.'
-      });
-    }, 350);
-  });
+  return submitReservation(reservationData);
 };

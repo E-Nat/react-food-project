@@ -8,6 +8,8 @@ import { ShoppingBag } from 'lucide-react';
 import Home from './pages/Home';
 import Menu from './pages/Menu';
 import FoodDetail from './pages/FoodDetail';
+import Cart from './pages/Cart';
+import Booking from './pages/Booking';
 import About from './pages/About';
 import Contact from './pages/Contact';
 import NotFound from './pages/NotFound';
@@ -16,6 +18,7 @@ import CartDrawer from './components/Cart/CartDrawer';
 import SearchModal from './components/SearchModal/SearchModal';
 import ReservationModal from './components/ReservationModal/ReservationModal';
 import IntroSplash from './components/IntroAnimation/IntroSplash';
+import ErrorBoundary from './components/ErrorBoundary/ErrorBoundary';
 
 // Scroll restoration component
 function ScrollToTop() {
@@ -61,6 +64,8 @@ function AnimatedRoutes() {
           <Route path="/menu" element={<Menu />} />
           <Route path="/menu/:id" element={<FoodDetail />} />
           <Route path="/food/:id" element={<FoodDetail />} />
+          <Route path="/cart" element={<Cart />} />
+          <Route path="/booking" element={<Booking />} />
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="*" element={<NotFound />} />
@@ -72,20 +77,22 @@ function AnimatedRoutes() {
 
 function App() {
   return (
-    <ThemeProvider>
-      <CartProvider>
-        <Router basename={import.meta.env.BASE_URL}>
-          <ScrollToTop />
-          <IntroSplash />
-          <CartDrawer />
-          <SearchModal />
-          <ReservationModal />
-          <GlobalToast />
+    <ErrorBoundary>
+      <ThemeProvider>
+        <CartProvider>
+          <Router basename={import.meta.env.BASE_URL}>
+            <ScrollToTop />
+            <IntroSplash />
+            <CartDrawer />
+            <SearchModal />
+            <ReservationModal />
+            <GlobalToast />
 
-          <AnimatedRoutes />
-        </Router>
-      </CartProvider>
-    </ThemeProvider>
+            <AnimatedRoutes />
+          </Router>
+        </CartProvider>
+      </ThemeProvider>
+    </ErrorBoundary>
   );
 }
 

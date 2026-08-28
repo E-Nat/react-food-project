@@ -26,7 +26,8 @@ const CartDrawer = () => {
     cartItems,
     isCartOpen,
     closeCart,
-    updateQuantity,
+    increaseQuantity,
+    decreaseQuantity,
     removeFromCart,
     clearCart,
     subtotal,
@@ -223,16 +224,19 @@ const CartDrawer = () => {
                           <div className="cart-mini-qty-picker">
                             <button
                               type="button"
-                              onClick={() => updateQuantity(item.id, item.quantity - 1)}
-                              aria-label="Decrease quantity"
+                              onClick={() => decreaseQuantity(item.id)}
+                              disabled={item.quantity <= 1}
+                              aria-label={`Decrease quantity of ${item.name}`}
+                              title={item.quantity <= 1 ? 'Minimum quantity is 1' : 'Decrease quantity'}
                             >
                               <Minus size={13} />
                             </button>
                             <span>{item.quantity}</span>
                             <button
                               type="button"
-                              onClick={() => updateQuantity(item.id, item.quantity + 1)}
-                              aria-label="Increase quantity"
+                              onClick={() => increaseQuantity(item.id)}
+                              aria-label={`Increase quantity of ${item.name}`}
+                              title="Increase quantity"
                             >
                               <Plus size={13} />
                             </button>
@@ -242,7 +246,7 @@ const CartDrawer = () => {
                             type="button"
                             className="cart-item-remove-btn"
                             onClick={() => removeFromCart(item.id)}
-                            aria-label={`Remove ${item.name}`}
+                            aria-label={`Remove ${item.name} from cart`}
                           >
                             <Trash2 size={15} />
                           </button>

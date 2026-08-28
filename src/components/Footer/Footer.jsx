@@ -16,11 +16,9 @@ import {
   Code2,
   ExternalLink
 } from 'lucide-react';
-import { useTheme } from '../../context/ThemeContext';
 import './Footer.css';
 
 const Footer = () => {
-  const { openReservation } = useTheme();
   const location = useLocation();
 
   const scrollToTop = () => {
@@ -165,6 +163,11 @@ const Footer = () => {
                 </Link>
               </li>
               <li>
+                <Link to="/cart" className="footer-nav-link">
+                  Shopping Cart
+                </Link>
+              </li>
+              <li>
                 <Link to="/about" className="footer-nav-link">
                   About
                 </Link>
@@ -187,13 +190,9 @@ const Footer = () => {
                 </Link>
               </li>
               <li>
-                <button
-                  type="button"
-                  className="footer-nav-link footer-btn-link"
-                  onClick={openReservation}
-                >
+                <Link to="/booking" className="footer-nav-link">
                   Table Reservations
-                </button>
+                </Link>
               </li>
               <li>
                 <Link to="/contact" className="footer-nav-link">

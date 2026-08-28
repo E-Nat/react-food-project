@@ -1,13 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { useSearchParams } from 'react-router-dom';
+import { useSearchParams, Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Search, SlidersHorizontal, RotateCcw, UtensilsCrossed, Sparkles } from 'lucide-react';
+import { Search, SlidersHorizontal, RotateCcw, UtensilsCrossed, Sparkles, ChevronRight } from 'lucide-react';
 import Navbar from '../components/Navbar/Navbar';
 import Footer from '../components/Footer/Footer';
 import FoodCard from '../components/FoodCard/FoodCard';
 import { foods } from '../data/foodData';
 import { Reveal } from '../components/animation/Reveal';
-import { StaggerContainer, StaggerItem } from '../components/animation/StaggerContainer';
 import './Menu.css';
 
 const CATEGORIES = [
@@ -111,6 +110,17 @@ const Menu = () => {
     <div className="page-wrapper menu-page">
       <Navbar />
       <main>
+        {/* Breadcrumb Navigation Bar */}
+        <div className="menu-breadcrumb-bar">
+          <div className="container">
+            <nav className="breadcrumb-nav" aria-label="Breadcrumb">
+              <Link to="/">Home</Link>
+              <ChevronRight size={14} aria-hidden="true" />
+              <span className="breadcrumb-current">Menu</span>
+            </nav>
+          </div>
+        </div>
+
         {/* Menu Hero Header */}
         <section className="menu-hero-header">
           <div className="container">
